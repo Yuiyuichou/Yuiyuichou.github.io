@@ -1,48 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             list-style: none;
         }
-        .main-header{
+        body{
+            padding-top: 80px;
+        }
+
+        .web {
             width: 960px;
 
         }
-        .main-header .navbar-container{
+
+        .navbar-container {
+            width: 960px;
+            height: 80px;
+            background-color: #fff;
+            position: fixed;
+            top: 0;
+            z-index: 5;
+            /* box-shadow: 0 2px 5px rgb(0 0 0 / 20%); */
+
+
+        }
+
+        .main-header .navbar-container {
             display: flex;
             align-items: center;
-            
-            margin: 20px 0;
+
+
         }
-        .main-header .navbar-container .main-nav a{
+
+        .main-header .navbar-container .main-nav a {
             margin: 10px;
         }
-        .main-header .navbar-container .logo{
+
+        .main-header .navbar-container .logo {
             width: 100px;
             padding: 20px;
 
         }
 
-        .main-header .navbar-container .logo img{
+        .main-header .navbar-container .logo img {
             width: 100%;
             vertical-align: middle;
         }
-         .main-nav{
-            
-        }
-         .main-nav a{
-            text-decoration:none;
+
+        .main-nav a {
+            text-decoration: none;
             color: #2c323f;
 
         }
-        .main-header .navbar-container .btn-download{
+
+        .main-header .navbar-container .btn-download {
             display: inline-block;
             width: 100px;
             height: 20px;
@@ -50,55 +69,604 @@
             text-align: center;
             background-color: #00c300;
             border-radius: 200px;
-            
-            margin: 0 0px 0 20px ;
-            
-            
+            margin: 0 0px 0 20px;
+
         }
-        .btn-download .btn-download-btn{
+
+        .navbar-container .btn-download a {
             color: #FFF;
-            text-decoration:none; 
+            text-decoration: none;
         }
-        .main-container{
-            width: 100%;
+
+        .main-container {
+            position: relative;
+        }
+
+        .main-container-img {
+            width: 960px;
             height: 600px;
-            background-image: url("../Whoscall/img/asset\ 7.svg"),
-            url("../Whoscall/img/asset\ 8.svg"),
-            url("../Whoscall/img/valid-number-2880.jpg") ;
-            background-repeat: no-repeat;
-            background-position: left top, right bottom, center center;
+            background-image: url("./img/valid-number-2880.jpg");
+            background-size: cover;
+            position: relative;
+
+        }
+
+        .main-text {
+            position: absolute;
+            left: 80px;
+            top: 140px;
+        }
+
+        .front-img-up {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+        .front-img-down {
+            position:absolute;
+            right: 0px;
+            bottom: 0px;
+        }
+        .main-text h1 {
+            color: #00c300;
+            font-size: 50px;
+        }
+        .main-text h2 {
+            font-size: 40px;
+        }
+        .btn-apply .btn-apply-btn {
+            display: inline-block;
+            width: 100px;
+            height: 20px;
+            padding: 10px 20px;
+            text-align: center;
+            background-color: #00c300;
+            border-radius: 200px;
+            color: #FFF;
+            text-decoration: none;
+            margin: ;
+        }
+
+        .main-text p {
+            color: #00c300;
+        }
+        .marketsurvey-container {
+            text-align: center;
+            margin: 50px;
+        }
+        .marketsurvey-container .lineone {
+            font-size: 20px;
+            line-height: 20px;
+        }
+        .marketsurvey-container .linetwo {
+            font-size: 30px;
+            line-height: 40px;
+        }
+
+        .marketsurvey-container .linetwo span {
+            color: #00c300;
+        }
+        .marketsurvey-container .linethree {
+            font-size: 10px;
+            line-height: 30px;
+        }
+        .medialist-item {
+            display: flex;
+            align-items: center;
+            /* justify-content: center; */
+        }
+
+        .medialist-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .medialist-text {
+            width: 430px;
+            margin: 35px;
+        }
+
+        .medialist-text h3 {
+            color: #00c300;
+            font-size: 35px;
+        }
+
+        .medialist-text p {
+            color: #2c323f;
+        }
+
+        .partner-container {
+            width: 960px;
+            margin: 30px 0;
+        }
+
+        h4 {
+            font-size: 40px;
+            color: #2c323f;
+            text-align: center;
+        }
+
+        .partner-container .partner-item-container {
+            width: 960px;
+            height: 300px;
+            display: flex;
+            align-items: center;
+
+        }
+
+        .partner-item-container .partner-item {
+            width: 300px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .partner-item-container .partner-item img {
+            width: 150px;
+        }
+
+        .partner-item h5 {
+            font-size: 25px;
+            color: #2c323f;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        .partner-item-container .partner-item p {
+            font-size: 15px;
+            color: #2c323f;
+            width: 200px;
+            height: 100px;
+            text-align: center;
+        }
+
+        .wrap {
+            width: 960px;
+            margin: 30px 0;
+        }
+
+        .experiecesharing-container {
+            width: 960px;
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .experiece-item {
+            width: 258px;
+            margin: 10px;
+            height: 280px;
+            text-align: left;
+            padding: 20px 20px 84px;
+            box-shadow: 0 2px 10px rgb(113 123 142 / 20%);
+            border: 1px solid #d5d5d5;
+            border-radius: 3px;
+
+        }
+
+        .title h5 {
+            font-size: 25px;
+            color: #2c323f;
+            line-height: 40px;
+        }
+
+        .experiece-item .title img {
+            -moz-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            transform: scaleX(-1);
+            margin: 20px 0;
+        }
+
+        .experiece-item p {
+            color: #2c323f;
+            width: 260px;
+            height: 100px;
+            text-align: center;
+
+        }
+
+        .comment-logo-cathy {
+            width: 160px;
+            height: 50px;
+            position: relative;
+            right: -40px;
+            bottom: -30px;
+            /* margin: 15px 15px 15px 100px; */
+        }
+
+        .comment-logo-91app {
+            width: 160px;
+            height: 50px;
+            position: relative;
+            right: -90px;
+            bottom: -30px;
+            /* text-align: right;
+            margin: 15px 15px 15px 100px; */
+
+        }
+
+        .comment-logo-24pchome {
+            text-align: right;
+            position: relative;
+            bottom: -30px;
+            /* margin: 15px 0; */
+
         }
 
 
+
+        .mainfooter-container {
+            width: 880px;
+            height: 310px;
+            background-color: #2c323f;
+            margin: 100px 0 0;
+            padding: 30px 40px 44px;
+        }
+
+        .mainfooter-row {
+            display: flex;
+            line-height: 30px;
+            text-align: left;
+            /* margin: 0 30px 20px 30px; */
+            margin-bottom: 20px;
+        }
+
+        h6 {
+            color: #fff;
+            font-size: 16px;
+            margin: 0 0 4px 0;
+
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            color: #f5f6f9;
+            margin: 0 50px 0 0px;
+        }
+
+        .footer-col a {
+            text-decoration: none;
+            color: #f5f6f9;
+            font-size: 15px;
+        }
+
+        .footer-col-icon {
+            width: 200px;
+            margin: 0 25px 0 240px;
+        }
+
+        .social-link {
+            width: 200px;
+            display: flex;
+            justify-content: flex-start;
+
+        }
+
+        .social-link i {
+
+            color: #f5f6f9;
+            margin: 10px 20px 10px 0px;
+        }
+
+        .gogolook-logo p {
+            color: #f5f6f9;
+
+        }
+
+        hr {
+            border: .1px solid #f5f6f9;
+        }
+
+        .gogolook-logo {
+            width: 106px;
+            height: 56px;
+            margin-left: 0;
+
+        }
+
+        .mainfooter-bottom-container {
+            color: #f5f6f9;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            margin: 30px 0;
+
+        }
+
+        .copyright {
+            width: 280px;
+            margin: 0;
+        }
+
+        .footer-bottom-text {
+            width: 250px;
+            align-items: flex-start;
+            margin: 0 180px 0 30px;
+        }
+
+        .footer-bottom-text a {
+            color: #f5f6f9;
+            text-decoration: none;
+            padding: 20px;
+
+        }
+
+        .locale-toggle {
+            display: flex;
+            flex-direction: row;
+            color: currentColor;
+        }
+
+        .locale-toggle a {
+            color: #f5f6f9;
+            margin: 5px;
+            ;
+        }
     </style>
 </head>
-<body>
 
-    <header class="main-header">
-        <div class="navbar-container">
-            <a href="#" class="logo">
-                <img src="../作業/1128作業 whoscall/asset 6.svg" alt="logo">
-            </a>
-            <nav class="main-nav">
-                <a href="#">Whoscall 進階版</a>
-                <a href="#">Whoscall 認證號碼</a>
-                <a href="#">認識 Whoscall</a>
-                <a href="#">Whoscall 專欄</a>
-                <a href="#">常見問題</a>
-                
-            </nav>
-            <div class="btn-download">
-                <a href="#" class="btn-download-btn">免費下載</a>
+<body>
+    <div class="web">
+
+
+        <header class="main-header">
+            <div class="navbar-container">
+                <a href="#" class="logo">
+                    <img src="./img/asset 6.svg" alt="logo">
+                </a>
+                <nav class="main-nav">
+                    <a href="#">Whoscall 進階版</a>
+                    <a href="#">Whoscall 認證號碼</a>
+                    <a href="#">認識 Whoscall</a>
+                    <a href="#">Whoscall 專欄</a>
+                    <a href="#">常見問題</a>
+
+                </nav>
+                <div class="btn-download">
+                    <a href="#" class="btn-download-btn">免費下載</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-container">
+
+            <div class="main-container-img">
+                <img class="front-img-up" src="./img/asset 7.svg" alt="">
+                <img class="front-img-down" src="./img/asset 8.svg" alt="">
+            </div>
+
+            <div class="main-text">
+                <h1>whoscall 認證號碼</h1>
+                <h2>電話接通前 <br>讓專業形象為你開場！</h2>
+                <div class="btn-apply">
+                    <a href="#" class="btn-apply-btn">立即申請</a>
+                </div>
+                <p>企業方案優惠 $200/月 起</p>
+
             </div>
         </div>
-   </header>
-   <div class="main-container">
-        <h1>whoscall 認證號碼</h1>
-        <p>電話接通前 讓專業形象為你開場！</p>
 
-   </div>
+        <div class="marketsurvey-container">
+            <p class="lineone">根據市場調查顯示</p>
+            <p class="linetwo">超過 <span>60%</span>的民眾會選擇忽視<br>或拒接陌生來電。</p>
+            <p class="linethree">※Pollster 波仕特線上市調 (2014)</p>
+        </div>
 
-    
-    
+        <ul class="medialist-container">
+            <li class="medialist-item">
+                <div class="medialist-text">
+                    <h3>提高2倍電話接聽意願</h3>
+                    <p>Whoscall 認證號碼讓您在全台百萬用戶的來電視窗，顯示公司名稱、姓名等資訊。從此不再是客戶的陌生來電！ <span>※Whoscall 調查 (2018)</span></p>
+                </div>
+
+                <img src="./img/asset 0.webp" alt="">
+
+            </li>
+            <li class="medialist-item">
+                <div class="medialist-text">
+                    <h3>創造主動回撥的潛在客戶</h3>
+                    <p>在來電記錄中，留下最佳企業形象，創造客戶主動聯繫的契機。</p>
+                </div>
+                <img src="./img/asset 1.webp" alt="">
+            </li>
+            <li class="medialist-item">
+                <div class="medialist-text">
+                    <h3>眾多來電一秒看見</h3>
+                    <p>不在客戶的通訊錄裡，也能於通話紀錄顯示企業資訊，輕鬆提升工作效率與拓客成功率。</p>
+                </div>
+                <img src="./img/asset 2.webp" alt="">
+            </li>
+        </ul>
+        <section class="partner-container">
+            <div class="partner">
+                <h4>拓展業務的最佳夥伴！</h4>
+            </div>
+
+            <ul class="partner-item-container">
+                <li class="partner-item">
+                    <img src="./img/asset 3.svg" alt="">
+
+                    <div class="partner-text">
+                        <h5>實名認證</h5>
+                        <p>Whoscall 嚴謹的實名審核，讓認證過的電話號碼更值得信任。</p>
+                    </div>
+
+                </li>
+                <li class="partner-item">
+                    <img src="./img/asset 4.svg" alt="">
+                    <div class="partner-text">
+                        <h5>支援手機雙系統</h5>
+                        <p>支援在 iOS 與 Android 系統上的來電顯示，全台潛在客戶一網打盡。</p>
+                    </div>
+
+                </li>
+                <li class="partner-item">
+                    <img src="./img/asset 5.svg" alt="">
+
+                    <div class="partner-text">
+                        <h5>一對一專人服務</h5>
+                        <p>專人服務、輕鬆申請認證流程不再複雜惱人</p>
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </section>
+        <div class="wrap">
+            <h4>用戶經驗分享</h4>
+            <ul class="experiecesharing-container">
+                <li class="experiece-item">
+                    <div class="title">
+                        <img src="./img/asset 9.svg" alt="">
+                        <h5>沒想到更多客戶主動回電!</h5>
+
+                    </div>
+
+                    <p>申請 Whoscall 認證號碼後，業務撥打出去的未接來電，客戶更樂意回電了，保險方案的介紹與推動也比以前更即時有效！</p>
+                    <div class="comment-logo-cathy">
+                        <img src="./img/cathay-logo.svg" alt="">
+                    </div>
+
+                </li>
+                <li class="experiece-item">
+                    <div class="title">
+                        <img src="./img/asset 9.svg" alt="">
+                        <h5>高接聽率讓合作更有效率！</h5>
+
+                    </div>
+                    <p>設定 Whoscall 認證號碼後，電商客戶的接聽率明顯比以前高很多！和客戶討論案子的速度更順利、也更能即時給客戶完整的營運建議！</p>
+
+                    <div class="comment-logo-91app">
+                        <img src="./img/logo-91app-red.svg" alt="">
+                    </div>
+
+                </li>
+                <li class="experiece-item">
+                    <div class="title">
+                        <img src="./img/asset 9.svg" alt="">
+                        <h5>沒想到更多客戶主動回電!</h5>
+
+                    </div>
+
+                    <p>透過 Whoscall Number 服務，讓顧客接聽意願變高，也讓我們的物流司機更容易掌握顧客的狀況，網購商品能更即時且有效率的送達。</p>
+                    <div class="comment-logo-24pchome">
+                        <img src="./img/24HLOGO.png" style="width:258px;" alt="">
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <footer class="mainfooter">
+            <div class="mainfooter-container">
+                <div class="mainfooter-row">
+                    <div class="footer-col">
+                        <h6>Whoscall</h6>
+                        <ul>
+                            <li><a href="#">認識 Whoscall</a></li>
+                            <li><a href="#">Whoscall 進階版</a></li>
+                            <li><a href="#">Whoscall 專欄</a></li>
+                            <li><a href="#">Whoscall 認證號碼</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h6>公司</h6>
+                        <ul>
+                            <li><a href="#">工作機會</a></li>
+                        </ul>
+
+                        <h6>媒體中心</h6>
+                        <ul>
+                            <li><a href="#">最新消息</a></li>
+                            <li><a href="#">品牌識別</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h6>客戶服務</h6>
+                        <ul>
+                            <li><a href="#">安全性 </a></li>
+                            <li><a href="#">常見問題</a></li>
+                            <li><a href="#">聯絡我們</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-icon">
+                        <h6>追蹤我們</h6>
+                        <div class="social-link">
+                            <a href="#"><i class="fa-brands fa-instagram fa-2x"></i></a>
+                            <a href="#"><i class="fa-brands fa-square-facebook fa-2x"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter fa-2x"></i></a>
+                            <a href="#"><i class="fa-brands fa-youtube fa-2x"></i></a>
+                        </div>
+                        <div class="gogolook-logo">
+                            <p>Powered by</p>
+                            <a href="#">
+
+                                <img src="./img/gogolook-logo.svg" style="color: #f5f6f9;" alt=""></a>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+                <hr>
+
+                <div class="mainfooter-bottom-container">
+                    <div class="copyright">
+                        &copy;2022 Gogolook. All Rights Reserved.
+                    </div>
+                    <div class="footer-bottom-text">
+                        <a href="#">服務條款</a>
+                        <a href="#">隱私權政策</a>
+                    </div>
+                    <div class="locale-toggle">
+
+
+                        <a href="#"><i class="fa-solid fa-globe "></i></a>
+                        <select name="locale" id="">
+
+                            <option value="">英文</option>
+                            <option value="" selected>中文</option>
+                            <option value="">日本語</option>
+                            <option value="">ภาษาไทย</option>
+                            <option value="">Bahasa Melayu</option>
+                            <option value="">馬來西亞 (中文)</option>
+                            <option value="">한국어</option>
+                            <option value="">Português brasileiro</option>
+
+                        </select>
+
+                        <!-- <a href="#"><i class="fa-solid fa-chevron-down"></i></a> -->
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </div>
+
+
+        </footer>
+
+
+
+
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </body>
+
 </html>
