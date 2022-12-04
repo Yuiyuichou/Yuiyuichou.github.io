@@ -5,22 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>whoscall</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             list-style: none;
+            font-family: 'Noto Sans TC', sans-serif;
         }
         body{
             padding-top: 80px;
         }
-
         .web {
             width: 960px;
-
         }
-
         .navbar-container {
             width: 960px;
             height: 80px;
@@ -28,69 +27,57 @@
             position: fixed;
             top: 0;
             z-index: 5;
-            /* box-shadow: 0 2px 5px rgb(0 0 0 / 20%); */
-
-
+            box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
         }
-
-        .main-header .navbar-container {
+        .navbar-container {
             display: flex;
             align-items: center;
-
-
         }
-
-        .main-header .navbar-container .main-nav a {
+        .main-nav a{
             margin: 10px;
+            font-size: 16px;
+            font-weight: 500;
         }
-
-        .main-header .navbar-container .logo {
+        .main-nav a:hover{
+            color: #00c300;
+        }
+        .navbar-container .logo{
             width: 100px;
             padding: 20px;
-
         }
-
-        .main-header .navbar-container .logo img {
+        .logo img{
             width: 100%;
             vertical-align: middle;
         }
-
-        .main-nav a {
+        .main-nav a{
             text-decoration: none;
             color: #2c323f;
-
         }
-
-        .main-header .navbar-container .btn-download {
-            display: inline-block;
+        .btn-download {
             width: 100px;
             height: 20px;
             padding: 10px 20px;
             text-align: center;
+            line-height: 18px;
             background-color: #00c300;
             border-radius: 200px;
             margin: 0 0px 0 20px;
-
         }
-
-        .navbar-container .btn-download a {
+        /* btn字和背景垂直置中 */
+        .btn-download a {
             color: #FFF;
-            text-decoration: none;
+            text-decoration: none; 
         }
-
         .main-container {
             position: relative;
         }
-
         .main-container-img {
             width: 960px;
             height: 600px;
             background-image: url("./img/valid-number-2880.jpg");
             background-size: cover;
             position: relative;
-
         }
-
         .main-text {
             position: absolute;
             left: 80px;
@@ -107,131 +94,169 @@
             right: 0px;
             bottom: 0px;
         }
-        .main-text h1 {
-            color: #00c300;
-            font-size: 50px;
+        .main-text img{
+            width: 500px;
+            padding-bottom: 10px;
         }
-        .main-text h2 {
-            font-size: 40px;
+        .main-text h1{
+            font-size: 35px;
+            font-weight: 400;
+            padding-bottom: 40px;
         }
-        .btn-apply .btn-apply-btn {
-            display: inline-block;
-            width: 100px;
-            height: 20px;
+        .btn-apply{
+            display: flex;
+            flex-direction: column;
+        }
+        .btn-apply-btn{
+            display: inline-flex;
+            width: 180px;
+            height: 35px;
             padding: 10px 20px;
             text-align: center;
+            justify-content: center;
+            /* line-height: 10px; */
+            font-size: 23px;
             background-color: #00c300;
             border-radius: 200px;
             color: #FFF;
-            text-decoration: none;
-            margin: ;
+            text-decoration: none; 
+            justify-content: center;
         }
+        /* btn(a)字和背景垂直置中 */
 
-        .main-text p {
+        .btn-apply p{
+            width: 220px;
             color: #00c300;
+            text-align: center;
+            margin-top: 5px;
         }
-        .marketsurvey-container {
+        .marketsurvey-container{
             text-align: center;
             margin: 50px;
         }
-        .marketsurvey-container .lineone {
-            font-size: 20px;
-            line-height: 20px;
+        .lineone{
+            font-size: 22px;
+            padding-bottom: 15px; 
         }
-        .marketsurvey-container .linetwo {
-            font-size: 30px;
-            line-height: 40px;
+        .lineone::after{
+            content: "※";
+            position: relative;
+            top: -12px;
+            font-size: 15px;
         }
-
-        .marketsurvey-container .linetwo span {
+        .linetwo{
+            font-size: 35px;
+            line-height: 50px;
+            padding-bottom: 15px;
+        }
+        .linetwo span{
             color: #00c300;
         }
-        .marketsurvey-container .linethree {
-            font-size: 10px;
+        .linethree{
+            font-size: 15px;
             line-height: 30px;
+            color: #717b8e;
         }
         .medialist-item {
             display: flex;
             align-items: center;
             /* justify-content: center; */
         }
-
         .medialist-item:nth-child(even) {
             flex-direction: row-reverse;
         }
-
-        .medialist-text {
+        .medialist-text{
             width: 430px;
             margin: 35px;
         }
 
-        .medialist-text h3 {
+        .medialist-text h3{
             color: #00c300;
             font-size: 35px;
+            padding-bottom: 20px;
         }
+        .h3-comment{
+            color: #00c300;
+            font-size: 35px;
 
-        .medialist-text p {
+        }
+        .h3-comment::after{
+            content: "※";
+            position: relative;
+            top: -30px;
+            font-size: 15px;
+            color: #717b8e;
+        }
+        .medialist-text p{
             color: #2c323f;
+            font-size: 22px;
+            padding-bottom: 20px;
         }
+        .research-comment{
+            font-size: 14px;
+            color: #717b8e;   
+        }
+        .medialist-text .highlight{
+            background: 
+            linear-gradient(180deg,transparent 0,transparent 50%,rgba(151,245,151,.5) 0,rgba(151,245,151,.5)); 
+        }
+        /* 用漸層色linear-gradient當highlight 
+        (180deg,transparent 0,transparent 50%,rgba(151,245,151,.5) 0,rgba(151,245,151,.5))
+        (角度  ,起始色彩 透明 ,結束色彩 透50%  ,rgba(151,245,151,.5) 0,rgba(151,245,151,.5))*/
 
-        .partner-container {
+
+        .partner-container{
             width: 960px;
-            margin: 30px 0;
+            margin: 80px 0;
+            padding: 50px 0;
+            background-color: #f5f6f9;
         }
-
         h4 {
             font-size: 40px;
             color: #2c323f;
             text-align: center;
+            padding-bottom: 40px;
         }
-
-        .partner-container .partner-item-container {
-            width: 960px;
+        .partner-item-container {
             height: 300px;
             display: flex;
             align-items: center;
 
         }
-
-        .partner-item-container .partner-item {
+        .partner-item {
             width: 300px;
             margin: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
-
-        .partner-item-container .partner-item img {
+        .partner-item img {
             width: 150px;
         }
-
-        .partner-item h5 {
-            font-size: 25px;
+        .partner-item h5{
+            font-size: 22px;
             color: #2c323f;
             line-height: 40px;
             text-align: center;
         }
 
-        .partner-item-container .partner-item p {
-            font-size: 15px;
+        .partner-item p{
+            font-size: 18px;
             color: #2c323f;
             width: 200px;
             height: 100px;
             text-align: center;
+            padding-top: 10px;
         }
-
-        .wrap {
-            width: 960px;
-            margin: 30px 0;
+        .wrap {    
+            margin: 60px 0;
         }
-
         .experiecesharing-container {
-            width: 960px;
             display: flex;
             align-items: center;
             margin: 0 auto;
+            padding: 10px 0;
         }
-
         .experiece-item {
             width: 258px;
             margin: 10px;
@@ -241,15 +266,14 @@
             box-shadow: 0 2px 10px rgb(113 123 142 / 20%);
             border: 1px solid #d5d5d5;
             border-radius: 3px;
-
+            position: relative;
         }
-
-        .title h5 {
+        .title h5{
             font-size: 25px;
             color: #2c323f;
             line-height: 40px;
+            padding-bottom: 15px;
         }
-
         .experiece-item .title img {
             -moz-transform: scaleX(-1);
             -webkit-transform: scaleX(-1);
@@ -257,45 +281,57 @@
             transform: scaleX(-1);
             margin: 20px 0;
         }
-
-        .experiece-item p {
+        .experiece-item p{
             color: #2c323f;
             width: 260px;
             height: 100px;
             text-align: center;
-
+            font-size: 15px;
         }
-
+        .texthighlight{
+            background: 
+            linear-gradient(180deg,transparent 0,transparent 50%,rgba(151,245,151,.5) 0,rgba(151,245,151,.5)); 
+        }
         .comment-logo-cathy {
             width: 160px;
             height: 50px;
-            position: relative;
-            right: -40px;
-            bottom: -30px;
-            /* margin: 15px 15px 15px 100px; */
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
         }
-
         .comment-logo-91app {
             width: 160px;
             height: 50px;
-            position: relative;
-            right: -90px;
-            bottom: -30px;
-            /* text-align: right;
-            margin: 15px 15px 15px 100px; */
-
+            position: absolute;
+            right: -12px;
+            bottom: 10px;
         }
 
         .comment-logo-24pchome {
-            text-align: right;
-            position: relative;
-            bottom: -30px;
-            /* margin: 15px 0; */
-
+            position: absolute;
+            right: 20px;
+            bottom: 25px;
         }
-
-
-
+        .apply-container{
+            height: 150px;
+            background-color: #f5f6f9;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+        }
+        .apply-container h5{
+            font-size: 40px;
+            color: #2c323f;
+            line-height: 40px;
+            padding-bottom: 15px;
+        }
+        .apply-container p{
+            color: #00c300;
+            font-size: 20px;
+            padding-bottom: 20px;
+        }
         .mainfooter-container {
             width: 880px;
             height: 310px;
@@ -303,7 +339,6 @@
             margin: 100px 0 0;
             padding: 30px 40px 44px;
         }
-
         .mainfooter-row {
             display: flex;
             line-height: 30px;
@@ -311,14 +346,12 @@
             /* margin: 0 30px 20px 30px; */
             margin-bottom: 20px;
         }
-
         h6 {
             color: #fff;
             font-size: 16px;
-            margin: 0 0 4px 0;
-
+            padding: bottom 5px;
+            font-weight: 400;
         }
-
         .footer-col {
             display: flex;
             flex-direction: column;
@@ -326,85 +359,75 @@
             color: #f5f6f9;
             margin: 0 50px 0 0px;
         }
-
         .footer-col a {
             text-decoration: none;
             color: #f5f6f9;
             font-size: 15px;
+            font-weight: 300;
         }
-
         .footer-col-icon {
             width: 200px;
             margin: 0 25px 0 240px;
         }
-
         .social-link {
             width: 200px;
             display: flex;
             justify-content: flex-start;
-
         }
-
         .social-link i {
-
             color: #f5f6f9;
             margin: 10px 20px 10px 0px;
         }
-
         .gogolook-logo p {
             color: #f5f6f9;
-
         }
-
         hr {
             border: .1px solid #f5f6f9;
         }
-
         .gogolook-logo {
             width: 106px;
             height: 56px;
             margin-left: 0;
-
         }
-
         .mainfooter-bottom-container {
             color: #f5f6f9;
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
             margin: 30px 0;
-
         }
-
         .copyright {
-            width: 280px;
+            width: 260px;
             margin: 0;
+            font-size: 15px;
+            font-weight: 300;
         }
-
         .footer-bottom-text {
-            width: 250px;
+            width: 230px;
             align-items: flex-start;
-            margin: 0 180px 0 30px;
+            margin: 0 220px 0 30px;
         }
-
         .footer-bottom-text a {
             color: #f5f6f9;
             text-decoration: none;
             padding: 20px;
-
         }
-
-        .locale-toggle {
+        .locale-toggle{
+            width: 140px;
             display: flex;
             flex-direction: row;
             color: currentColor;
         }
 
-        .locale-toggle a {
+        .locale-toggle a{
+            width: 30px;
             color: #f5f6f9;
-            margin: 5px;
-            ;
+            padding-right:20px;
         }
+        .locale-toggle .locale{
+            background-color: #2c323f ;
+        }
+        /* 不會改下拉是選單底色&字顏色 */
     </style>
 </head>
 
@@ -439,12 +462,13 @@
             </div>
 
             <div class="main-text">
-                <h1>whoscall 認證號碼</h1>
-                <h2>電話接通前 <br>讓專業形象為你開場！</h2>
+                <img src="./img/number-hero-title-1479.png.webp" alt="">
+                <h1>電話接通前 <br>讓專業形象為你開場！</h1>
                 <div class="btn-apply">
                     <a href="#" class="btn-apply-btn">立即申請</a>
+                    <p>企業方案優惠 $200/月 起</p>
                 </div>
-                <p>企業方案優惠 $200/月 起</p>
+                
 
             </div>
         </div>
@@ -458,8 +482,9 @@
         <ul class="medialist-container">
             <li class="medialist-item">
                 <div class="medialist-text">
-                    <h3>提高2倍電話接聽意願</h3>
-                    <p>Whoscall 認證號碼讓您在全台百萬用戶的來電視窗，顯示公司名稱、姓名等資訊。從此不再是客戶的陌生來電！ <span>※Whoscall 調查 (2018)</span></p>
+                    <h3 class="h3-comment">提高<span class="highlight">2倍</span>電話接聽意願</h3>
+                    <p>Whoscall 認證號碼讓您在全台百萬用戶的來電視窗，顯示公司名稱、姓名等資訊。從此不再是客戶的陌生來電！ </p>
+                    <div class="research-comment">※Whoscall 調查 (2018)</div>
                 </div>
 
                 <img src="./img/asset 0.webp" alt="">
@@ -467,14 +492,14 @@
             </li>
             <li class="medialist-item">
                 <div class="medialist-text">
-                    <h3>創造主動回撥的潛在客戶</h3>
+                    <h3>創造主動<span class="highlight">回撥</span>的潛在客戶</h3>
                     <p>在來電記錄中，留下最佳企業形象，創造客戶主動聯繫的契機。</p>
                 </div>
                 <img src="./img/asset 1.webp" alt="">
             </li>
             <li class="medialist-item">
                 <div class="medialist-text">
-                    <h3>眾多來電一秒看見</h3>
+                    <h3>眾多來電<span class="highlight">一秒</span>看見</h3>
                     <p>不在客戶的通訊錄裡，也能於通話紀錄顯示企業資訊，輕鬆提升工作效率與拓客成功率。</p>
                 </div>
                 <img src="./img/asset 2.webp" alt="">
@@ -526,7 +551,7 @@
 
                     </div>
 
-                    <p>申請 Whoscall 認證號碼後，業務撥打出去的未接來電，客戶更樂意回電了，保險方案的介紹與推動也比以前更即時有效！</p>
+                    <p>申請 Whoscall 認證號碼後，<span class="texthighlight">業務撥打出去的未接來電，客戶更樂意回電了</span>，業務撥打出去的未接來電，客戶更樂意回電了，保險方案的介紹與推動也比以前更即時有效！</p>
                     <div class="comment-logo-cathy">
                         <img src="./img/cathay-logo.svg" alt="">
                     </div>
@@ -538,7 +563,7 @@
                         <h5>高接聽率讓合作更有效率！</h5>
 
                     </div>
-                    <p>設定 Whoscall 認證號碼後，電商客戶的接聽率明顯比以前高很多！和客戶討論案子的速度更順利、也更能即時給客戶完整的營運建議！</p>
+                    <p>設定 Whoscall 認證號碼後，<span class="texthighlight">電商客戶的接聽率明顯比以前高很多！</span>和客戶討論案子的速度更順利、也更能即時給客戶完整的營運建議！</p>
 
                     <div class="comment-logo-91app">
                         <img src="./img/logo-91app-red.svg" alt="">
@@ -552,13 +577,17 @@
 
                     </div>
 
-                    <p>透過 Whoscall Number 服務，讓顧客接聽意願變高，也讓我們的物流司機更容易掌握顧客的狀況，網購商品能更即時且有效率的送達。</p>
+                    <p>透過 Whoscall Number 服務，讓顧客接聽意願變高，也讓我們的<span class="texthighlight">物流司機更容易掌握顧客的狀況</span>，網購商品能更即時且有效率的送達。</p>
                     <div class="comment-logo-24pchome">
                         <img src="./img/24HLOGO.png" style="width:258px;" alt="">
                     </div>
 
                 </li>
             </ul>
+        </div>
+        <div class="apply-container">
+            <h5>馬上申請企業專屬認證號碼！</h5>
+            <p>每筆 $200/月 起，申辦號碼越多、優惠更多！</p>
         </div>
 
         <footer class="mainfooter">
@@ -611,9 +640,7 @@
                                 <img src="./img/gogolook-logo.svg" style="color: #f5f6f9;" alt=""></a>
                         </div>
 
-
                     </div>
-
 
                 </div>
                 <hr>
@@ -630,7 +657,8 @@
 
 
                         <a href="#"><i class="fa-solid fa-globe "></i></a>
-                        <select name="locale" id="">
+                        <div class="locate-selet">
+                            <select name="locale" style="width:100px">
 
                             <option value="">英文</option>
                             <option value="" selected>中文</option>
@@ -643,23 +671,17 @@
 
                         </select>
 
+                        </div>
+                        
                         <!-- <a href="#"><i class="fa-solid fa-chevron-down"></i></a> -->
                     </div>
 
                 </div>
 
 
-
-
-
-
             </div>
 
-
         </footer>
-
-
-
 
     </div>
 
