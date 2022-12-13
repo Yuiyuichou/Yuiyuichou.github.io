@@ -11,9 +11,7 @@
           padding: 0;
           list-style: none;
     }
-    body{
-        background-color: #eff0ea;
-    }
+    
     .start{
         background-color: rgb(0,0,0, .5);
         width: 100%;
@@ -33,20 +31,26 @@
         border: 5px solid #976666;
         border-radius: 20px;
     }
+    main{
+        height: 100vh;
+        background-color: #eff0ea;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        padding: 50px;
+    }
     h1{
         width: 360px;
         margin: auto;
         text-align: center;
         font-size: 36px;
         font-weight: 900;
-        padding: 20px;
-        margin-top: 100px;
         color: #7a848d;
           
     }
     .wrap{
         width: 400px;
-        padding: 10px;
         background-color: #dbd2c9;
         border:10px solid #7a848d;
         border-radius: 15px;
@@ -154,7 +158,8 @@
         <button class="start-button">開始遊戲</button>
         
     </div>
-    <h1>終極密碼</h1>
+    <main>
+        <h1>終極密碼</h1>
     
         <section class="wrap">
             <div class="view">
@@ -187,6 +192,8 @@
                 <button>Reset</button>
             </div>
         </section>
+    </main>
+    
        
     <script>
       function getRandomInt(min,max){
