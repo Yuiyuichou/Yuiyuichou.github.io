@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+      *{
+          margin: 0;
+          padding: 0;
+          list-style: none;
+      }
+      body{
+          background-color: #eff0ea;
+      }
+      h1{
+          width: 360px;
+          margin: auto;
+          text-align: center;
+          font-size: 36px;
+          font-weight: 900;
+          padding: 30px;
+          margin-top: 100px;
+          color: #7a848d;
+          
+      }
+      .wrap{
+          width: 400px;
+          padding: 10px;
+          background-color: #dbd2c9;
+          border:10px solid #7a848d;
+          border-radius: 15px;
+          margin: auto;
+      }
+      .view{
+          display: flex;
+          justify-content: space-around;
+      }
+      .view .show-number{
+          width: 160px;
+          margin: 5px;
+          /* display: flex;
+          flex-direction: column; */
+          text-align: center;
+      }
+      .view .show-guess{
+          width: 160px;
+          margin: 5px;
+
+      }
+      .view h2{
+          font-size: 22px;
+          text-align: center;
+          color: #7a848d;
+          margin: 10px;
+      }
+      .view p{
+          color: #7a848d;
+          font-size: 23px;
+          height: 80px;
+          width: 150px;
+          font-weight: 600;
+          border: solid 5px #a9b7aa;
+          border-radius: 15px;
+          line-height: 3.5;
+      }
+      .view .show-guess input{
+          color: #7a848d;
+          font-size: 22px;
+          height: 80px;
+          font-weight: 600;
+          width: 150px;
+          border: solid 5px #a9b7aa;
+          background-color: #dbd2c9;
+          border-radius: 15px;
+          text-align: center;
+      }
+      .warning{
+          font-size: 20px;
+          color: #976666;
+          font-weight: 600;
+          width: 250px;
+          margin: auto;
+          height: 20px;
+          padding: 10px;
+          text-align: center;
+      }
+      .main-box{
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-around;
+          width: 370px;
+          margin: auto;
+          
+      }
+      .main-box button{
+          width: 80px;
+          height: 80px;
+          margin: 10px;
+          border: solid 5px #a9b7aa;
+          border-radius: 40px;
+          font-size: 28px;
+          font-weight: 600;
+          background-color: #ccd2cc;
+          color: #7a848d;
+      }
+      .main-box button:hover{
+          background-color: #c3aaa6;
+      }
+      .reset{
+          display: flex;
+          justify-content: flex-start;
+          
+      }
+      .reset button{
+          width: 100px;
+          height: 50px;
+          margin: 10px auto;
+          border-radius: 20px;
+          font-size: 18px;
+          font-weight: 800;
+          border: solid 5px #a9b7aa;
+          background-color: #ccd2cc;
+          color: #7a848d;
+      }
+      .reset button:hover{
+          background-color: #c3aaa6;
+      }
+      
+  </style>
+</head>
+<body>
+  <h1>終極密碼</h1>
+    <section class="wrap">
+        <div class="view">
+            <div class="show-number">
+                <h2>數字範圍</h2>
+                <p>0~100</p>
+            </div>
+            <div class="show-guess">
+                <h2>猜猜看</h2>
+                <input type="text" id="myText" disabled>
+            </div>
+            <!--html的 input標籤有disabled屬性  -->
+        </div>
+        <p class="warning"></p>
+        <div class="main-box">
+            <button class="item">1</button>
+            <button class="item">2</button>
+            <button class="item">3</button>
+            <button class="item">4</button>
+            <button class="item">5</button>
+            <button class="item">6</button>
+            <button class="item">7</button>
+            <button class="item">8</button>
+            <button class="item">9</button>
+            <button class="cancel">C</button>
+            <button class="item">0</button>
+            <button class="check">OK</button>
+        </div>
+        <div class="reset">
+            <button>Reset</button>
+        </div>
+    </section>
+       
+    <script>
+      function getRandomInt(min,max){
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random()*(max - min) + min);
+      }
+
+        let checkbtn = document.querySelector('.check')
+        let resetbtn = document.querySelector('.reset')
+        let inputNum = document.querySelector('input')
+        let showNum = document.querySelector('.show-number p')
+        let warn =document.querySelector('.warning')
+
+        let min = 0
+        let max = 100
+        let answer = getRandomInt(min, max)
+        console.log('答案是'+ answer)
+
+        //監聽輸入的數字
+        checkbtn.addEventListener('click', function(){
+          let guest = inputNum.value
+          let parse = parseInt(guest, 10)
+          if(parse != NaN){
+            if( parse >= max || parse <= min){
+                warn.innerHTML = '數字超出範圍請重新輸入'
+            }
+            else if(parse == answer){
+                warn.innerHTML = `恭喜你~答對囉! 答案是 ${answer}`
+                allNum.forEach( x => {
+                    x.disabled = true;
+                });
+            }
+            else if(parse > answer){
+                max = parse
+                showNum.innerHTML = `${min}~${max}`
+                warn.innerHTML = ''
+            }
+            else if(parse < answer){
+                min = parse
+                showNum.innerHTML = `${min}~${max}`
+                warn.innerHTML = ''
+            }
+
+          }
+          else{
+            warn.innerHTML = '請重新輸入數字 !!'    
+          }
+          inputNum.value = ''
+
+        })
+
+        //取消鍵
+        let cancelBtn =document.querySelector('.main-box .cancel')
+        cancelBtn.addEventListener('click',function(){
+                  inputNum.value=''
+                  warn.innerHTML=''
+        })
+        
+        //數字鍵 用foreach一個一個抓放進容器
+
+        let allNum = document.querySelectorAll('.item')
+        allNum.forEach(element => {
+            element.addEventListener('click',function(){
+              inputNum.value += element.innerHTML
+            })
+        });
+
+        //重來鍵
+        let reBtn = document.querySelector('.reset button')
+        reBtn.addEventListener('click',function(){
+          min = 0
+          max = 0
+          answer = getRandomInt(min,max)
+          showNum.innerHTML =`${min}~${max}`
+          inputNum.value = ''
+          warn.innerHTML = ''
+        })
+
+
+
+      
+
+    </script>
+</body>
+</html>
