@@ -10,51 +10,70 @@
           margin: 0;
           padding: 0;
           list-style: none;
-      }
-      body{
-          background-color: #eff0ea;
-      }
-      h1{
-          width: 360px;
-          margin: auto;
-          text-align: center;
-          font-size: 36px;
-          font-weight: 900;
-          padding: 30px;
-          margin-top: 100px;
-          color: #7a848d;
+    }
+    body{
+        background-color: #eff0ea;
+    }
+    .start{
+        background-color: rgb(0,0,0, .5);
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .start-button{
+        width: 300px;
+        height: 200px;
+        font-size: 50px;
+        font-weight: 600;
+        color: #c3aaa6;
+        border: 5px solid #976666;
+        border-radius: 20px;
+    }
+    h1{
+        width: 360px;
+        margin: auto;
+        text-align: center;
+        font-size: 36px;
+        font-weight: 900;
+        padding: 20px;
+        margin-top: 100px;
+        color: #7a848d;
           
-      }
-      .wrap{
-          width: 400px;
-          padding: 10px;
-          background-color: #dbd2c9;
-          border:10px solid #7a848d;
-          border-radius: 15px;
-          margin: auto;
-      }
-      .view{
-          display: flex;
-          justify-content: space-around;
-      }
-      .view .show-number{
-          width: 160px;
-          margin: 5px;
-          /* display: flex;
-          flex-direction: column; */
-          text-align: center;
-      }
-      .view .show-guess{
-          width: 160px;
-          margin: 5px;
+    }
+    .wrap{
+        width: 400px;
+        padding: 10px;
+        background-color: #dbd2c9;
+        border:10px solid #7a848d;
+        border-radius: 15px;
+        margin: auto;
+    }
+    .view{
+        display: flex;
+        justify-content: space-around;
+    }
+    .view .show-number{
+        width: 160px;
+        margin: 5px;
+        /* display: flex;
+        flex-direction: column; */
+        text-align: center;
+    }
+    .view .show-guess{
+        width: 160px;
+        margin: 5px;
 
-      }
-      .view h2{
-          font-size: 22px;
-          text-align: center;
-          color: #7a848d;
-          margin: 10px;
-      }
+    }
+    .view h2{
+        font-size: 22px;
+        text-align: center;
+        color: #7a848d;
+        margin: 10px;
+    }
       .view p{
           color: #7a848d;
           font-size: 23px;
@@ -131,38 +150,43 @@
   </style>
 </head>
 <body>
-  <h1>終極密碼</h1>
-    <section class="wrap">
-        <div class="view">
-            <div class="show-number">
-                <h2>數字範圍</h2>
-                <p>0~100</p>
+    <div class="start">
+        <button class="start-button">開始遊戲</button>
+        
+    </div>
+    <h1>終極密碼</h1>
+    
+        <section class="wrap">
+            <div class="view">
+                <div class="show-number">
+                    <h2>數字範圍</h2>
+                    <p>0~100</p>
+                </div>
+                <div class="show-guess">
+                    <h2>猜猜看</h2>
+                    <input type="text" id="myText" disabled>
+                </div>
+                <!--html的 input標籤有disabled屬性  -->
             </div>
-            <div class="show-guess">
-                <h2>猜猜看</h2>
-                <input type="text" id="myText" disabled>
+            <p class="warning"></p>
+            <div class="main-box">
+                <button class="item">1</button>
+                <button class="item">2</button>
+                <button class="item">3</button>
+                <button class="item">4</button>
+                <button class="item">5</button>
+                <button class="item">6</button>
+                <button class="item">7</button>
+                <button class="item">8</button>
+                <button class="item">9</button>
+                <button class="cancel">C</button>
+                <button class="item">0</button>
+                <button class="check">OK</button>
             </div>
-            <!--html的 input標籤有disabled屬性  -->
-        </div>
-        <p class="warning"></p>
-        <div class="main-box">
-            <button class="item">1</button>
-            <button class="item">2</button>
-            <button class="item">3</button>
-            <button class="item">4</button>
-            <button class="item">5</button>
-            <button class="item">6</button>
-            <button class="item">7</button>
-            <button class="item">8</button>
-            <button class="item">9</button>
-            <button class="cancel">C</button>
-            <button class="item">0</button>
-            <button class="check">OK</button>
-        </div>
-        <div class="reset">
-            <button>Reset</button>
-        </div>
-    </section>
+            <div class="reset">
+                <button>Reset</button>
+            </div>
+        </section>
        
     <script>
       function getRandomInt(min,max){
@@ -170,12 +194,18 @@
         max = Math.floor(max);
         return Math.floor(Math.random()*(max - min) + min);
       }
-
+        let start = document.querySelector('.start')
+        let startBtn = document.querySelector('.start-button')
         let checkbtn = document.querySelector('.check')
         let resetbtn = document.querySelector('.reset')
         let inputNum = document.querySelector('input')
         let showNum = document.querySelector('.show-number p')
         let warn =document.querySelector('.warning')
+        
+        //start
+        startBtn.addEventListener('click',function(){
+            start.style.display = 'none';
+        })
 
         let min = 0
         let max = 100
@@ -235,11 +265,14 @@
         let reBtn = document.querySelector('.reset button')
         reBtn.addEventListener('click',function(){
           min = 0
-          max = 0
+          max = 100
           answer = getRandomInt(min,max)
           showNum.innerHTML =`${min}~${max}`
           inputNum.value = ''
           warn.innerHTML = ''
+          allNum.forEach( x => {
+                    x.disabled = false;
+                });
         })
 
 
