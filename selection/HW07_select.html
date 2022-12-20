@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        input {
+            display: none;
+        }
+
+        .main-header {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #ccc;
+            padding: 0 10px;
+            position: relative;
+        }
+
+        .logo img {
+            border-radius: 50px;
+            vertical-align: middle;
+        }
+
+        .main-nav {
+            left: 0;
+            top: 0;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #fff;
+            height: 100%;
+            font-size: 20px;
+            display: block;
+            font-weight: 700;
+        }
+
+        .menu .menu-list{
+            position: relative;
+        }
+        .sub-menu {
+            display: none;
+            position: absolute;
+            background-color: rgb(172, 165, 153);
+        }
+        
+        .child-menu{
+            
+            position: absolute;
+            left: -100%;
+            top: -100%;
+            background-color: rgb(172, 165, 153);
+        }
+
+        @media screen and (width < 768px) {
+            .HB {
+                width: 40px;
+                height: 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-evenly;
+                align-items: center;
+                background-color: #fff;
+                border: 2px solid #ccc;
+                border-radius: 2px;
+            }
+            .HB span {
+                width: 80%;
+                height: 2px;
+                background-color: #ccc;
+            }
+
+            .main-nav {
+                position: absolute;
+                background-color: rgb(229, 216, 190);
+                top: 100%;
+                left: -100%;
+                right: 0;
+                opacity: 0;
+            }
+            .main-header .HB span {
+                transition: 1s;
+            }
+
+            #menu-control:checked~.main-header .main-nav {
+                left: 0;
+                opacity: 1;
+            }
+            #menu-control:checked~.main-header .HB span:first-child {
+                display: none;
+            }
+            #menu-control:checked~.main-header .HB span:nth-child(2) {
+                transform: rotate(45deg) translate(5px, 5px);
+                transition: .5s ease-out;
+            }
+            #menu-control:checked~.main-header .HB span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+                transition: .5s ease-out;
+            }
+
+
+            .main-menu {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: rgb(195, 187, 162);
+                color: #fff;
+                padding: 10px 20px;
+            }
+            .main-menu label {
+                color: #fff;
+            }
+
+            .menu > li{
+                border-top: 1px solid #fff;
+            }
+            .menu > li:first-child{
+                border-top:none ;
+            }
+
+            .sub-menu {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                left: -100%;
+            }
+            .sub-menu > li {
+                box-sizing: border-box;
+                width: 100%;
+                padding: 10px 20px;
+                border-top: 1px solid #fff;
+                 
+            }
+
+            #sub-menu-switch:checked ~ ul ,
+            #sub-menu-switch1:checked ~ ul ,
+            #sub-menu-switch2:checked ~ ul ,
+            #sub-menu-switch3:checked ~ ul ,
+            #sub-menu-switch4:checked ~ ul {
+                position: relative;
+                left:0;
+            }
+            #sub-menu-switch:checked + .main-menu label,
+            #sub-menu-switch1:checked + .main-menu label,
+            #sub-menu-switch2:checked + .main-menu label,
+            #sub-menu-switch3:checked + .main-menu label,
+            #sub-menu-switch4:checked + .main-menu label,
+            #child-menu-switch:checked + .sub-menu .sub label{
+                transform: rotate(90deg)
+            }
+            #child-menu-switch:checked + ul li .child-menu{
+                position: relative;
+                left:0;
+                
+            } 
+            .sub{
+                box-sizing: border-box;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                /* margin-bottom: 7px; */
+                
+            }
+            #child-menu-switch:checked + ul li .sub{
+                margin-bottom: 10px;
+                
+            } 
+
+            .child-menu {
+                width:calc(100% + 40px);
+                box-sizing: border-box;
+                position:absolute;
+                top: 100%;
+                left: -110%;
+                background-color: rgb(229, 216, 190);
+                margin-left: -20px;
+                margin-right: -20px;
+                padding: 0 20px;
+                margin-bottom: -10px;
+                
+            }
+            .child-menu li{
+                padding-top: 20px;
+                padding: 10px 0;
+                position: relative;
+                
+            }
+            .child-menu li::before{
+                content: '';
+                width: 110%;
+                background-color: #fff;
+                height: 1px;
+                display: block;
+                position: absolute;
+                top: -2px;
+                left: -21px;
+
+            }
+            .child-menu :first-child::before{
+                display: none;
+            }
+            .sub label{
+                font-size: 22px;
+            }
+            .fa-angle-right{
+                
+                color: #fff;
+                text-align: end;
+            }
+        }
+
+        @media screen and (width >=768px) {
+            .HB {
+                display: none;
+            }
+            .main-header .main-nav{
+                margin-right: 35px;
+            }
+            .main-nav .menu{
+                display: flex;
+                justify-content: space-between;
+                color: rgb(195, 187, 162);
+            }
+            .main-nav .menu a {
+                padding: 25px 20px;
+            }
+            
+            .main-nav .menu a:hover {
+                background-color: rgb(195, 187, 162);  
+            }
+            .main-menu{
+                min-width: 165px;
+                position: relative;
+            }
+            .main-menu label {
+                display: none;
+            }
+            .sub-menu{
+                width: 165px;
+                position: absolute;
+                top: 100%;
+                text-align: center;
+            }
+            .main-nav .menu li:hover > .sub-menu{
+                display: block; 
+            }
+            
+            .sub-menu .sub{
+                /* display: flex;
+                justify-content: space-between;
+                align-items: center; */
+
+            }
+            .sub-menu li label{
+                display: none;
+            }
+            .sub-menu .sub label{
+                display: none;
+            }
+            .child-menu {
+                top: -100%;
+                right: 100%;
+                text-align: center;
+            }
+            /* .sub:hover + .child-menu{
+                width: 165px;
+                left: unset;
+                right: -100%;
+                top: 0;
+                display: block;
+                text-align: center;
+                
+            } */
+            .menu .menu-list .sub-menu li:hover .child-menu{
+                width: 165px;
+                left: unset;
+                right: -100%;
+                top: 0;
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" name="" id="menu-control">
+
+    
+    <header class="main-header">
+        <div class="logo">
+            <h1>
+                <a href="#"><img src="https://picsum.photos/50/50/?random=10"></a>
+            </h1>
+        </div>
+        <!-- 漢堡選單符號 -->
+        <label for="menu-control" class="HB">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <!-- 選單 -->
+        <nav class="main-nav">
+            <ul class="menu">
+                <li class="menu-list">
+                    <input type="checkbox" name="" id="sub-menu-switch">
+                    <div class="main-menu">
+                        <a href="#">第一層選單A</a>
+
+                        <label for="sub-menu-switch"><i class="fa-solid fa-angle-right fa-2x"></i>
+                        </label>
+                    </div>
+                    <input type="checkbox" name="" id="child-menu-switch">
+                    <ul class="sub-menu">
+                        <li>
+                            <div class="sub">
+                                <a href="#">第二層A</a>
+                                <label for="child-menu-switch"><i class="fa-solid fa-angle-right"></i>
+                                </label>
+                            </div>
+                            <ul class="child-menu">
+                                <li><a href="#">第三層A</a></li>
+                                <li><a href="#">第三層B</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">第二層B</a></li>
+                        <li><a href="#">第二層C</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <input type="checkbox" name="" id="sub-menu-switch1">
+                    <div class="main-menu">
+                        <a href="#">第一層選單B</a>
+
+                        <label for="sub-menu-switch1"><i class="fa-solid fa-angle-right fa-2x"></i>
+                        </label>
+                    </div>
+                    
+                    <ul class="sub-menu">
+                        <li><a href="#">第二層A</a></li>
+                        <li><a href="#">第二層B</a></li>
+                        <li><a href="#">第二層C</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <input type="checkbox" name="" id="sub-menu-switch2">
+                    <div class="main-menu">
+                        <a href="#">第一層選單C</a>
+                        <label for="sub-menu-switch2"><i class="fa-solid fa-angle-right fa-2x"></i>
+                        </label>
+                    </div>
+                    
+                    <ul class="sub-menu">
+                        <li><a href="#">第二層A</a></li>
+                        <li><a href="#">第二層B</a></li>
+                        <li><a href="#">第二層C</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <input type="checkbox" name="" id="sub-menu-switch3">
+                    <div class="main-menu">
+                        <a href="#">第一層選單D</a>
+
+                        <label for="sub-menu-switch3"><i class="fa-solid fa-angle-right fa-2x"></i>
+                        </label>
+                    </div>
+                    
+                    <ul class="sub-menu">
+                        <li><a href="#">第二層A</a></li>
+                        <li><a href="#">第二層B</a></li>
+                        <li><a href="#">第二層C</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <input type="checkbox" name="" id="sub-menu-switch4">
+                    <div class="main-menu">
+                        <a href="#">第一層選單E</a>
+
+                        <label for="sub-menu-switch4"><i class="fa-solid fa-angle-right fa-2x"></i>
+                        </label>
+                    </div>
+                    
+                    <ul class="sub-menu">
+
+                        <li><a href="#">第二層A</a></li>
+                        <li><a href="#">第二層B</a></li>
+                        <li><a href="#">第二層C</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+
+        </nav>
+    </header>
+
+    <script src="https://kit.fontawesome.com/592d58a0fb.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
