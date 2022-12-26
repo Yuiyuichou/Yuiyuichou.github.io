@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="grid-system.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <title>Maikon-Yui</title>
+</head>
+<style>
+    * {
+        font-family: Roboto, Sans-serif;
+    }
+
+    #menu-control {
+        display: none;
+    }
+
+    :root {
+        --gray: #5d6678;
+        --txtgray: #1d273b;
+        --green: #1fde82;
+        --blue: #2570ff;
+        --bluetxt: #f2f5fc;
+    }
+
+
+
+    /*-------------- header--------------- */
+    h1 {
+        display: none;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    header {
+        padding: 8px 10px 8px 10px;
+        background-color: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+    }
+
+    .container-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .HB {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        background-color: var(--green);
+    }
+
+    .HB span {
+        width: 60%;
+        height: 3px;
+        background-color: #fff;
+    }
+
+    .container-nav .HB span {
+        transition: 1s;
+    }
+
+    #menu-control:checked~.navbar {
+        right: 0;
+        opacity: 1;
+        transition: 0.3s;
+    }
+
+    #menu-control:checked~.HB span:first-child {
+        display: none;
+    }
+
+    #menu-control:checked~.HB span:nth-child(2) {
+        transform: rotate(45deg) translate(5px, 5px);
+        transition: .5s ease-out;
+    }
+
+    #menu-control:checked~.HB span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+        transition: .5s ease-out;
+    }
+
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        background-color: #fff;
+        width: 80%;
+        top: 60px;
+        right: -100%;
+        height: 100vh;
+        opacity: 1;
+    }
+
+
+    nav a {
+        font-family: Roboto, Sans-serif;
+        font-size: 16px;
+
+    }
+
+    .logo a {
+        padding: 0px;
+    }
+
+    .navbar a {
+        color: #5d6678;
+    }
+
+    .btn-nav {
+
+        color: #5d6678;
+    }
+
+    .navbar a {
+        padding: 8px;
+    }
+
+    .navbar .btn-subscribe {
+        opacity: 0;
+    }
+
+
+    /*-------------- kv--------------- */
+    .container-kv {
+        
+        padding: 30px 15px;
+        margin-top: 40px;
+    }
+
+    .container-kv .row {
+        display: flex;
+        align-items: center;
+    }
+    .pic-kv img{
+        max-width: 100%;
+    }
+    .text-kv h2 {
+        font-size: 30px;
+        color: var(--txtgray);
+        font-weight: 300;
+        line-height: 1.315em;
+        padding-bottom: 10px;
+    }
+
+    .text-kv p { 
+        font-size: 14px;
+        margin-bottom: 8px;
+        margin: 0 0 1em;
+        line-height: 1.5em;
+        color: var(--gray);
+    }
+
+    .btn-kv {
+        box-sizing: border-box;
+        max-width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+
+    .btn-learnmore {
+        min-width: 142px;
+        padding: 12px 19.5px 10px 19.5px;
+        margin-right: 30px;
+        border: none;
+        background-color: var(--green);
+        color: #fff;
+        font-size: 14px;
+        border-radius: 3px;
+        box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+    }
+
+    .btn-learnmore:hover {
+        background-color: #767d8d;
+        transition: .5s;
+        box-shadow: none;
+    }
+
+    .btn-play {
+
+        padding: 12px 19.5px 10px 19.5px;
+        background-color: #fff;
+        border: none;
+
+    }
+
+    .btn-play img {
+        display: block;
+        width: 100%;
+        transform: scale(150%) translateX(-5%);
+    }
+
+    .pic-kv {
+        margin-right: 0;
+    }
+
+    .pic-kv img {
+        max-width: 100%;
+        vertical-align: middle;
+
+    }
+
+    .container-kv:nth-child(2n) .row {
+        flex-direction: row-reverse;
+    }
+
+    .container-kv:nth-child(2n) .row h2 {
+        font-size: 30px;
+        line-height: 1.31em;
+    }
+
+    .container-kv:nth-child(2n) .row img {
+        width: 100%;
+    }
+
+    .container-kv .btn-aboutus {
+        padding: 12px 19.5px 10px 19.5px;
+        border: none;
+        background-color: var(--green);
+        color: #fff;
+        font-size: 14px;
+        border-radius: 3px;
+        box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+
+    }
+
+    .btn-aboutus:hover {
+        background-color: #767d8d;
+        transition: .5s;
+        box-shadow: none;
+    }
+
+    .container-kv .btn-contactus {
+        padding: 12px 19.5px 10px 19.5px;
+        border: .3px solid #dcdfe5;
+        font-size: 14px;
+        border-radius: 3px;
+        margin-left: 30px;
+        background-color: #fff;
+
+    }
+
+    .btn-contactus:hover {
+        background-color: var(--green);
+        color: #fff;
+        transition: .3s;
+        border: .5px solid var(--green);
+    }
+
+    /*-------------- iconbox --------------- */
+
+    .container-iconbox h2 {
+        color: var(--txtgray);
+        max-width: 475px;
+        font-size: 30px;
+        font-weight: 300;
+        line-height: 1.31em;
+        letter-spacing: 0.84px;
+        margin-bottom: 20px;
+    }
+/* 縮放時iconbox不等高 */
+    .iconbox {
+        box-sizing: border-box;
+        padding: 48px 40px 42px 42px;
+        margin:15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0px 4px 44px 0px rgb(17 29 48 / 6%);
+        border-radius: 10px;
+        background-color: #fff;
+        /* flex-grow: 1; */
+    }
+
+    .iconbox .pic {
+        width: 70px;
+        display: inline-block;
+        border-radius: 50%;
+        box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+        margin-bottom: 20px;
+    }
+
+    .iconbox img {
+        width: 100%;
+        vertical-align: middle;
+        display: inline-block;
+    }
+
+    .iconbox h3 {
+        color: var(--txtgray);
+        font-size: 30px;
+        line-height: 1.32em;
+        letter-spacing: 0.44px;
+        display: inline-block;
+        margin: 10px 0;
+    }
+
+    .iconbox p {
+        color: var(--txtgray);
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 1.79em;
+        letter-spacing: 0.28px;
+        display: inline-block;
+        padding-bottom: 20px;
+    }
+
+    .iconbox a {
+        color: var(--txtgray);
+        display: inline-block;
+    }
+
+    .iconbox a:hover {
+        color: var(--green);
+        transition: .3s;
+
+    }
+
+    /*-------------- contactus --------------- */
+    .container-contactus .row {
+        display: flex;
+        align-items: center;
+
+    }
+
+    .container-contactus .text-contactus {
+        margin-bottom: 30px;
+    }
+
+    .container-contactus .text-contactus h2 {
+        width: 100%;
+        font-size: 30px;
+        color: var(--txtgray);
+        font-weight: 300;
+        line-height: 1.315em;
+        margin: 93px 80px 22px 0px;
+    }
+
+    .container-contactus .text-contactus p {
+        width: 68%;
+        color: var(--gray);
+        font-size: 14px;
+        margin-bottom: 8px;
+        margin: 0 0 40px;
+        line-height: 1.5em;
+    }
+
+    .btn-contactandsub {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn-contact {
+        padding: 12px 19.5px 10px 19.5px;
+        border: none;
+        background-color: var(--green);
+        color: #fff;
+        font-size: 14px;
+        border-radius: 3px;
+        box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+
+    }
+
+    .btn-contact:hover {
+        background-color: #767d8d;
+        transition: .5s;
+        box-shadow: none;
+    }
+
+    .container-contactus .btn-subscribe {
+        color: var(--txtgray);
+        padding: 12px 19.5px 10px 19.5px;
+        border: .3px solid #dcdfe5;
+        font-size: 14px;
+        border-radius: 3px;
+        margin-left: 30px;
+        background-color: #fff;
+
+
+    }
+
+    .container-contactus .btn-subscribe:hover {
+        background-color: var(--green);
+        color: #fff;
+        transition: .5s;
+        border: .5px solid var(--green);
+    }
+
+    .pic-contactus img {
+        width: 100%;
+
+    }
+
+
+    /*-------------- whychoose --------------- */
+
+
+    .whychoose {
+        background-color: var(--blue);
+        box-sizing: border-box;
+        padding: 70px 0;
+        margin: 100px 0;
+    }
+
+    .container-whychoose {
+        color: var(--bluetxt);
+    }
+
+    .container-whychoose .bluebox {
+        box-sizing: border-box;
+        background-color: rgba(255, 255, 255, .1);
+        margin: 15px;
+        padding: 39px 34px;
+        border-radius: 10px;
+        /* display: flex; */
+        text-align: center;
+        flex-shrink: 1;
+    }
+
+    .container-whychoose p {
+
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .container-whychoose span {
+        font-size: 34px;
+        font-weight: 500;
+        line-height: 1.3em;
+        display: block;
+    }
+
+    .container-whychoose .row {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .container-whychoose .text-whychoose h2 {
+        width: 70%;
+        font-size: 30px;
+        font-weight: 300;
+        line-height: 1.315em;
+        font-size: 42px;
+        letter-spacing: 0.84px;
+    }
+
+    .text-whychoose p {
+        width: 65%;
+        font-size: 14px;
+        margin-bottom: 8px;
+        margin: 0 0 1em;
+        line-height: 1.5em;
+    }
+
+    .btn-ordersevice {
+        display: inline-block;
+        padding: 12px 19.5px 10px 19.5px;
+        border: .3px solid var(--bluetxt);
+        font-size: 14px;
+        border-radius: 3px;
+        margin-top: 30px;
+        color: var(--bluetxt);
+    }
+
+    .btn-ordersevice:hover {
+        background-color: var(--green);
+        color: #fff;
+        transition: .5s;
+        border: .5px solid var(--green);
+    }
+
+    /*-------------- teamwork --------------- */
+    .container-teamwork {
+        max-width: 100%;
+        margin-bottom: 40px;
+        box-sizing: border-box;
+    }
+
+    .container-teamwork h2 {
+        color: var(--txtgray);
+        font-size: 28px;
+        font-weight: 300;
+        line-height: 1.315em;
+        letter-spacing: 0.84px;
+        margin-bottom: 80px;
+        display: block;
+    }
+
+    .container-teamwork .row {
+        display: flex;
+        align-items: center;
+        /* flex-grow: 1; */
+
+    }
+
+    .container-teamwork .img {
+        vertical-align: middle;
+
+    }
+
+    .text-teamwork h3 {
+        color: var(--txtgray);
+        font-size: 22px;
+        font-weight: 400;
+        line-height: 1.32em;
+    }
+
+    .text-teamwork p {
+        color: var(--gray);
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.79em;
+        letter-spacing: 0.28px;
+
+    }
+
+    .pic-teamwork {
+        text-align: left;
+
+    }
+
+    .num {
+
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .num img {
+        width: 70px;
+        border-radius: 50%;
+        box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+    }
+
+    #arr1,
+    #arr2,
+    #arr3,
+    #arr4 {
+        display: none;
+    }
+
+    .num {
+        order: -1;
+
+    }
+    .pic-teamwork{
+        
+    }
+    
+    .teamwork .container-teamwork h3 {
+        width: 100%;
+        font-size: 20px;
+    }
+
+    .teamwork .container-teamwork p {
+        font-size: 12px;
+    }
+
+    /*-------------- project --------------- */
+    .project {
+        padding: 30px 0px;
+        background-color: #f9fbff;
+    }
+
+    .col-btn-allproject {
+        text-align: left;
+    }
+
+    .title-project {
+        margin: 30px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .container-project h2 {
+
+        color: var(--txtgray);
+        font-size: 28px;
+        font-weight: 300;
+        line-height: 1.31em;
+        letter-spacing: 0.84px;
+        display: block;
+        margin-bottom: 30px;
+    }
+
+    .btn-allproject {
+        min-width: 142px;
+        padding: 12px 19.5px 10px 19.5px;
+        border: none;
+        background-color: var(--green);
+        color: #fff;
+        font-size: 14px;
+        border-radius: 3px;
+        box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+    }
+
+    .btn-allproject:hover {
+        background-color: #767d8d;
+        transition: .5s;
+        box-shadow: none;
+    }
+
+
+
+    .pic-project {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    .pic-project img {
+        vertical-align: middle;
+        border-radius: 10px;
+        overflow: hidden;
+        width: 100%;
+        height: 40vh;
+        object-fit: cover;
+    }
+
+    .text-project {
+        width: 100%;
+        height: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-sizing: border-box;
+        position: absolute;
+        top: 0;
+        background-color: rgba(31, 222, 130, 0.98);
+        padding: 40px 20px 40px 28px;
+        border-radius: 10px;
+        opacity: 0;
+        transition: opacity .4s ease;
+    }
+
+    .pic-project:hover .text-project {
+        opacity: 1;
+    }
+
+    .text-project h3 {
+        width: 100%;
+        font-size: 30px;
+
+        color: #fff;
+    }
+
+    .text-project a {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        padding-bottom: 20px;
+    }
+
+    /*-------------- form --------------- */
+    .form {
+        padding: 30px 0px;
+    }
+
+    .pic-form {
+        box-sizing: border-box;
+
+
+        text-align: center;
+        display: inline-block;
+    }
+
+    .pic-form img {
+        max-width: 100%;
+    }
+
+    .form-signup {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: #fff;
+        box-shadow: 0px 4px 44px 0px rgb(17 29 48 / 6%);
+        margin: 25px 0px 44px 0px;
+        padding: 30px;
+        border-radius: 10px;
+
+    }
+
+    .form-signup h2 {
+        color: var(--txtgray);
+        font-size: 30px;
+        font-weight: 300;
+        line-height: 1.31em;
+        letter-spacing: 0.84px;
+        display: block;
+        margin-bottom: 35px;
+
+    }
+
+    .form-signup input {
+        box-sizing: border-box;
+        width: 100%;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1em;
+        letter-spacing: 0px;
+        padding: 10px;
+        margin: 0px 0px 18px 0px;
+        border-radius: 4px;
+        color: var(--gray);
+        border-style: solid;
+        border-width: 1px;
+        border-color: #dcdfe5;
+    }
+
+    textarea {
+        box-sizing: border-box;
+        width: 100%;
+        resize: vertical;
+        padding: 10px;
+        color: #dcdfe5;
+        border-color: #dcdfe5;
+        border-radius: 5px;
+        margin: 10px 0;
+
+    }
+
+    .form-signup a {
+
+        width: 33px;
+        display: inline-block;
+        padding: 10px 20px 8px 20px;
+        background-color: var(--green);
+        font-size: 14px;
+        border-radius: 3px;
+        color: #fff;
+        margin: 10px 0;
+        border-color: none;
+        box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+
+    }
+
+    .form-signup a:hover {
+        background-color: #767d8d;
+        transition: .5s;
+        box-shadow: none;
+    }
+
+    /*-------------- subscribe --------------- */
+    .subscribe {
+        padding: 66px 0px 72px 0px;
+    }
+
+    .container-subscribe {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    .container-subscribe h2 {
+
+        color: var(--txtgray);
+        font-size: 28px;
+        font-weight: 300;
+        line-height: 1.37em;
+        letter-spacing: 0.84px;
+        display: block;
+        margin-bottom: 35px;
+        text-align: center;
+    }
+
+    .form-subscribe {
+
+        display: flex;
+        justify-content: space-between;
+
+    }
+
+    .form-subscribe input {
+        width: 100%;
+        padding: 15px 130px 14px 18px;
+        font-size: 14px;
+        border-radius: 4px;
+        border: none;
+        box-shadow: 0px 4px 44px 0px rgb(17 29 48 / 6%);
+        color: #afb6c5;
+        background-color: #fff;
+    }
+
+    .form-subscribe .btn-subscribe {
+        padding: 17px 20px 15px 20px;
+        border: none;
+        background-color: var(--green);
+        color: #fff;
+        font-size: 14px;
+        border-radius: 4px;
+        box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+
+    }
+
+    .form-subscribe .btn-subscribe:hover {
+        background-color: #767d8d;
+        transition: .5s;
+        box-shadow: none;
+    }
+
+    /*-------------- footer --------------- */
+    .footer {
+        padding: 15px;
+        font-family: Roboto, Sans-serif;
+    }
+
+    .container-footer .row {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .logo-footer {
+        margin-bottom: 40px;
+    }
+
+    .logo-footer img {
+        vertical-align: middle;
+
+    }
+
+    address {}
+
+    address a {
+        color: var(--txtgray);
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1em;
+        letter-spacing: 0.28px;
+        padding: 5px 0;
+    }
+
+    address span {
+        color: var(--green);
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .footer-services,
+    .footer-about,
+    .footer-social {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .footer-services p,
+    .footer-about p {
+        font-size: 30px;
+        color: var(--txtgray);
+        margin: 30px 0 30px 0;
+    }
+
+    .footer-social p {
+        font-size: 30px;
+        color: var(--txtgray);
+        margin: 30px 0 5px 0;
+    }
+
+    .footer-services a,
+    .footer-about a,
+    .footer-social a {
+        font-size: 14px;
+        color: var(--gray);
+        padding: 13px 0;
+    }
+
+    .footer-services a:hover,
+    .footer-about a:hover,
+    .footer-social a:hover {
+        color: var(--green);
+        transition: .3s;
+
+    }
+
+    .footer-social span {
+        color: var(--gray);
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1.8em;
+        letter-spacing: 0.28px;
+        margin-bottom: 14px;
+
+    }
+
+    .footer-icon a {
+        width: 1em;
+        height: 1em;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0);
+        padding: 0.7em;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #d2d6de;
+        border-radius: 50%;
+        margin-right: 8px;
+    }
+
+    .footer-icon a:hover {
+        background-color: var(--green);
+        color: #fff;
+        transition: .5s;
+        border: .5px solid var(--green);
+    }
+
+    .footer-icon i {
+        width: 1em;
+        height: 1em;
+        text-align: center;
+        color: #c0c7d2;
+        font-size: 15px;
+    }
+
+    .footer-icon a:hover i {
+        color: #fff;
+    }
+
+
+    /*-------------- copyright --------------- */
+    .container-copyright {
+        color: var(--gray);
+        font-size: 12px;
+        font-family: Roboto, Sans-serif;
+        padding: 7px 0;
+    }
+
+    .container-copyright .row {
+        display: flex;
+
+        padding: 30px;
+
+    }
+
+    .container-copyright .row p {
+        text-align: center;
+        padding: 15px 0;
+    }
+
+    .container-copyright span {
+        color: var(--green);
+    }
+
+    .txt-privacy {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+
+    }
+
+    .txt-privacy a {
+        color: var(--gray);
+        margin: 0 10px;
+    }
+
+    .txt-privacy a:hover {
+        color: var(--green);
+        transition: .3s;
+
+    }
+
+    .to-up a {
+        display: inline;
+        font-size: 20px;
+        color: var(--green);
+        position: fixed;
+        right: 20px;
+        bottom: 15px;
+        z-index: 999;
+    }
+
+    .to-up a:hover i {
+        color: #767d8d;
+        transition: .3s;
+        box-shadow: none;
+    }
+
+    @media screen and (min-width:768px) {
+        header {
+            width: 100%;
+            box-shadow: 0px 8px 32px 0px rgb(93 102 120 / 6%);
+            padding: 8px 0px 8px 0px;
+            background-color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 999;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            padding-left: -15px;
+            padding-right: -15px;
+        }
+
+        .HB {
+            display: none;
+        }
+
+        .container-nav {
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        .container-nav .logo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+        }
+
+        .container-nav .navbar {
+            height: 80px;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+            right: 0;
+            top: 0;
+
+        }
+
+        nav a {
+            font-family: Roboto, Sans-serif;
+            font-size: 16px;
+        }
+
+        .logo a {
+            padding: 10px;
+        }
+
+        .navbar a {
+            color: #5d6678;
+        }
+
+        .btn-nav {
+            color: #5d6678;
+        }
+
+
+        .navbar a {
+            padding: 8px;
+        }
+
+        .navbar .btn-subscribe {
+            position: relative;
+            padding: 12px 19.5px 10px 19.5px;
+            border: .5px solid #dcdfe5;
+            font-size: 14px;
+            border-radius: 3px;
+            margin-left: 30px;
+            opacity: 1;
+        }
+
+        .navbar .btn-subscribe:hover {
+            background-color: var(--green);
+            color: #fff;
+            transition: .3s;
+            border: .5px solid var(--green);
+        }
+
+        #x {
+            opacity: 0;
+        }
+
+
+
+        /*-------------- kv--------------- */
+        .kv {
+            margin-top: 96px;
+        }
+
+        .container-kv {
+            padding: 30px;
+
+        }
+
+
+        .text-kv h2 {
+            font-size: 42px;
+            width: 80%;
+        }
+
+        .text-kv p {
+            width: 80%;
+            font-size: 14px;
+            margin-bottom: 8px;
+            margin: 0 0 1em;
+            line-height: 1.5em;
+            color: var(--gray);
+        }
+
+        .btn-kv {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0px 202px 0px 0px;
+        }
+
+        .btn-learnmore {
+
+            padding: 12px 19.5px 10px 19.5px;
+
+            font-size: 14px;
+
+        }
+
+        .btn-play {
+            padding: 12px 19.5px 10px 19.5px;
+            background-color: #fff;
+            border: none;
+        }
+
+        .btn-play img {
+
+            transform: scale(100%) translateX(25%);
+        }
+
+
+        .container-kv:nth-child(2n) .row {
+            flex-direction: row-reverse;
+        }
+
+        .container-kv:nth-child(2n) .row h2 {
+            font-size: 42px;
+            line-height: 1.31em;
+        }
+
+        .container-kv:nth-child(2n) .row img {
+            width: 80%;
+        }
+
+        /*-------------- contactus --------------- */
+        .container-contactus .text-contactus h2 {
+            width: 75%;
+            font-size: 42px;
+        }
+
+        .btn-contactandsub {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .btn-contact {
+            margin-right: 20px;
+        }
+
+        /*-------------- whychoose --------------- */
+        .container-whychoose .bluebox {
+            /* word-break: break-all; */
+            margin: 15px;
+            padding: 39px 34px;
+            border-radius: 10px;
+            flex-shrink: 1;
+            text-align: left;
+        }
+
+        .container-whychoose .text-whychoose h2 {
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.315em;
+            font-size: 42px;
+            letter-spacing: 0.84px;
+        }
+
+
+        /*-------------- iconbox --------------- */
+        .container-iconbox {
+            padding-bottom: 100px;
+        }
+        .container-iconbox h2{
+            font-size: 42px;
+        }
+        .iconbox{
+            padding: 48px 40px 42px 42px;
+        }
+
+        .iconbox .pic {
+            margin-bottom: 30px;
+        }
+        .iconbox h3 {
+            font-size: 20px;
+        }
+        .iconbox p {
+            margin: 0 0 12px;
+        }
+
+        /*-------------- teamwork --------------- */
+        .container-teamwork h2{
+            font-size: 42px;
+        }
+        .pic-teamwork {
+            text-align: end;
+            position: relative;
+        }
+
+        .num {
+            
+            text-align: end;
+        }
+        .num img{
+            width: 82px;
+        }
+        #arr1,
+        #arr2,
+        #arr3,
+        #arr4 {
+            display: none;
+        }
+
+
+
+        .teamwork .container-teamwork:nth-child(even) {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .teamwork .container .num {
+            order: 0;
+        }
+
+        .teamwork .container:nth-child(even) .pic-teamwork {
+            order: 1;
+
+
+        }
+
+        .teamwork .container-teamwork:nth-child(even) h3 {
+            width: 80%;
+            font-size: 22px;
+        }
+
+        .teamwork .container-teamwork p {
+            font-size: 16px;
+        }
+
+        .two .num img {
+            margin-left: 120px;
+        }
+
+        .four .num img {
+            /* background-color: #fa0; */
+            margin-right: 100px;
+        }
+
+        /*-------------- project --------------- */
+        .project {
+            padding: 67px 0px 94px 0px;
+        }
+
+        .pic-project img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .text-project {
+            width: 100%;
+            height: 100%;
+
+
+        }
+
+        .text-project h3 {
+            font-size: 40px;
+            /* margin-bottom: 210px; */
+            /* color: #fff; */
+        }
+
+        .col-btn-allproject {
+            text-align: end;
+        }
+
+        .container-project h2 {
+            width: 80%;
+            font-size: 42px;
+
+        }
+
+        /*-------------- form --------------- */
+        .form {
+            padding: 90px 0px 90px 0px;
+        }
+
+        .form-signup {
+            margin: 25px 50px 44px 0px;
+            padding: 39px 51px 38px 51px;
+
+        }
+
+        .form-signup h2 {
+            font-size: 42px;
+        }
+
+        .form-signup input {
+
+            padding: 11px 14px 10px 14px;
+            margin: 0px 0px 18px 0px;
+        }
+
+        textarea {
+            padding: 11px 0px 10px 14px;
+            padding-left: 10px;
+
+        }
+
+        /*-------------- subscribe --------------- */
+        .container-subscribe h2 {
+            width: 50%;
+            font-size: 42px;
+        }
+
+        /*-------------- footer --------------- */
+        .footer {
+            padding: 43px 0px 25px 0px;
+        }
+
+        .logo-footer {
+            margin-bottom: 30px;
+        }
+
+        .footer-services p,
+        .footer-about p,
+        .footer-social p {
+            font-size: 22px;
+            margin: 15px 0 30px 0;
+        }
+
+        /*-------------- copyright --------------- */
+
+
+
+        .footer-social span {
+            margin-bottom: 14px;
+        }
+
+
+    }
+
+    @media screen and (min-width:1024px) {
+        #arr1 {
+            position: absolute;
+            top: 195px;
+            right: -105px;
+            display: block;
+        }
+
+        #arr2 {
+            position: absolute;
+            top: 190px;
+            left: -545px;
+            display: block;
+        }
+
+        #arr3 {
+            position: absolute;
+            top: 170px;
+            right: -165px;
+            display: block;
+        }
+
+        #arr4 {
+            position: absolute;
+            top: 200px;
+            left: -540px;
+            display: block;
+        }
+        /*-------------- iconbox --------------- */
+        .container-iconbox {
+            padding-bottom: 100px;
+        }
+
+        .iconbox .pic {
+            width: 92px;
+            display: inline-block;
+            border-radius: 50%;
+            box-shadow: 0px 8px 32px 0px rgb(31 222 130 / 46%);
+            margin-bottom: 30px;
+        }
+        .iconbox h3 {
+            font-size: 22px;
+        }
+        .iconbox p{
+            font-size: 14px;
+            margin: 0 0 40px;
+        }
+        /*-------------- whychoose --------------- */
+        .container-whychoose span {
+            font-size: 34px;
+        }
+
+        .container-whychoose .text-whychoose h2 {
+            width: 70%;
+            font-size: 42px;
+            font-weight: 300;
+            line-height: 1.315em;
+            font-size: 42px;
+            letter-spacing: 0.84px;
+        }
+
+        .container-copyright .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .txt-privacy {
+            text-align: end;
+            display: flex;
+            align-items: center;
+        }
+
+        .txt-privacy a {
+            margin-left: 45px;
+
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+
+        /*-------------- kv--------------- */
+        .text-kv h2 {
+            font-size: 58px;
+        }
+
+        .container-whychoose span {
+            font-size: 58px;
+        }
+        .container-teamwork {
+            max-width: 1200px;
+        }
+    }
+</style>
+
+<body>
+
+    <header>
+        <h1>Maikon</h1>
+        <nav class="container container-nav ">
+
+            <div class="logo">
+                <a href="#">
+                    <img src="./img/logo.png" alt="Maikon">
+                </a>
+            </div>
+            <input type="checkbox" name="" id="menu-control">
+            <!-- <input type="checkbox" name="" id="navbar-control"> -->
+            <!-- 漢堡選單符號 -->
+            <label for="menu-control" class="HB">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <div class="navbar">
+                <!-- <label for="navbar-control" class="x"><i class="fa-solid fa-xmark"></i></label> -->
+                <a href="#" id="x"></a>
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Team</a>
+                <a href="#">Case studio</a>
+                <a href="#">Contacts</a>
+                <a href="#" class="btn-subscribe">SUBSCRIBE</a>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- 主圖2區 -->
+    <main>
+        <section class="kv">
+            <!-- 第一區 -->
+            <div class="container container-kv">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="text-kv">
+                            <h2>Our creativity is
+                                your success</h2>
+                            <p>We break all boundaries if they happen on our way of project’s development!</p>
+                            <div class="btn-kv">
+                                <button class="btn-learnmore">LEARN MORE</button>
+                                <button class="btn-play"><img src="./img/play-button.svg" alt="watch-video"></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="pic-kv">
+                            <img src="./img/home-image-1.svg" alt="">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 第二區 -->
+            <div class="container container-kv">
+                <div class="row">
+                    <div class="col-12 col-md-5">
+                        <div class="text-kv">
+                            <h2>Creative challenges are our passion</h2>
+                            <p>Our team of designers and developers work closely together to build a creative and
+                                positive working environment. Functionality is as important to us as aesthetics.</p>
+                            <div class="btn-kv">
+                                <button class="btn-aboutus">ABOUT US</button>
+                                <button class="btn-contactus">CONTACT US</button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-7">
+                        <div class="pic-kv">
+                            <img src="./img/home-image-2.png" alt="">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <!-- icon -->
+            <div class="container container-iconbox">
+                <h2>We provide a wide range of creative services</h2>
+                <div class="row">
+                    <div class="col-12 col-md-4">
+                        <div class="iconbox">
+                            <div class="pic">
+                                <img src="./img/icon-1.svg" alt="">
+                            </div>
+                            <h3>Web Design & Brending</h3>
+                            <p>A great brand combines design and conveys company’s value messaging to evoke emotion and
+                                drive strategy.</p>
+                            <a href="#" class="btn-readmore">READ MORE</a>
+                        </div>
+
+
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="iconbox">
+                            <div class="pic">
+                                <img src="./img/icon-2.svg" alt="">
+                            </div>
+                            <h3>Graphic Design</h3>
+                            <p>Rich experience plus unlimited imagination create our successful service discovered by
+                                clients.</p>
+                            <a href="#" class="btn-readmore">READ MORE</a>
+                        </div>
+
+
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="iconbox">
+                            <div class="pic">
+                                <img src="./img/icon-3.svg" alt="">
+                            </div>
+                            <h3>Video Production</h3>
+                            <p>Creating and handling professional video is our strong point. It plays major role in your
+                                digital business strategy.</p>
+                            <a href="#" class="btn-readmore">READ MORE</a>
+                        </div>
+
+
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="iconbox">
+                            <div class="pic">
+                                <img src="./img/icon-4.svg" alt="">
+                            </div>
+                            <h3>SEO</h3>
+                            <p>We provide everything your site needs to perform at it’s highest capabilities on the
+                                major
+                                search engines.</p>
+                            <a href="#" class="btn-readmore">READ MORE</a>
+                        </div>
+
+
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="iconbox">
+                            <div class="pic">
+                                <img src="./img/icon-5.svg" alt="">
+                            </div>
+                            <h3>Digital Marketing</h3>
+                            <p>We do collateral design, interactive design, hoarding, signage, presentation centres, and
+                                more.</p>
+                            <a href="#" class="btn-readmore">READ MORE</a>
+                        </div>
+
+
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <div class="iconbox">
+                            <div class="pic">
+                                <img src="./img/icon-6.svg" alt="">
+                            </div>
+                            <h3>Infographics</h3>
+                            <p>Turn your data into captivating artwork that will keep your audience engaged. Our team
+                                can
+                                help you with it.
+                            </p>
+                            <a href="#" class="btn-readmore">READ MORE</a>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Q contactus -->
+        <section>
+            <div class="container container-contactus">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="text-contactus">
+                            <h2>If you have any questions, please contact us</h2>
+                            <p>Our professional support team try to do their best to provide you with high-quality
+                                consultations concerning any question about our services.</p>
+                            <div class="btn-contactandsub">
+                                <button class="btn-contact">CONTACT US</button>
+                                <button class="btn-subscribe">SUBSCRIBE</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="pic-contactus">
+                            <img src="./img/home-image-3.svg" alt="">
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 藍色區 -->
+        <section class="whychoose">
+
+            <div class="container container-whychoose">
+                <div class="row">
+                    <!-- 四格 -->
+                    <div class="col-12 col-md-6">
+                        <div class="row row-bluebox ">
+                            <div class="bluebox col-12 col-md-5 col-lg-5">
+                                <p><span>1880+</span></p>
+                                <p> Completed projects to the end by our specialists.</p>
+                            </div>
+                            <div class="bluebox col-12 col-md-5 col-lg-5">
+                                <p><span>56</span></p>
+                                <p>A large team of the best specialists.</p>
+                            </div>
+                            <div class="bluebox col-12 col-md-5 col-lg-5">
+                                <p><span>2000+</span></p>
+                                <p>Customers who were satisfied with our work.</p>
+                            </div>
+                            <div class="bluebox col-12 col-md-5 col-lg-5">
+                                <p><span>100%</span></p>
+                                <p>Our values are good organization and result orientation.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 文字 -->
+                    <div class="col-12 col-md-6">
+                        <div class="text-whychoose">
+                            <h2>Why choose our studio for your projects?</h2>
+                            <p>We are a command of professional and enthusiastic people, who like what they do and are
+                                always in the process of growing and improving their skills.</p>
+
+                            <a href="#" class="btn-ordersevice">order service</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- teamwork 1~5 -->
+        <section class="teamwork">
+
+            <!-- 1 -->
+            <div class="container container-teamwork one">
+                <h2>Steps of our work</h2>
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="row">
+                            <div class="pic-teamwork col-12 col-md-8">
+
+                                <img src="./img/home-image-4.svg" alt="">
+                                <img src="./img/arrow-1.svg" alt="" id="arr1">
+
+
+                            </div>
+                            <div class="num col-12 col-md-4">
+                                <img src="./img/number-01.svg" alt="">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="text-teamwork col-12 col-md-8">
+                            <h3>Meeting With The Customer</h3>
+                            <p>The first meeting is very import to form contact and discuss the main ideas of the
+                                project.</p>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- 2 -->
+            <div class="container container-teamwork two">
+                <div class="row row-pic-teamwork-two">
+                    <div class="pic-teamwork col-12 col-md-4">
+                        <div class="pic-teamwork">
+                            <img src="./img/home-image-5.svg" alt="">
+                            <img src="./img/arrow-2.svg" alt="" id="arr2">
+                        </div>
+                    </div>
+                    <div class="num col-12 col-md-3">
+                        <img src="./img/number-02.svg" alt="">
+
+                    </div>
+
+                    <div class="col-12 col-md-5">
+                        <div class="text-teamwork">
+                            <h3>We Consider And Analyze The Work Plan</h3>
+                            <p>When we understand the main eideas, we proceed to discussing the work plan and analyzing
+                                it.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 3 -->
+            <div class="container container-teamwork three">
+                <div class="row">
+                    <div class="col-12 col-md-6">
+                        <div class="row">
+                            <div class="pic-teamwork col-12 col-md-8">
+                                <img src="./img/home-image-6.svg" alt="">
+                                <img src="./img/arrow-3.svg" alt="" id="arr3">
+                            </div>
+                            <div class="num col-12 col-md-4">
+                                <img src="./img/number-03.svg" alt="">
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="text-teamwork col-12 col-md-8">
+                            <h3>Work Hard On The Project</h3>
+                            <p>Our professional team start to handle with your project and embody the conception of
+                                the
+                                project.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- 4 -->
+            <div class="container container-teamwork four">
+                <div class="row">
+                    <div class="pic-teamwork col-12 col-md-4">
+                        <img src="./img/home-image-7.svg" alt="">
+                        <img src="./img/arrow-4.svg" alt="" id="arr4">
+                    </div>
+                    <div class="num col-12 col-md-3">
+                        <img src="./img/number-04.svg" alt="">
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <div class="text-teamwork">
+                            <h3>Once Again We Analyze And Check Everything</h3>
+                            <p>We meet, analyze and check the done work and make needed corrections.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 5 -->
+            <div class="container container-teamwork five">
+                <div class="row">
+                    <div class="col-4 col-md-6">
+                        <div class="row">
+                            <div class="pic-teamwork col-12 col-md-8">
+                                <img src="./img/home-image-8.svg" alt="">
+                            </div>
+                            <div class="num col-12 col-md-4">
+                                <img src="./img/number-05.svg" alt="">
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="text-teamwork col-12 col-md-8">
+                            <h3>We Finish The Work And Give It To The Customer</h3>
+                            <p>The project is ready and we give it to the customer. Also we ask for the feedback
+                                from
+                                the customer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="project">
+            <div class="container container-project">
+                <div class="row title-project">
+                    <div class="col-12 col-md-6">
+                        <h2>Our team's work with Projects</h2>
+                    </div>
+                    <div class="col-btn-allproject col-12 col-md-6">
+                        <a href="#" class="btn-allproject">ALL PROJECT</a>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-pic-project col-12 col-md-4">
+                        <div class="pic-project">
+                            <img src="./img/project-1.jpg" alt="">
+                            <div class="text-project">
+                                <h3>Minimal Creative "Impuls"</h3>
+                                <a href="#">VIEW SITE</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="pic-project">
+                            <img src="./img/project-2.jpg" alt="">
+                            <div class="text-project">
+                                <h3>Travel Company "Tour Up"</h3>
+                                <a href="#">VIEW SITE</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <div class="pic-project">
+                            <img src="./img/project-3.jpg" alt="">
+                            <div class="text-project">
+                                <h3>Restaurant Pizza "Little Italy"</h3>
+                                <a href="#">VIEW SITE</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="form">
+            <div class="container container-form">
+                <div class="row">
+                    <div class="col-12 col-md-7">
+                        <div class="pic-form">
+                            <img src="./img/home-image-9.svg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-5">
+                        <div class="form-signup">
+                            <h2>Sign up for our consultation</h2>
+                            <p><input type="text" size="40" placeholder="Name"></p>
+                            <p><input type="text" size="40" placeholder="Email"></p>
+                            <p><textarea name="Message" placeholder="Message" cols="43" rows="7"></textarea></p>
+
+
+                            <a href="#" class="btn-send">SEND</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 訂閱區 -->
+        <section class="subscribe">
+            <div class="container container-subscribe">
+                <h2>Subscribe to our news and learn more</h2>
+                <div class="form-subscribe">
+                    <input type="text" placeholder="Your email">
+                    <a href="#" class="btn-subscribe">SUBSCRIBE</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <footer>
+        <section class="footer">
+            <div class="container container-footer">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="logo-footer">
+                            <img src="./img/logo.png" alt="logo">
+                        </div>
+                        <address>
+                            <div class="phone">
+                                <a href="tel:+10452241267"><span>Phone:</span><span>&nbsp;</span> + 1 (045) - 224 - 12 -
+                                    67 </a>
+                            </div>
+
+                            <br>
+                            <div class="email">
+                                <a
+                                    href="mailto:info@demolink.org"><span>Mail:</span><span>&nbsp;</span>info@demolink.org</a><br>
+                            </div>
+
+                        </address>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="footer-services">
+                            <p>Services</p>
+                            <a href="#">Web design & brending</a>
+                            <a href="#">Web development</a>
+                            <a href="#">Full Optimization</a>
+                            <a href="#">Research & Strategy</a>
+                            <a href="#">Management & Marketing</a>
+                            <a href="#">Free support</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="footer-about">
+                            <p>About Company</p>
+                            <a href="#">About us</a>
+                            <a href="#">Team</a>
+                            <a href="#">Case studio</a>
+                            <a href="#">Contacts</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <div class="footer-social">
+                            <p>Our Social Networks</p>
+                            <span>Join us in the social networks and keep up on the latest news.</span>
+                            <div class="footer-icon">
+                                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="copyright">
+            <div class="container container-copyright">
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <p>Copyright &copy;2018 Wordpress Maikon. All Rights Reserved. | Theme design by
+                            <span>Zemez</span>
+                        </p>
+
+                    </div>
+                    <div class="txt-privacy col-12 col-lg-6">
+
+                        <a href="#">Privacy & Policy</a>
+                        <a href="#">FAQ</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </footer>
+
+
+    <div class="to-up">
+        <a href="#"><i class="fa-solid fa-angle-up"></i></a>
+    </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</body>
+
+</html>
