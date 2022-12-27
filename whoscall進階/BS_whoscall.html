@@ -1,0 +1,1351 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+</head>
+<style>
+    :root {
+        --green: #00c300;
+        --gray: #2c323f;
+
+    }
+
+    * {
+        list-style: none;
+    }
+
+    h1 {
+        background-image: url("img/logo.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        color: transparent;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    img {
+        vertical-align: middle;
+
+    }
+
+    nav {
+        box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+    }
+
+    .container-fluid img {
+        width: 100%;
+    }
+
+    .navbar-toggler {
+        border: none;
+        color: var(--green);
+    }
+
+    .navbar-toggler-icon {
+        width: 1.7em;
+        /*  */
+    }
+
+    .btn-freedownload {
+        color: var(--green);
+        display: inline-block;
+        position: relative;
+
+        font-weight: 600;
+        right: -100px;
+        border-bottom: 1px solid #00c300;
+    }
+
+    .btn-freedownload:hover {
+        color: var(--green);
+    }
+
+    .navbar-nav {
+        --bs-nav-link-disabled-color: var(--gray);
+        align-items: center;
+
+    }
+
+    .nav-item {
+        font-weight: 800;
+    }
+
+    .nav-link {
+        color: var(--gray);
+    }
+
+    .btn-download {
+        border: none;
+        background-color: #00c300;
+        padding: 8px 36px;
+        font-size: 18px;
+        line-height: 25px;
+        border-radius: 100px;
+        color: #fff;
+
+
+    }
+
+    /* ---------------pic-kv----------------- */
+    .pic-kv {
+        position: relative;
+        width: 100%;
+        height: 80vh;
+        background-image: url("./img/premium_hero_mobile-400.png.webp");
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .radius-left img {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .radius-right {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+
+    .main-kv {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        justify-content: space-between;
+        margin-top: 90px;
+    }
+
+    .main-kv h2 {
+        font-size: 36px;
+        font-weight: 900;
+        line-height: 1.2;
+        text-align: center;
+        margin-top: 30px;
+        z-index: 3;
+
+
+    }
+
+    .main-kv p {
+        font-size: 18px;
+
+        text-align: center;
+        z-index: 3;
+    }
+
+    .main-kv span {
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 30px;
+        z-index: 3;
+    }
+
+    .main-kv .btn {
+        /* text-align: left;
+        padding: 0; */
+    }
+
+    .btn-plan {
+        border: none;
+        background-color: var(--green);
+        padding: 8px 36px;
+        font-size: 18px;
+        line-height: 25px;
+        font-weight: 700;
+        border-radius: 100px;
+        color: #fff;
+
+    }
+
+    /* ----------------premium-page----------------- */
+    .premium-page {
+        text-align: center;
+        margin: 50px auto;
+        font-size: 20px;
+    }
+
+    .premium-page h4 {
+        font-size: 27px;
+        font-weight: bold;
+        color: var(--green);
+    }
+
+    .premium-page p {
+        font-size: 18px;
+
+    }
+
+    .premium-page .title>p {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .premium-page .title .row-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .premium-page .item {
+        display: flex;
+    }
+
+    .premium-page .item img {
+        width: 26px;
+        height: 26px;
+    }
+
+    .premium-page .item p {
+        font-size: 16px;
+    }
+
+    .btn-group {
+        width: 50%;
+        margin: 40px 0;
+    }
+
+    .btn-ios {
+        font-size: 18px;
+        color: #fff;
+        background-color: var(--green);
+
+        width: 25%;
+        font-weight: 500;
+    }
+
+    .btn-android {
+        color: var(--green);
+        width: 25%;
+        background-color: #fff;
+        border: 3px solid var(--green);
+    }
+
+    .btn-learnmore {
+        border: none;
+        background-color: var(--green);
+        padding: 8px 8px;
+        font-size: 12px;
+        line-height: 25px;
+        font-weight: 700;
+        border-radius: 5px;
+        color: #fff;
+
+    }
+
+    .btn-learnmore:hover {
+        color: #fff;
+    }
+
+    /* ----------------carousel------------------ */
+    .carousel .container {
+        text-align: center;
+        width: 443px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .carousel h3 {
+        font-size: 36px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .carousel-item {
+        width: 909px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .carousel-item img {
+        position: relative;
+    }
+
+    .carousel-inner p {
+        font-size: 16px;
+    }
+
+    .carousel-inner p:before {
+        content: "";
+        display: block;
+        width: 35px;
+        height: 24px;
+        transform: rotateY(180deg);
+        transform-origin: 50% 50%;
+        background: url(./img/ic-quote-right.svg) 0 0 no-repeat;
+    }
+
+    .carousel-inner cite {
+        display: flex;
+        font-size: 18px;
+        color: #979797;
+
+    }
+
+    .carousel-inner cite:before {
+        content: "";
+        margin-right: 16px;
+        width: 50px;
+        /* background: -webkit-gradient(linear,left top,left bottom,from(currentColor),to(currentColor)) 0 50%/100% 1px repeat-x; */
+        background: linear-gradient(180deg, #979797, #979797) 0 50%/100% 1px repeat-x;
+    }
+
+    /* ----------------plan------------------ */
+    .plan {
+        padding: 20px;
+        background-color: #f5f6f9;
+    }
+
+    .plan .container .row {
+        max-width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+    .plan .container h3 {
+        text-align: center;
+    }
+
+    .plan-header {
+        position: relative;
+        padding: 20px 20px 10px;
+        border-bottom: 1px solid #979797;
+        background-color: #fff;
+    }
+
+    .plan-header p {
+        color: #2c323f;
+    }
+
+    .plan-header span {
+        margin-bottom: 10px;
+        font-size: 24px;
+        font-weight: 800;
+        color: #2c323f;
+    }
+
+    .plan-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+    }
+
+    .plan-list {
+        display: flex;
+    }
+
+    .plan-label {
+        width: 100%;
+        padding: 4px 0;
+        font-weight: 500;
+        text-align: center;
+        background-color: var(--green);
+        color: #fff;
+        position: absolute;
+        bottom: 100%;
+        left: 0;
+    }
+
+    .coinlabel {
+        position: absolute;
+        display: inline-flex;
+        align-items: center;
+        padding: 4px 18px 0px 0;
+
+    }
+
+    .coinlabel span {
+        font-size: 14px;
+        color: #fff;
+        font-weight: 700;
+        z-index: 2;
+
+    }
+
+    .coinlabel img {
+        width: 23px;
+        height: 23px;
+        margin-right: 8px;
+        z-index: 2;
+    }
+
+    .coinlabel:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 12px;
+        background-color: #00c300;
+        width: calc(100% - 20px);
+        height: 100%;
+        transform: skewX(-30deg);
+    }
+
+    /* --------------secure-questions------------- */
+    .secure-questions {
+        padding: 30px 0;
+    }
+
+    .secure-questions .container {
+        max-width: 948px;
+        margin-right: auto;
+        margin-left: auto;
+        padding: 20px 24px;
+    }
+
+    .secure-questions h3 {
+        font-size: 20px;
+
+    }
+
+    .secure-question a {
+        display: inline-block;
+        max-width: 900px;
+        font-size: 18px;
+    }
+
+    .QA-btn[aria-expanded="false"] .fa-minus,
+    .QA-btn[aria-expanded="true"] .fa-plus {
+        display: none;
+    }
+
+    /* ----------------downloadnow--------------- */
+    .downloadnow {
+        background: url("./img/index-download-bg.svg");
+    }
+
+    .downloadnow .container {
+        padding: 50px 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .downloadnow .row {
+        justify-content: center;
+    }
+
+    .appdownload a {
+        width: auto;
+        height: 60px;
+    }
+
+    .downloadnow p {
+        text-align: center;
+        font-size: 24px;
+        color: #fff;
+    }
+
+    .downloadnow span {
+        font-size: 48px;
+    }
+
+    /* ----------------footer------------------ */
+    .footer .container {
+        max-width: 1280px;
+        padding: 10px 0;
+        font-size: 15px;
+        color: #f5f6f9;
+        background-color: #2c323f;
+    }
+
+    .footer {
+        background-color: #2c323f;
+        padding: 10px 15px;
+
+    }
+
+    .footer-content {
+        margin-top: 30px;
+        padding-bottom: 10px;
+
+    }
+
+    .footer-link {
+        display: flex;
+        line-height: 2;
+        justify-content: flex-start;
+    }
+
+    .footer-link .col {
+        display: flex;
+        flex-direction: column;
+        /* padding-right: 50px; */
+    }
+
+    .footer-link h3 {
+        font-size: 16px;
+        color: #ffffff;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .footer-link a {
+        font-size: 15px;
+        color: #f5f6f9;
+        opacity: .7;
+    }
+
+    .link-list {}
+
+    ul {
+        padding-left: 0px;
+    }
+
+    /* ----------------footer-social------------------ */
+    .footer-social {
+        display: flex;
+        flex-direction: column;
+        margin-left: auto;
+    }
+
+    .follow {
+        width: 50%;
+        margin-right: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 100px;
+    }
+
+    .follow h3 {
+        color: #fff;
+        font-weight: 500;
+        margin-bottom: 5px;
+
+    }
+
+    .follow ul {
+        display: flex;
+        justify-content: space-between;
+        align-content: center;
+
+    }
+
+    .follow i {
+        color: #f5f6f9;
+        padding: 5px 0;
+
+        opacity: .7;
+    }
+
+    .poweredBy p {
+        color: #f5f6f9;
+        line-height: 2;
+        opacity: .7;
+
+    }
+
+    .poweredBy img {
+        width: 106px;
+
+        color: #f5f6f9;
+    }
+
+    hr {
+        /* width: 960px; */
+        border: .1px solid #f5f6f9;
+        opacity: .7;
+
+    }
+
+    /* --------------footer-copyright-------------------- */
+    .footer-copyright {
+        margin: auto;
+
+        color: #f5f6f9;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+
+    .footer-copyright .copyright {
+        opacity: .7;
+
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .footer-copyright .txt {
+        opacity: .7;
+
+    }
+
+    .footer-copyright a {
+        color: #f5f6f9;
+        margin-right: 20px;
+    }
+
+    .footer-copyright .lang {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+
+    }
+
+    .footer-copyright .lang a {}
+
+    .lang select {
+        background-color: #2c323f;
+        border: none;
+        color: #f5f6f9;
+    }
+
+    .premium-page .container {
+        text-align: center;
+    }
+
+    @media screen and (min-width:768px) {
+        .pic-kv {
+            width: 100%;
+            height: 60vh;
+            background-image: url("./img/premium_hero-1500.png.webp");
+            background-size: cover;
+            background-position: center center;
+        }
+
+        .main-kv {
+            padding-left: 70px;
+            padding-right: 70px;
+            margin-top: 50px;
+
+        }
+
+        .main-kv h2 {
+            text-align: left;
+        }
+
+        .main-kv p {
+            text-align: left;
+        }
+
+        .main-kv .btn {
+            text-align: left;
+            padding: 0;
+        }
+
+        .btn-group {
+            width: 30%;
+        }
+
+        .premium-page .row {
+            display: flex;
+            align-items: center;
+            text-align: left;
+
+        }
+
+        .premium-page .title .row-item {
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        .btn-learnmore {
+            font-size: 14px;
+            background-color: #fff;
+            color: var(--green);
+            padding-left: 0;
+        }
+
+        .btn-learnmore:hover {
+            color: var(--green);
+        }
+
+
+        .btn-plan {
+            margin-left: 0;
+        }
+
+
+        .plan .container .row {
+            max-width: none;
+        }
+
+        .carousel .container {
+            max-width: 909px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+
+        .carousel-inner p {
+            font-size: 24px;
+        }
+
+        .secure-questions h3 {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .follow {
+            width: 100%;
+        }
+
+
+    }
+
+    @media screen and (min-width:1024px) {
+        .navbar-nav {
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            margin: 0 16px;
+            text-align: center;
+
+        }
+
+        .btn-freedownload {
+            display: none;
+        }
+
+        .btn-group {
+            width: 30%;
+        }
+
+        .main-kv {
+            padding-left: 0px;
+            padding-right: 0px;
+            max-width: 909px;
+            margin-top: 90px;
+        }
+
+        .pic-kv {
+            max-width: 100%;
+            height: 60vh;
+            background: url("./img/premium_hero-3000.png.webp");
+            background-size: cover;
+            background-position: center center;
+
+        }
+
+        .premium-page h4 {
+            font-size: 36px;
+        }
+
+        .carousel.container {
+            padding-left: 0;
+            padding-right: 0;
+            max-width: 909px;
+        }
+
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+
+                <a class="navbar-brand" href="#">
+                    <h1>whoscall</h1>
+                </a>
+                <a href="#" class="btn-freedownload">免費下載</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Whoscall 進階版</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">認證號碼</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">認識 Whoscall</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled">Whoscall 專欄</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled">常見問題</a>
+                        </li>
+
+                    </ul>
+                    <button class="btn-download">免費下載</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="pic-kv">
+            <div class="container">
+                <div class="radius-left">
+                    <img src="./img/hero-deco-left.svg" alt="">
+                </div>
+                <div class="radius-right">
+                    <img src="./img/hero-deco-right.svg" alt="">
+                </div>
+                <div class="row">
+                    <div class="main-kv col-12 col-md-7">
+                        <h2>Whoscall 進階版</h2>
+                        <p>4 大防護功能，360 度守護你的通訊生活 <br>
+                            <span>每月 NT$ 50 起，銅板價格享受全方位安全防護。</span>
+                        </p>
+                        <div class="btn">
+                            <a href="#" class="btn-plan">瞭解方案</a>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+    <section class="premium-page">
+        <div class="container">
+            <h3>強化通訊防護力，進階功能一次享有</h3>
+            <div class="btn-group rounded-2" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-ios">iOS</button>
+                <button type="button" class="btn btn-android">Android</button>
+            </div>
+            <div class="row">
+                <!-- 1 -->
+                <div class="col-12 col-md-6">
+                    <div class="pic">
+                        <img src="./img/w450_webp_1.png" alt="">
+                    </div>
+                </div>
+                <div class="title col-12 col-md-6">
+                    <h4>自動封鎖騷擾號碼</h4>
+                    <p>掛不斷的騷擾電話交給 Whoscall 幫你阻擋，把時間留給重要的人</p>
+                    <div class="row-item align-items-start">
+                        <div>
+                            <div class="item">
+                                <img src="./img/icon-circle.svg" alt="">
+                                <p class="icon-p">免費版：手動封鎖</p>
+                            </div>
+                            <div class="item">
+                                <img src="./img/icon-check-circle.svg" alt="">
+                                <p class="icon-p">進階版：自動封鎖</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="#" class="btn-learnmore">了解更多</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- 2 -->
+            <div class="row flex-md-row-reverse">
+                <div class="col-12 col-md-6">
+                    <div class="pic">
+                        <img src="./img/w450_webp_2.png" alt="">
+                    </div>
+                </div>
+                <div class="title col-12 col-md-6">
+                    <h4>自動更新號碼資料庫</h4>
+                    <p>詐騙電話隨時在變，定期更新掌握資訊，常保高效辨識率</p>
+                    <div class="row-item align-items-start">
+                        <div>
+                            <div class="item">
+                                <img src="./img/icon-circle.svg" alt="">
+                                <p>免費版：手動更新</p>
+                            </div>
+                            <div class="item">
+                                <img src="./img/icon-check-circle.svg" alt="">
+                                <p>進階版：自動更新</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="#" class="btn-learnmore">了解更多</a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- 3 -->
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="pic">
+                        <img src="./img/w450_webp_3.png" alt="">
+                    </div>
+                </div>
+                <div class="title col-12 col-md-6">
+                    <h4>智慧簡訊管家</h4>
+                    <p>再也不用問「這個簡訊可以點嗎？」，釣魚簡訊釣不到你</p>
+                    <div class="row-item align-items-start">
+                        <div>
+                            <div class="item">
+                                <img src="./img/icon-circle.svg" alt="">
+                                <p>免費版：無過濾簡訊</p>
+                            </div>
+                            <div class="item">
+                                <img src="./img/icon-check-circle.svg" alt="">
+                                <p>進階版：自動過濾簡訊</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="#" class="btn-learnmore">了解更多</a>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- 4 -->
+            <div class="row flex-md-row-reverse">
+                <div class="col-12 col-md-6">
+                    <div class="pic">
+                        <img src="./img/w450_webp_4.png" alt="">
+                    </div>
+                </div>
+                <div class="title col-12 col-md-6">
+                    <h4>移除廣告</h4>
+                    <p>和廣告說掰掰，清爽介面，使用更順暢</p>
+                    <div class="row-item align-items-start">
+                        <div>
+                            <div class="item">
+                                <img src="./img/icon-circle.svg" alt="">
+                                <p>免費版：有廣告</p>
+                            </div>
+                            <div class="item">
+                                <img src="./img/icon-check-circle.svg" alt="">
+                                <p>進階版：無廣告</p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="#" class="btn-learnmore">了解更多</a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="carousel">
+        <div class="container">
+            <div class="row">
+                <h3>用戶好評回饋</h3>
+                <div id="carouselExampleIndicators" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <p><span>自動更新滿方便的</span>我滿常忘記點進去更新，進階版功能對我來說超好用！每個禮拜Whoscall都會自己更新，辨識效果好像也變比較好</p>
+                            <cite>by popppln***</cite>
+                        </div>
+
+                        <div class="carousel-item">
+                            <!-- <img src="..." class="d-block w-100" alt="..."> -->
+                            <p>使用將近一年，<span>拒接了很多投資跟貸款的電話</span>，反查也很方便，更新速度也快，每次更新大概都只需要花30秒而已！</p>
+                            <cite>by Eva_***</cite>
+                        </div>
+                        <div class="carousel-item">
+                            <!-- <img src="..." class="d-block w-100" alt="..."> -->
+                            <p><span>Whoscall 不用把號碼加入通訊錄就可以封鎖</span>，好方便</p>
+                            <cite>by 林先生</cite>
+                        </div>
+                        <div class="carousel-item">
+                            <!-- <img src="..." class="d-block w-100" alt="..."> -->
+                            <p>感謝開發團隊持續更新，讓我能有<span>更安全的手機使用體驗</span></p>
+                            <cite>by 男大學生</cite>
+                        </div>
+                        <div class="carousel-item">
+                            <!-- <img src="..." class="d-block w-100" alt="..."> -->
+                            <p><span>升級自動更新有感</span>，升級進階版之後可以每週自動更新，真的變得很方便！介面也蠻好看的，謝謝開發團隊👍</p>
+                            <cite>by a1s2dfv***</cite>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="plan">
+        <div class="container">
+            <h3>進階版方案比較</h3>
+            <div class="row">
+                <div class="col-12 col-md-4">
+                    <div class="plan-header">
+                        <p>免費版</p>
+                        <span class="span-price">FREE</span>
+                        <span>NT$ 0</span>
+                        <p>/月</p>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>反查號碼</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>陌生來電辨識</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-cross-circle.svg" alt="">
+                            <span>自動封鎖騷擾號碼</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-cross-circle.svg" alt="">
+                            <span>自動更新號碼資料庫</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-cross-circle.svg" alt="">
+                            <span>智慧簡訊管家</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-cross-circle.svg" alt="">
+                            <span>移除廣告</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="plan-header">
+                        <p>進階版 - 月方案</p>
+                        <span class="span-price">Premium</span>
+                        <span>NT$ 60</span>
+                        <p>/月</p>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>反查號碼</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>陌生來電辨識</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>自動封鎖騷擾號碼</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>自動更新號碼資料庫</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>智慧簡訊管家</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>移除廣告</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+
+                    <div class="plan-header">
+                        <div class="plan-label">最熱門方案</div>
+                        <p>進階版 - 年方案</p>
+                        <span class="span-price">Premium</span>
+                        <span>NT$ 600</span>
+                        <p>/年</p>
+
+                        <div class="coinlabel">
+                            <img src="./img/coin.png" alt="">
+                            <span>一年最多省 NT$ 120 元</span>
+
+                        </div>
+                    </div>
+                    <div class="plan-body">
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>反查號碼</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>陌生來電辨識</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>自動封鎖騷擾號碼</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>自動更新號碼資料庫</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>智慧簡訊管家</span>
+                        </div>
+                        <div class="plan-list">
+                            <img src="./img/icon-check-circle.svg" alt="">
+                            <span>移除廣告</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 問題區 -->
+    <section class="secure-questions d-flex align-items-center flex-column">
+        <h3 class="text-center">常見問題</h3>
+        <div class="container d-flex align-items-start flex-column">
+
+            <section class="secure-question">
+                <h3 class="">
+                    <a class="btn QA-btn" data-bs-toggle="collapse" href="#collapse-Q1" role="button"
+                        aria-expanded="false" aria-controls="collapse-Q1">
+                        Q. 進階版是否有試用期？是否會自動續訂？
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-minus"></i>
+                    </a>
+
+                </h3>
+                <div class="collapse" id="collapse-Q1">
+                    <div class="card card-body border-0 ">
+                        購買進階版都將享有 7 天的試用期，並於試用期結束後自動續訂。若想暫停自動續訂，須自行至商店設定取消訂閱。
+                    </div>
+                </div>
+            </section>
+            <section class="secure-question">
+                <h3>
+                    <a class="btn QA-btn" data-bs-toggle="collapse" href="#collapse-Q2" role="button"
+                        aria-expanded="false" aria-controls="collapse-Q2">
+                        Q. 我只想要試用，為什麼被收費了？
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-minus"></i>
+                    </a>
+                </h3>
+                <div class="collapse" id="collapse-Q2">
+                    <div class="card card-body border-0">
+                        試用期間結束後將會自動續訂，若想暫停自動續訂，須自行至商店設定取消訂閱。若沒在試用期到期前取消，則會被視同同意續訂而進行扣款。
+                    </div>
+                </div>
+            </section>
+            <section class="secure-question">
+                <h3>
+                    <button class="btn QA-btn" data-bs-toggle="collapse" href="#collapse-Q3" role="button"
+                        aria-expanded="false" aria-controls="collapse-Q3">
+                        Q. 使用自動封鎖騷擾號碼功能後，就不會接到騷擾號碼了嗎？
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-minus"></i>
+                    </button>
+                </h3>
+                <div class="collapse" id="collapse-Q3">
+                    <div class="card card-body border-0">
+                        Whoscall 會定期統計並驗證最新、最高頻被回報的詐騙與騷擾號碼，例如：「假冒商家詐騙」、「保險推銷」、「一接就掛」等等，並整合內政部警政署 165
+                        提供的詐騙電話，每週更新於特定清單中。只要開啟自動封鎖騷擾號碼，即可自動阻擋這些高頻騷擾電話。
+
+                        而不在自動封鎖號碼特定清單中的騷擾來電，仍會透過警示符號給予提醒，由用戶決定是否接聽與封鎖。
+                    </div>
+                </div>
+            </section>
+            <section class="secure-question">
+                <h3>
+                    <a class="btn QA-btn" data-bs-toggle="collapse" href="#collapse-Q4" role="button"
+                        aria-expanded="false" aria-controls="collapse-Q4">
+                        Q. 請問進階版可以跨系統/裝置使用嗎？例如我原先使用 iPhone，想改使用 Android 系統。
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-minus"></i>
+                    </a>
+                </h3>
+                <div class="collapse" id="collapse-Q4">
+                    <div class="card card-body border-0">
+                        由於 Whoscall 進階版訂購的平台分別為 Google Play 與 App Store 且服務功能不同，因此服務內容與方案無法進行轉移的。
+                    </div>
+                </div>
+            </section>
+            <section class="secure-question">
+                <h3>
+                    <a class="btn QA-btn" data-bs-toggle="collapse" href="#collapseExample" role="button"
+                        aria-expanded="false" aria-controls="collapseExample">
+                        Q. Whoscall 進階版團購組合的序號可於何處進行兌換？
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-minus"></i>
+                    </a>
+                </h3>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body border-0">
+                        請前往 https://redeem.whoscall.com/zh-Hant/ 。登入 Whoscall 帳號成功後，輸入代碼即可完成兌換。
+                    </div>
+                </div>
+            </section>
+        </div>
+    </section>
+    <section class="downloadnow">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <img src="./img/download-app-icon.svg" alt="">
+                </div>
+                <div class="col-12 col-md-6">
+                    <p><span>Download Now</span><br> 你的陌生來電辨識 APP</p>
+
+                    <div class="appdownload">
+
+                        <div class="row d-flex">
+                            <div class="col-12 col-md-6">
+                                <a href="#"><img src="./img/app-store-badge.svg" alt=""></a>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <a href="#"><img src="./img/google-play-badge.svg" alt=""></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <section class="footer">
+            <div class="container footer-content">
+                <div class="row footer-link">
+                    <div class="col-12 col-md-2">
+                        <h3>Whoscall</h3>
+                        <ul class="link-list">
+                            <li>
+                                <a href="#">認識 Whoscall</a>
+                            </li>
+                            <li>
+                                <a href="#">Whoscall 進階版</a>
+                            </li>
+                            <li>
+                                <a href="#">Whoscall 專欄</a>
+                            </li>
+                            <li>
+                                <a href="#">Whoscall 認證號碼</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <h3>公司</h3>
+                        <ul class="link-list">
+                            <li>
+                                <a href="#">工作機會</a>
+                            </li>
+                        </ul>
+                        <h3>媒體中心</h3>
+                        <ul class="link-list">
+                            <li>
+                                <a href="#">最新消息</a>
+                            </li>
+                            <li>
+                                <a href="#">品牌識別</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <h3>客戶服務</h3>
+                        <ul class="link-list">
+                            <li>
+                                <a href="#">安全性</a>
+                            </li>
+                            <li>
+                                <a href="#">常見問題</a>
+                            </li>
+                            <li>
+                                <a href="#">聯絡我們</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class=" follow">
+                            <h3>追蹤我們</h3>
+                            <ul>
+                                <li>
+                                    <a href="#"><i class="fa-brands fa-instagram fa-2x"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa-brands fa-square-facebook fa-2x"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa-brands fa-twitter fa-2x"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa-brands fa-youtube fa-2x"></i></a>
+                                </li>
+                            </ul>
+                            <div class="poweredBy">
+                                <p>Powered by</p>
+                                <img src="img/gogolook-logo.svg" style="color: #f5f6f9;" alt=""></a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <hr>
+            <div class="container footer-copyright">
+
+                <div class="row">
+                    <div class="copyright col-12 col-md-6">
+
+                        &copy;2022 Gogolook. All Rights Reserved.
+
+                        <div class="txt">
+                            <a href="#">服務條款</a>
+                            <a href="#">隱私權政策</a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="lang">
+                            <a href="#"><i class="fa-solid fa-globe fa-1x "></i></a>
+                            <select name="language" id="">
+                                <option value="">英文</option>
+                                <option value="" selected>中文</option>
+                                <option value="">日本語</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+        </section>
+    </footer>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</body>
+
+</html>
