@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    
+    h1 {
+        text-align: center;
+        font-size: 35px;
+        font-weight: 900;
+        margin: 40px;
+        padding: 20px;
+    }
+
+    p {
+        text-align: center;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .box button {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        font-size: 30px;
+        background-color: #525252;
+        color: #ccc;
+        border: none;
+    }
+    .color-name{
+        background-image: linear-gradient(to right, #fff, rgba(0,0,0,0.6), #fff);
+        color: #fff;
+        font-size: 20px;
+        text-align: center;
+        margin: auto;
+        padding: 10px 0;
+        max-width: 460px;
+    }
+    #color{
+        text-align: center;
+        padding: 20px;
+    }
+    #color button{
+        width: 40px;
+        height: 40px;
+        margin: 5px;
+        border-radius: 50%;
+        border: none;
+
+    }
+    #color button:hover{
+        border: 3px solid #fff;
+        box-shadow: 0 1px 8px rgb(0 0 0 / 35%);
+    }
+    #color .bluegray {
+        background-image: linear-gradient(135deg,rgb(164, 194, 224), rgb(45, 67, 88) );
+        box-shadow: 0 1px 8px rgb(0 0 0 / 35%);
+    }
+    #color .black {
+        background-image: linear-gradient(135deg,rgb(144, 145, 146), rgb(7, 8, 10) );
+        box-shadow: 0 1px 8px rgb(0 0 0 / 35%);
+    }
+    #color .gray {
+        background-image: linear-gradient(135deg,rgb(193, 195, 196), rgb(75, 77, 80) );
+        box-shadow: 0 1px 8px rgb(0 0 0 / 35%);
+    }
+    #color .red {
+        background-image: linear-gradient(135deg,rgb(239, 109, 97), rgb(123, 31, 30) );
+        box-shadow: 0 1px 8px rgb(0 0 0 / 35%);
+    }
+    #color .white {
+        background-image: linear-gradient(135deg,rgb(255, 255, 255), rgb(213, 214, 214) );
+        box-shadow: 0 1px 8px rgb(0 0 0 / 35%);
+    }
+    #color .silver {
+        background-image: linear-gradient(135deg,rgb(231, 231, 232), rgb(165, 167, 178) );
+        box-shadow: 0 1px 8px rgb(0 0 0 / 35%);
+    }
+</style>
+
+<body>
+    <h1>Altis 360度 3D賞車</h1>
+    <p>外觀</p>
+
+    <div class="box">
+        <button id="left"><i class="fa-solid fa-rotate-right"></i></button>
+        <div id="container"><img src=""></div>
+        <button id="right"><i class="fa-solid fa-rotate-left"></i></button>
+    </div>
+    <div class="color-name">藍曜灰</div>
+    <div id="color">
+        <button class="bluegray"></button>
+        <button class="black"></button>
+        <button class="gray"></button>
+        <button class="red"></button>
+        <button class="white"></button>
+        <button class="silver"></button>
+    </div>
+
+
+    <script>
+        //18藍灰,19黑,20灰,21銀,22紅,23白
+        let bluegray = document.querySelector('#color .bluegray');
+        let black = document.querySelector('#color .black');
+        let gray = document.querySelector('#color .gray');
+        let red = document.querySelector('#color .red');
+        let white = document.querySelector('#color .white');
+        let silver = document.querySelector('#color .silver');
+        let colorname = document.querySelector('.color-name')
+        let carSrc;
+        let carArray = [];
+
+        for (let i = 1; i < 61; i++) {
+            carSrc = "altis360-img/360EXT_1_22_" + i + ".png";
+            carArray.push(carSrc)
+        }
+
+        let container;
+        let left;
+        let right;
+        let index = 0;
+        let img = document.querySelector("#container img");
+        
+
+        window.onload = function () {
+            //取到資料
+            container = document.getElementById("container");
+            left = document.getElementById("left");
+            right = document.getElementById("right");
+            // let startX = 0;
+            img.src = carArray[index];
+            //監聽左邊按鈕
+            left.addEventListener('click', function () {
+                if (index === 59) {
+                    index = 0;
+                }
+                else {
+                    index++;
+                }
+                img.src = carArray[index]
+            })
+            //監聽右邊按鈕
+            right.addEventListener('click', function () {
+                if (index === 0) {
+                    index = 59;
+                }
+                else {
+                    index--;
+                }
+                img.src = carArray[index]
+            })
+
+            
+        }
+
+        //當選到顏色紐時改變圖片來源
+        bluegray.addEventListener('click', function () {
+            carArray = [];
+            for (let i = 1; i < 61; i++) {
+                carSrc = "altis360-img/360EXT_1_18_" + i + ".png";
+                carArray.push(carSrc);
+                img.src = carArray[index];
+            }
+            colorname.innerHTML="藍曜灰"
+        })
+        black.addEventListener('click', function () {
+            carArray = [];
+            for (let i = 1; i < 61; i++) {
+                carSrc = "altis360-img/360EXT_1_19_" + i + ".png";
+                carArray.push(carSrc);
+                img.src = carArray[index];
+            }
+            colorname.innerHTML="檀木黑"
+        })
+        gray.addEventListener('click', function () {
+            carArray = [];
+            for (let i = 1; i < 61; i++) {
+                carSrc = "altis360-img/360EXT_1_20_" + i + ".png";
+                carArray.push(carSrc);
+                img.src = carArray[index];
+            }
+            colorname.innerHTML="雲河灰"
+        })
+        red.addEventListener('click', function () {
+            carArray = [];
+            for (let i = 1; i < 61; i++) {
+                carSrc = "altis360-img/360EXT_1_22_" + i + ".png";
+                carArray.push(carSrc);
+                img.src = carArray[index];
+            }
+            colorname.innerHTML=`炫魅紅`
+        })
+        white.addEventListener('click', function () {
+            carArray = [];
+            for (let i = 1; i < 61; i++) {
+                carSrc = "altis360-img/360EXT_1_23_" + i + ".png";
+                carArray.push(carSrc);
+                img.src = carArray[index];
+            }
+            colorname.innerHTML=`雪貂白`
+        })
+        silver.addEventListener('click', function () {
+            carArray = [];
+            for (let i = 1; i < 61; i++) {
+                carSrc = "altis360-img/360EXT_1_21_" + i + ".png";
+                carArray.push(carSrc);
+                img.src = carArray[index];
+            }
+            colorname.innerHTML=`極光銀`
+        })
+
+    </script>
+    <script src="https://kit.fontawesome.com/592d58a0fb.js" crossorigin="anonymous"></script>
+</body>
+
+</html>
