@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<style>
+    .wrap {
+        background-color: rgb(231, 230, 224);
+        height: 100vh;
+    }
+
+    .container {
+        max-width: 700px;
+        height: 90vh;
+        padding: 60px 100px;
+        display: flex;
+        flex-direction: column;
+
+
+    }
+
+    .btngroup {
+        width: 100%;
+        margin-left: 0;
+
+
+        margin-bottom: 20px;
+
+
+    }
+
+    .btngroup .btn {
+        width: 32.7%;
+        font-weight: 800;
+        background-color: rgb(246, 238, 214);
+        font-family: Roboto, Sans-serif;
+        border: 5px solid rgb(225, 201, 171);
+        color: rgb(127, 102, 79);
+    }
+
+    .btngroup .btn:checked {
+        background-color: rgb(225, 201, 171);
+    }
+
+    .box {
+        font-family: Roboto, Sans-serif;
+
+        width: 100%;
+        height: 100%;
+
+        margin-bottom: 20px;
+
+
+
+    }
+
+    .display {
+        border: 5px solid rgb(225, 201, 171);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .history {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        align-items: center;
+        margin-top: 1rem;
+    }
+    .history p{
+        margin-top: inherit;
+    }
+    .input-group {
+
+        margin-top: auto;
+        font-family: Roboto, Sans-serif;
+    }
+
+    .input-group-text {
+        border: 5px solid rgb(225, 201, 171);
+        background-color: rgb(246, 238, 214);
+        color: rgb(127, 102, 79);
+    }
+
+    .input-group .btn {
+        border: 5px solid rgb(225, 201, 171);
+        color: rgb(127, 102, 79);
+        background-color: rgb(246, 238, 214);
+    }
+
+    .form-control {
+        border-top: 5px solid rgb(225, 201, 171);
+        border-bottom: 5px solid rgb(225, 201, 171);
+        border-left: 0px solid rgb(225, 201, 171, 0);
+        border-right: 0px solid rgb(225, 201, 171, 0);
+        color: rgb(127, 102, 79);
+        background-color: rgb(246, 238, 214);
+
+    }
+
+    .form-control:focus {
+        border-color: rgba(208, 60, 19, 0);
+        box-shadow: 0 0 0 0.25rem rgba(208, 60, 19, 30%);
+    }
+
+    .form-control::placeholder {
+        color: rgb(165, 136, 98);
+        opacity: .8;
+    }
+
+    .btn:checked {
+        background-color: rgb(186, 177, 164);
+    }
+
+    /* .sweet-warning > .sa-button-container > {
+        background-color: rgb(233, 207, 192);
+    } */
+</style>
+
+<body>
+    <div class="wrap">
+        <div class="container text-center">
+            <!-- 功能區 -->
+            <div class="btngroup " role="group" aria-label="Basic outlined example">
+                <button type="button" class="btn " id="start">開始</button>
+                <button type="button" class="btn " id="giveUp">放棄重來</button>
+                <button type="button" class="btn " id="checkAnswer" disabled>看答案</button>
+            </div>
+            <div class="row justify-content-center box">
+                <div class="display">
+                    <!-- 塞資料 -->
+                    <!-- <div class="answer">*A*B</div>
+            <span>????</span> -->
+                </div>
+            </div>
+
+
+
+            <!-- 作用區 -->
+            <div class="input-group mb-3" id="function">
+                <span class="input-group-text">輸入</span>
+                <!-- <input type="text" class="form-control" placeholder="請輸入4位不重覆數字" aria-label="number"
+                aria-describedby="button-addon2"> -->
+                <input type="text" maxlength="4" class="form-control" placeholder="請輸入4位不重覆數字" aria-label="number"
+                    id="inputArea">
+
+                <button class="btn " type="button" id="guess">猜!</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        //取得各功能區DOM節點
+        const _start = document.querySelector('#start');
+        const _restart = document.querySelector('#giveUp');
+        const _showAnswer = document.querySelector('#checkAnswer');
+        const _display = document.querySelector('.display');
+        const _input = document.querySelector('.form-control');
+        const _guess = document.querySelector('#guess');
+
+        //正則表達式(判定輸入的每個字元是否為0~9數字)
+        const regex = /\d/;
+
+        //變數宣告區
+        const min = 0;
+        const max = 9;
+
+        let numArr = [];
+        let answerArr = [];
+        let answerStr;
+        let guessArr = [];
+        let guess;
+        let getGuessStr0;
+        let getGuessStr1;
+        let getGuessStr2;
+        let getGuessStr3;
+        let a;
+        let b;
+        let _history;
+        let _button;
+        let _p;
+        let intersect;
+        let distinct;
+        let isNotNumber;
+        let isNoRepeat;
+
+
+        //遊戲開始前按鈕關起來
+        _restart.disaled = true;
+        _showAnswer.disaled = true;
+        // _input.disaled = true;
+        _guess.disaled = true;
+
+
+        //-------------------function 區
+
+        // randomNum = function getRandomInt(min, max) {
+        //     let first = Math.floor(Math.random() * 10);
+        //     let second = Math.floor(Math.random() * 10);
+        //     let third = Math.floor(Math.random() * 10);
+        //     let forth = Math.floor(Math.random() * 10);
+        //     let arr = [first, second, third, forth];
+        //     let a = arr.filter((item, index) => arr.indexOf(item) === index);
+        //     if (a.length === 4) {
+        //         return `${first}${second}${third}${forth}`;
+        //     }
+        //     else {
+        //         return getRandomInt();
+        //     }
+
+        // }
+
+        //方法: 取得0~9隨機數字
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        //方法:將 answer 放進answerArr
+        // function setAnswerArr (){
+        //     number = answer.toString();
+        //     for(let i = 0; i <= number.length ; i++){
+        //         answerArr.push(number[i]) 
+        //     }
+
+        // }
+
+        //方法: 產生4位不重複0~9數字
+        function setGame() {
+            do {
+                let number = getRandomInt(min, max).toString();
+                if (!answerArr.includes(number)) {
+                    answerArr.push(number);
+                }
+            }
+            while (answerArr.length != 4);
+
+            return answerArr;
+        }
+        //方法: 將輸入數字放進guessArr
+        function createGuessArr() {
+
+            guess = _input.value;
+            getGuessStr0 = guess.charAt(0);
+            getGuessStr1 = guess.charAt(1);
+            getGuessStr2 = guess.charAt(2);
+            getGuessStr3 = guess.charAt(3);
+            guessArr.push(getGuessStr0, getGuessStr1, getGuessStr2, getGuessStr3)
+        }
+        //方法: 取得answerArr 和 guessArr 的交集
+        function getIntersect() {
+            intersect = answerArr.filter(x => guessArr.includes(x));
+            a = intersect.filter(y => answerArr.indexOf(y) == guessArr.indexOf(y));
+            b = intersect.length - a.length;
+        }
+
+        //方法: 清空輸入的數字 input
+        function clearInput() {
+            _input.value = "";
+        }
+
+
+        //方法: 顯示猜對樣式(綠按鈕標示4A0B)
+        function setWinMsg() {
+            _history = document.createElement('div');
+            _button = document.createElement('button');
+            _p = document.createElement('p');
+            _history.setAttribute('class', 'history');
+            _button.setAttribute('class', 'btn btn-success');
+
+        }
+        //方法: 顯示猜錯樣式(紅按鈕標示幾A幾B)
+        function setHistoryMsg() {
+            _history = document.createElement('div');
+            _button = document.createElement('button');
+            _p = document.createElement('p');
+            _history.setAttribute('class', 'history');
+            _button.setAttribute('class', 'btn btn-danger');
+
+        }
+
+        //方法: 判斷遊戲勝利方法
+        function checkIsWin() {
+            if (a.length == 4) {
+                setWinMsg();
+                _button.innerHTML = `${a.length}A${b}B`;
+                _p.innerText = _input.value;
+                _history.append(_button, _p);
+                _display.append(_history);
+                WinAlert(answerStr);
+                clearInput();
+                _guess.disabled = true;
+                _start.disabled = false;
+            }
+            else {
+                setHistoryMsg();
+                _button.innerHTML = `${a.length}A${b}B`;
+                _p.innerText = _input.value;
+                _history.append(_button, _p);
+                _display.append(_history);
+                clearInput();
+            }
+        }
+
+        //方法: 初始guessArray
+        function initializeGuessArr() {
+            guessArr = [];
+        }
+        //方法: 初始化answerArray
+        function initializeAnswerArr() {
+            answerArr = [];
+        }
+
+
+        //-----------------event 區
+
+        //事件: 點擊 開始
+        _start.addEventListener('click', () => {
+            initializeAnswerArr();
+            initializeGuessArr();
+            setGame();
+            _start.disabled = true;
+            _showAnswer.disabled = false;
+
+            _guess.disabled = false;
+            clearInput();
+
+        })
+
+
+        //事件: 點擊 重新開始
+        _restart.addEventListener('click', () => {
+            initializeAnswerArr();
+            initializeGuessArr();
+            _display.innerHTML = "";
+            _start.disabled = false;
+
+            clearInput();
+        })
+
+        //事件: 點擊 看答案
+        _showAnswer.addEventListener('click', () => {
+            answerStr = "";
+            answerArr.forEach(num => {
+                answerStr += num;
+            })
+            showAnswerAlert(answerStr);
+            clearInput();
+
+        })
+
+        //事件: 點擊 猜
+        _guess.addEventListener('click', () => {
+            createGuessArr();
+            distinct = [...new Set(guessArr)].length;
+            isNotNumber = regex.test(guess);
+            isNoRepeat = distinct === 4 && guessArr.length === 4;
+
+            if (answerArr.length === 0) {
+                initialAlert();
+                clearInput();
+                return;
+            }
+            else if (!isNotNumber) {
+                notNumberAlert();
+                initializeGuessArr();
+                clearInput();
+                return;
+            }
+            else if (!isNoRepeat) {
+                repeatNumberAlert();
+                initializeGuessArr();
+                clearInput();
+                return;
+            }
+            else {
+                getIntersect();
+                initializeGuessArr();
+                checkIsWin();
+            }
+
+        })
+        //事件: 按下enter鍵 猜
+
+
+
+        //-----------------sweetAlert2套件版區alert
+
+        //sweetAlert2套件版alert-看答案
+        function showAnswerAlert(answerStr) {
+            Swal.fire({
+                title: "看答案囉~",
+                text: `${answerStr}`,
+                icon: 'info',
+                showCancelButton: false,
+                confirmButtonColor: '#',
+                customClass: "sweet-warning",
+                // confirmButtonColor: '#F6EED6'
+
+            })
+        }
+
+        //sweetAlert2套件版alert-先點開始遊戲才能猜唷
+        function initialAlert() {
+            Swal.fire({
+                title: "開始遊戲才能猜喔",
+                text: "請點遊戲開始",
+                icon: 'error',
+                showCancelButton: true
+            })
+        }
+        //sweetAlert2套件版alert-要輸入4位'數字'
+        function notNumberAlert() {
+            Swal.fire({
+                title: "要輸入4位'數字'唷",
+                text: "請重新輸入",
+                icon: 'error',
+                showCancelButton: true
+            })
+        }
+        //sweetAlert2套件版alert-重複數字
+        function repeatNumberAlert() {
+            Swal.fire({
+                title: "有重複數字唷",
+                text: "請重新輸入",
+                icon: 'error',
+                showCancelButton: true
+            })
+        }
+        //sweetAlert2套件版alert-猜對囉
+        function WinAlert(answerStr) {
+            Swal.fire({
+                title: "猜對囉~",
+                text: `答案是${answerStr}`,
+                icon: 'success',
+                showCancelButton: true
+            })
+        }
+
+
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+
+</html>
