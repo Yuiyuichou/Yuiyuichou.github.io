@@ -119,12 +119,13 @@ function saveEvent(){
         eventTitleInput.classList.add('error');
     }
 }
+//方法 刪除行程
 function deleteEvent(){
     events = events.filter( e => e.date !== clicked);
     localStorage.setItem('events',JSON.stringify(events));
     closeModal();
 }
-
+//事件 按鈕 
 function initButtons(){
     document.getElementById('nextBtn').addEventListener('click',() => {
         nav++;
