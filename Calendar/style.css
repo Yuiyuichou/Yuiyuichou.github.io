@@ -67,6 +67,7 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    border-radius: 10px;
 }
 
 .day:hover {
