@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Yui's NumberGame: 1A2B</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -148,9 +148,7 @@
             <!-- 作用區 -->
             <div class="input-group mb-3" id="function">
                 <span class="input-group-text">輸入</span>
-                <!-- <input type="text" class="form-control" placeholder="請輸入4位不重覆數字" aria-label="number"
-                aria-describedby="button-addon2"> -->
-                <input type="text" maxlength="4" class="form-control" placeholder="請輸入4位不重覆數字" aria-label="number"
+                <input type="text" maxlength="4" class="form-control write" placeholder="請輸入4位不重覆數字" aria-label="number"
                     id="inputArea">
 
                 <button class="btn " type="button" id="guess">猜!</button>
@@ -167,6 +165,7 @@
         const _display = document.querySelector('.display');
         const _input = document.querySelector('.form-control');
         const _guess = document.querySelector('#guess');
+        const _write = document.querySelector('.write');
 
         //正則表達式(判定輸入的每個字元是否為0~9數字)
         const regex = /\d/;
@@ -227,15 +226,7 @@
             return Math.floor(Math.random() * (max - min + 1) + min);
         }
 
-        //方法:將 answer 放進answerArr
-        // function setAnswerArr (){
-        //     number = answer.toString();
-        //     for(let i = 0; i <= number.length ; i++){
-        //         answerArr.push(number[i]) 
-        //     }
-
-        // }
-
+              
         //方法: 產生4位不重複0~9數字
         function setGame() {
             do {

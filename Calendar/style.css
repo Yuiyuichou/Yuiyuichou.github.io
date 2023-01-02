@@ -1,0 +1,163 @@
+body {
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    background-color: #FFFCFF;
+}
+
+button {
+    width: 75px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px gray;
+    border: none;
+    outline: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+
+#header {
+    padding: 10px;
+    color: #acbca1;
+    font-size: 26px;
+    font-weight: bolder;
+    font-family: sans-serif;
+    display: flex;
+    
+    justify-content: space-between;
+}
+
+#header button {
+    background-color: #bcd2ae;
+}
+
+#container {
+    width: 770px;
+}
+
+#weekdays {
+    width: 100%;
+    display: flex;
+    color: #788471;
+}
+
+#weekdays div {
+    width: 100px;
+    padding: 10px;
+    text-align: center;
+}
+
+#calendar {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.day {
+    width: 100px;
+    padding: 10px;
+    height: 100px;
+    cursor: pointer;
+    box-sizing: border-box;
+    background-color: white;
+    color: #788471;
+    margin: 5px;
+    box-shadow: 0px 0px 3px #CBD4C2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.day:hover {
+    background-color: #e8faed;
+}
+
+.day+#currentDay {
+    background-color: #dde9d5;
+}
+
+.event {
+    font-size: 10px;
+    padding: 3px;
+    background-color: #bcd2ae;
+    color: white;
+    border-radius: 5px;
+    max-height: 55px;
+    overflow: hidden;
+}
+
+.padding {
+    cursor: default !important;
+    background-color: #FFFCFF !important;
+    box-shadow: none !important;
+}
+
+/* cursor改變滑鼠游標的形狀 */
+#newEventModal,
+#deleteEventModal {
+    display: none;
+    z-index: 20;
+    padding: 25px;
+    background-color:  #e9f7df;
+    box-shadow: 0px 0px 3px black;
+    border-radius: 5px;
+    width: 350px;
+    top: 100px;
+    left: calc(50% - 175px);
+    position: absolute;
+    font-family: sans-serif;
+}
+#newEventModal h2,
+#deleteEventModal h2{
+    color: #7e8a76;
+}
+#header button {
+    background-color: #bcd2ae;
+}
+::placeholder {
+    color: #7e8a76;
+    opacity: .8;
+}
+
+#eventTitleInput {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 3px gray;
+}
+
+#eventTitleInput.error {
+    border: 2px solid rgb(220, 80, 80);
+}
+
+#cancelBtn,
+#deleteBtn {
+    background-color: #c48b8b;
+    font-weight: 600;
+}
+
+#saveBtn,
+#closeBtn {
+    background-color: #88997e;
+    font-weight: 600;
+}
+
+#eventText {
+    font-size: 14px;
+}
+
+#modalBackDrop {
+    display: none;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8);
+}
