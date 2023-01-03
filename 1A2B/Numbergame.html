@@ -168,7 +168,7 @@
         const _write = document.querySelector('.write');
 
         //正則表達式(判定輸入的每個字元是否為0~9數字)
-        const regex = /\d/;
+        const regex =  /^(0|[0-9]*)$/;
 
         //變數宣告區
         const min = 0;
@@ -195,10 +195,10 @@
 
 
         //遊戲開始前按鈕關起來
-        _restart.disaled = true;
-        _showAnswer.disaled = true;
-        // _input.disaled = true;
-        _guess.disaled = true;
+        _restart.disabled = true;
+        _showAnswer.disabled = true;
+        // _input.disabled = true;
+        _guess.disabled = true;
 
 
         //-------------------function 區
