@@ -21,6 +21,7 @@
 
     #map {
         height: 90%;
+
     }
     label{
         color: rgb(79, 69, 54);
@@ -97,7 +98,7 @@
     <div class="container">
         <div class="row py-5">
             <div class="col-6">
-                <div id="map"></div>
+                <div id="map" class="rounded-1"></div>
             </div>
             <div class="col-6 info">
                 <div class="row">
@@ -146,15 +147,15 @@
         let option;
         const areaDataRequest = fetch('https://raw.githubusercontent.com/Yuiyuichou/FileStorage/main/%E5%8F%B0%E7%81%A3%E8%A1%8C%E6%94%BF%E5%9C%B0%E5%8D%80.json')
         const libraryDataRequest = fetch('https://raw.githubusercontent.com/Yuiyuichou/FileStorage/main/library.json')
-        let areaData //行政區資料
-        let libraryData //圖書館用量資料
+        let areaData;//行政區資料
+        let libraryData; //圖書館用量資料
         // let libraryAreaData //圖書館資料 + 行政區經緯度資料
-        let markers = L.markerClusterGroup() //marker叢集
+        let markers = L.markerClusterGroup(); //marker叢集
 
         //DOM
-        const countySelect = document.querySelector('#county')
-        const libraryNameDis = document.querySelector('h2')
-        const list = document.querySelector('.list')
+        const countySelect = document.querySelector('#county');
+        const libraryNameDis = document.querySelector('h2');
+        const list = document.querySelector('.list');
 
         //function
         function initMap() {
