@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Library Map Taiwan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<style>
+    .container>.row {
+        height: 100vh;
+    }
+
+    #map {
+        height: 95%;
+    }
+    .info{
+        height: 80%;
+    }
+    #title {
+        font-size: 23px;
+        margin-bottom: 10px;
+    }
+
+    .list {
+        height: 70%;
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-size: 20px;
+    }
+
+    a:hover {
+        color: #aaa;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    strong {
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <div class="container">
+        <div class="row py-5">
+            <div class="col-6">
+                <div id="map"></div>
+            </div>
+            <div class="col-6 info">
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label for="county fs-4">縣市</label>
+                        <select id="county" class="form-control">
+                            <!-- option -->
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <h2 class="w-100 text-center p-3">
+                        圖書館資訊
+                    </h2>
+                </div>
+                <div class="row">
+                    <strong id="title"></strong>
+                    <div class="col-12">
+                        <div class="list">
+                            <!-- <a href="#">基隆市文化局圖書館</a> -->
+                            <!-- 圖書館資訊 -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script>
+
+        let map;
+        let option;
+        const areaDataRequest = fetch('https://raw.githubusercontent.com/Yuiyuichou/FileStorage/main/%E5%8F%B0%E7%81%A3%E8%A1%8C%E6%94%BF%E5%9C%B0%E5%8D%80.json')
+        const libraryDataRequest = fetch('https://raw.githubusercontent.com/Yuiyuichou/FileStorage/main/library.json')
+        let areaData //行政區資料
+        let libraryData //圖書館用量資料
+        // let libraryAreaData //圖書館資料 + 行政區經緯度資料
+        let markers = L.markerClusterGroup() //marker叢集
+
+        //DOM
+        const countySelect = document.querySelector('#county')
+        const libraryNameDis = document.querySelector('strong')
+        const list = document.querySelector('.list')
+
+        //function
+        function initMap() {
+            // 初始地圖
+            // debugger
+            map = L.map('map', {
+                center: [25.0302495, 121.493985],
+                zoom: 9
+            })
+            // 設定圖層 openstreetmap
+            let osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
+            let osm = new L.TileLayer(osmUrl, { minZoom: 8, maxZoom: 19 })
+            map.addLayer(osm)
+        }
+
+        function setMapItem() {
+            Promise.all([areaDataRequest, libraryDataRequest])
+                .then(res => Promise.all(res.map(x => x.json())))
+                .then(jsonData => {
+                    [areaData, libraryData] = jsonData
+                    console.log('轉換資料成功');
+
+                    initCountySelect();
+                })
+            // console.log(libraryData);
+
+        }
+
+        function renderMarker(cityName) {
+            if (markers) markers.clearLayers()
+            console.log();
+            let localLibraryNameData = libraryData.filter(x => x["縣市"] == cityName)
+
+            list.innerHTML = ''
+            libraryNameDis.innerText = ''
+            localLibraryNameData.forEach(x => {
+                x["圖書館資訊"].forEach(y => {
+                    list.setAttribute('style', 'overflow-y: scroll')
+                    let li = document.createElement('li')
+                    let libraryTitle = document.createElement('a')
+                    libraryTitle.setAttribute('style', 'display: block')
+                    // debugger
+                    let libraryName = y["Name"]
+                    // console.log(libraryName);
+                    libraryTitle.innerText = libraryName
+
+                    li.append(libraryName)
+                    list.append(li)
+                    let marker = L.marker([y["Latitude"], y["Longitude"]])
+                    //緯度,經度
+                    marker.bindPopup(
+                        `
+                        <h4>${cityName}</h4>
+                        <p>${libraryName}</p>
+
+                        `
+                    )
+                    marker.addEventListener('click', function () {
+                        list.removeAttribute('style', 'overflow-y: scroll')
+                        list.innerHTML = ''
+                        li.innerHTML = ''
+                        libraryNameDis.innerText = libraryName
+
+                        let address = document.createElement('p')
+                        address.innerHTML = ' <strong>地址 :</strong>' + y["Address"]
+                        let tel = document.createElement('p')
+                        tel.innerHTML = '<strong>電話 : </strong>' + y["TEL"]
+                        let fax = document.createElement('p')
+                        fax.innerHTML = '<strong>傳真 : </strong>' + y["FAX"]
+                        let urlP = document.createElement('p')
+                        urlP.innerHTML = '<strong>官網 : </strong>'
+                        let url = document.createElement('a')
+                        url.setAttribute('href', `${y["URL"]}`)
+
+
+                        url.innerHTML = ' <i class="fa-solid fa-house"></i>'
+                        let intro = document.createElement('p')
+                        intro.innerHTML = ' <strong>簡介 :</strong>' + y["Intro"]
+                        intro.setAttribute('style', 'overflow-y: scroll')
+
+                        li.append(tel)
+                        li.append(fax)
+                        li.append(address)
+                        urlP.append(url)
+                        li.append(urlP)
+
+                        li.append(intro)
+
+                        list.append(li)
+
+                    })
+                    markers.addLayer(marker)
+                })
+
+            })
+            map.addLayer(markers)
+        }
+
+
+
+
+        function initCountySelect() {
+            //set去除重複
+            ['請選擇', ...new Set(areaData.map(x => x.City))].forEach(city => {
+                option = document.createElement('option')
+                option.innerText = city
+                option.value = city == '請選擇' ? '' : city
+                countySelect.appendChild(option);
+
+            })
+            countySelect.onchange = function () {
+                if (this.value != '') {
+                    //改變地圖的焦點
+                    let county = areaData.find(x => x.City == this.value)
+                    map.setView([county.Lat, county.Lng], 12)
+                }
+                console.log(this.value);
+                let cityName = this.value
+                renderMarker(cityName);
+            }
+        }
+        //window.onload
+        window.onload = function () {
+            initMap();
+            setMapItem();
+        }
+
+        // 自訂義groupby
+        Array.prototype.groupBy = function (prop) {
+            return this.reduce(function (groups, item) {
+                const val = item[prop]
+                groups[val] = groups[val] || []
+                groups[val].push(item)
+                return groups
+
+            }, {})
+        }
+    </script>
+
+</body>
+
+</html>
