@@ -505,6 +505,7 @@
             displayClicked.innerHTML = `已點擊次數 : ${clicked}`
             if (img1 === img2) {//配對成功
                 clicked++
+                displayClicked.innerHTML = `已點擊次數 : ${clicked}`
                 matchedCard++;//配對成功次數
                 if (matchedCard == 8) {
                     setTimeout(() => {
@@ -519,6 +520,7 @@
                 return disableDeck = false;
             }
             clicked++
+            displayClicked.innerHTML = `已點擊次數 : ${clicked}`
             //當配對不對時 增加搖晃效果
             setTimeout(() => {
                 cardOne.classList.add("shake")
