@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+<style>
+    .entryPage {
+        height: 100vh;
+        width: 100%;
+        background-color: rgb(240, 220, 220);
+        position: absolute;
+        top: 0;
+        /* top: -100%; */
+        transition: 0.8s;
+        display: none;
+        z-index: 100;
+    }
+
+    .instruction {
+        position: relative;
+
+    }
+
+    .pic-entry {
+        width: 60%;
+        height: 100%;
+    }
+
+    img {
+        width: 100%;
+        vertical-align: middle;
+    }
+
+    .text-entry {
+        position: absolute;
+    }
+
+    .btn-entry {
+        width: fit-content;
+        background-color: rgb(112, 81, 52);
+
+    }
+
+
+    .card .front-view img,
+    .card .back-view img {
+        max-width: 110px;
+    }
+
+    .card .back-view img {
+        max-width: 100%;
+        overflow: hidden;
+        object-fit: cover;
+    }
+
+    .container {
+        min-height: 100vh;
+
+    }
+
+    .displayClicked {
+        width: 490px;
+    }
+
+    .displayClicked span {
+        font-size: 25px;
+        color: rgb(204, 189, 159);
+    }
+
+    .btn-point,
+    .btn-reset {
+        width: fit-content;
+        /* background-color: rgb(242, 231, 191); */
+
+    }
+
+    .wrapper {
+        box-sizing: border-box;
+        width: 550px;
+        height: 600px;
+        border-radius: 5px;
+        /* background-color: antiquewhite; */
+        padding: 20px;
+    }
+
+    .cards {
+        width: 100%;
+        height: 100%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .cards,
+    .card,
+    .view {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cards .card {
+        cursor: pointer;
+        height: calc(100% / 4 - 20px);
+        width: calc(100% / 4 - 20px);
+        border: none;
+        margin: 10px;
+        position: relative;
+        perspective: 800px;
+        transform-style: preserve-3d;
+    }
+
+    .card.shake {
+        animation: shake .35s ease-in-out;
+    }
+
+    @keyframes shake {
+
+        0%,
+        100% {
+            transform: translateX(0);
+        }
+
+        20% {
+            transform: translateX(-13px);
+        }
+
+        40% {
+            transform: translateX(13px);
+        }
+
+        60% {
+            transform: translateX(-8px);
+        }
+
+        80% {
+            transform: translateX(8px);
+        }
+    }
+
+    .cards .card .view {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .1);
+        position: absolute;
+        transition: transform 0.25s linear;
+        backface-visibility: hidden;
+        pointer-events: none;
+        user-select: none;
+    }
+
+    .card .back-view {
+        background-color: #fff;
+        transform: rotateY(-180deg);
+    }
+
+    .card.flip .back-view {
+        transform: rotateY(0);
+    }
+
+    .card.flip .front-view {
+        transform: rotateY(180deg);
+    }
+
+
+    .sweet-alert button.confirm {
+        outline: none !important;
+    }
+
+    .swal2-styled.swal2-confirm:focus {
+        box-shadow: 0 0 0 3px rgba(237, 193, 185, 0.5);
+    }
+
+    .swal2-styled.swal2-confirm:focus {
+        box-shadow: 0 0 0 3px rgba(237, 193, 185, 0.5);
+    }
+
+    .swal2-styled.swal2-default-outline:focus {
+        box-shadow: 0 0 0 3px rgba(237, 193, 185, 0.5);
+    }
+
+    .swal2-styled.swal2-default-outline:focus {
+        box-shadow: 0 0 0 3px rgba(237, 193, 185, 0.5);
+    }
+
+    .swal2-styled.swal2-default-outline:focus {
+        box-shadow: 0 0 0 3px rgb(100 150 200 / 0%);
+    }
+</style>
+
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <!-- 說明畫面 -->
+    <div class="entryPage d-flex justify-content-center align-items-center">
+        <div class="instruction  d-flex flex-column justify-content-center align-items-center">
+            <div class="pic-entry">
+                <img src="./img/whiteFlowersCircle-1.png" alt="進入背景圖">
+            </div>
+            <div class="text-entry text-center m-0">
+                <h2 class="p-1">記憶遊戲</h2>
+                <p class="">點擊Entry即進入遊戲<br>
+                    一開始會顯示牌面，請用記憶滿點的腦袋記下來。<br>
+                    請將圖片逐一兩兩點開，請配對一樣的圖案，<br>
+                    不一樣則會蓋回，直到全部答對為止。<br>
+                    **想不起來，可以點Point提示**<br>
+                </p>
+                <button class="btn btn-secondary btn-entry">Entry</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+        <div class="displayClicked d-flex justify-content-between align-items-center">
+            <span><!-- 已點擊次數 --></span>
+
+            <div>
+                <button class="btn btn-outline-warning btn-point">Point</button>
+                <button class="btn btn-outline-warning btn-reset">Reset</button>
+            </div>
+
+        </div>
+        <div class="wrapper">
+            <div class="cards">
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-2.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-3.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-4.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-5.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-6.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-7.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-8.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-2.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-3.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-4.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-5.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-6.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-7.jpg" alt="">
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="view front-view">
+                        <img src="./img/flowergold-1.jpg" alt="">
+                    </div>
+                    <div class="view back-view">
+                        <img src="./img/flowerImg-8.jpg" alt="">
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        //DOM
+        let cardOne, cardTwo;
+        let entryPage = document.querySelector('.entryPage')
+        let entryBtn = document.querySelector('.btn-entry')
+
+        const cards = document.querySelectorAll('.card')
+        let disableDeck = false;
+        let matchedCard = 0;
+        let clicked = 0
+        const point = document.querySelector('.btn-point')
+        const reset = document.querySelector('.btn-reset')
+        let displayClicked = document.querySelector('span')
+        console.log(displayClicked);
+        //function
+        
+
+        reset.addEventListener('click', function () {
+            initGame() 
+        })
+        function flipcard(e) {
+            let clickedCard = e.target
+
+            if (clickedCard !== cardOne && !disableDeck) {
+                clickedCard.classList.add("flip")
+                //避免案同一張兩次
+                if (!cardOne) {
+                    return cardOne = clickedCard
+                }
+                cardTwo = clickedCard;
+                disableDeck = true;
+                let cardOneImg = cardOne.querySelector('.back-view>img').src
+                let cardTwoImg = cardTwo.querySelector('.back-view>img').src
+                matchCards(cardOneImg, cardTwoImg);
+            }
+
+
+        }
+        //配對卡片
+        function matchCards(img1, img2) {
+            displayClicked.innerHTML = `已點擊次數 : ${clicked}`
+            if (img1 === img2) {//配對成功
+                clicked++
+                matchedCard++;//配對成功次數
+                if (matchedCard == 8) {
+                    setTimeout(() => {
+                        WinAlert();
+                        return shuffleCard()
+                    }, 1000)
+
+                }
+                cardOne.removeEventListener("click", flipcard)
+                cardTwo.removeEventListener("click", flipcard)
+                cardOne = cardTwo = "";
+                return disableDeck = false;
+            }
+            clicked++
+            //當配對不對時 增加搖晃效果
+            setTimeout(() => {
+                cardOne.classList.add("shake")
+                cardTwo.classList.add("shake")
+            }, 400)
+            //搖晃完,清空新增的class 
+            setTimeout(() => {
+                cardOne.classList.remove("shake", "flip")
+                cardTwo.classList.remove("shake", "flip")
+                cardOne = cardTwo = "";
+                disableDeck = false;
+            }, 1200)
+
+            displayClicked.innerHTML = `已點擊次數 : ${clicked}`
+            console.log(clicked);
+        }
+        //洗牌
+        function shuffleCard() {
+            displayClicked.innerHTML = "";
+            matchedCard = 0;
+            cardOne = cardTwo = "";
+            disableDeck = false;
+            let arr = [1, 2, 3, 4, 5, 6, 7, 8, 1, 2, 3, 4, 5, 6, 7, 8]
+            arr.sort(() => Math.random() > 0.5 ? 1 : -1)
+            console.log(arr);
+            cards.forEach((card, index) => {
+
+                card.classList.remove("flip");
+                let imgTag = card.querySelector('.back-view>img')
+                console.log(imgTag);
+                imgTag.src = `./img/flowerImg-${arr[index]}.jpg`
+                card.addEventListener("click", flipcard)
+
+            })
+        }
+
+        function initGame() {
+            shuffleCard()
+            cards.forEach(card => {
+                //一開始先顯示3秒
+                card.classList.add("flip");
+                setTimeout(() => {
+                    card.classList.remove("flip");
+                }, 3000)
+                //對所有的卡片點擊 
+                card.addEventListener("click", flipcard)
+                //提示紐
+                point.addEventListener('click', function (e) {
+                    console.log(e.target);
+                    card.classList.add("flip");
+                    setTimeout(() => {
+                        card.classList.remove("flip");
+                    }, 1000)
+
+                })
+            })
+        }
+
+        //sweetAlert2套件版alert-猜對囉
+        function WinAlert() {
+            Swal.fire({
+                title: "記憶滿點~",
+                text: `好棒棒`,
+                icon: 'success',
+                confirmButtonColor: '#e6cabe',
+
+                showCancelButton: false,
+
+            })
+        }
+
+        //window.onload
+        window.onload = function () {
+            //進入說明畫面
+        entryBtn.addEventListener('click', function () {
+            entryPage.setAttribute('style', "top:-100%")
+            initGame()
+        })
+            
+        }  
+    </script>
+
+
+</body>
+
+</html>
