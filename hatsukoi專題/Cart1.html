@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cart-Yui</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="reset.css">
+</head>
+<style>
+    :root {
+        --main-pink: #A27F82;
+        --dark-gray: #56565E;
+        --light-gray: #D3C9C9;
+        --peach-pink: #E3A4A4;
+        --light-pink: #FEF4F6;
+
+    }
+
+    /* 付款順序---------------- */
+    *,
+    *:after,
+    *:before {
+        box-sizing: border-box;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--dark-gray);
+    }
+
+    /* cart-nav */
+    .cart-nav-item a {
+        color: var(--dark-gray);
+    }
+
+    .cart-nav>li+li {
+        border-left: 0.5px solid var(--dark-gray);
+    }
+
+    /* logo */
+    .logo{
+        width: 150px;
+    }
+    h1{
+        color: var(--dark-gray);
+        border-left: 0.7px solid var(--dark-gray);
+        padding-left: 10px;
+    }
+
+    /* 步驟 */
+    .step {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .step>li {
+        position: relative;
+        float: left;
+        width: 33%;
+        text-align: center;
+        font-size: 0.8em;
+        color: var(--dark-gray);
+        font-size: 9pt;
+    }
+
+    .step>li:before {
+        content: attr(data-step);
+        font-family: Arial, Helvetica, sans-serif;
+        display: block;
+        color: #fff;
+        margin: 0 auto;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        margin-bottom: 0.25em;
+        line-height: 20px;
+        border-radius: 100%;
+        z-index: 2;
+        background-color: var(--dark-gray);
+
+    }
+
+    .step>li:after {
+        content: '';
+        position: absolute;
+        display: block;
+        background: #ccc;
+        width: 75%;
+        height: 2px;
+        top: 10px;
+        left: 47%;
+        margin-left: 1.5em;
+        z-index: -1;
+    }
+
+    .step>li:last-child:after {
+        display: none;
+    }
+
+    /*行動中*/
+    .step>.active {
+        color: var(--light-gray);
+    }
+
+    .step>.active:before {
+        background: var(--light-gray);
+        border-color: var(--light-gray);
+    }
+
+    .step>.active:after {
+        background: var(--light-gray);
+
+    }
+
+    /*過去式*/
+    .step>.past {
+        color: var(--dark-gray);
+    }
+
+    .step>.past:before {
+        background: var(--main-pink);
+
+    }
+
+    .step>.past:after {
+        background: var(--light-gray);
+    }
+
+    /* 購物車商品----------- */
+    .cart-shop-list {
+
+        margin-left: -0.75em;
+        margin-right: -0.75em;
+    }
+
+    .cart-shop {
+        position: relative;
+    }
+
+    .btn-delete-product {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .cart-product-text {
+        flex-direction: column;
+    }
+
+    .cart-product-detail {
+        flex-direction: column;
+    }
+
+    .cart-product-title {
+        color: var(--dark-gray);
+        display: block;
+    }
+
+    .cart-product-quantity {
+        width: 70px;
+    }
+
+    #cart-product-quantity {
+        width: 100%;
+    }
+
+    .cart-product-subtotal {
+        text-align: right;
+    }
+
+    .cart-product-subtotal {
+        display: block;
+    }
+
+    /* shipping */
+    .ship-Select,
+    .shipselect-option {
+        height: 42px;
+    }
+
+    /* option{
+        display: block;
+        min-height: 1.2em;
+        padding: 0 2px 1px;
+    } */
+    .cart-fixed-panel-container-md {
+        position: fixed;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+
+    .cart-fixed-panel-container {
+        visibility: hidden;
+    }
+
+    .cart-fixed-panel-md {
+        box-shadow: 0 -5px 20px rgb(0 0 0 / 10%);
+    }
+
+    .btn-detail-display {
+        width: fit-content;
+        font-size: 14px;
+        border: none;
+        background-color: #fff;
+
+
+    }
+
+    .btn-detail-display:checked i {
+        /* transform: rotate(180deg); */
+
+    }
+
+    .btn-detail-display:not(.collapsed) {
+        color: var(--dark-gray);
+        background-color: #fff;
+        box-shadow: none;
+
+    }
+
+
+
+    .btn-detail-display::after {
+        color: var(--dark-gray);
+        /* transform: rotate(180deg); */
+    }
+
+    .btn-used {
+        border: 1px solid var(--light-gray);
+        color: var(--dark-Gray);
+    }
+
+    .btn-checked {
+        background-color: var(--peach-pink);
+        color: var(--light-pink);
+        box-sizing: border-box;
+        margin-right: 0;
+    }
+
+    .btn-checked:hover {
+        background-color: var(--light-pink);
+        color: var(--peach-pink);
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+
+    @media screen and (min-width:768px) {
+
+        /* 付款順序 */
+        .step>li:after {
+            width: 85%;
+            left: 50%;
+        }
+
+        .cart-product-detail {
+            flex-direction: column;
+        }
+
+        .cart-fixed-panel-container-md {
+            display: none;
+        }
+
+        .cart-order-detail-title {
+            background-color: var(--light-pink);
+            color: var(--dark-gray);
+        }
+
+        .cart-fixed-panel-container {
+            visibility: visible;
+            margin: 0;
+
+        }
+
+        .cart-order-detail,
+        .cart-fixed-panel {
+            font-size: 14px;
+            line-height: 1.3;
+        }
+
+        .btn-checked {
+            width: 100%;
+        }
+    }
+
+    @media screen and (min-width: 1200px) {
+
+        /* 付款順序 */
+        .step>li:after {
+            width: 90%;
+            left: 50%;
+        }
+
+        .cart-fixed-panel-container {
+            visibility: visible;
+        }
+    }
+</style>
+
+<body>
+    <header>
+        <ul class="cart-nav nav justify-content-end m-2">
+            <li class="cart-nav-item ">
+                <a class="nav-link p-0 m-1 active " aria-current="page" href="#">慾望清單</a>
+            </li>
+            <li class="cart-nav-item">
+                <a class="nav-link p-0 m-1" href="#">優惠券</a>
+            </li>
+            <li class="cart-nav-item">
+                <a class="nav-link p-0 m-1" href="#">我的訊息</a>
+            </li>
+
+        </ul>
+    </header>
+    <nav>
+
+        <div class="container">
+            <!-- 步驟1.2 -->
+            <div class="row flex-column">
+                <div class="cart-page-title d-flex align-items-center">
+                    <a class="logo " href="#">
+                        <img src="./logo/hatsukoi_logo.svg" alt="hatsukoi">
+                    </a>
+                    <h1>購物車</h1>
+                </div>
+                <div class="col">
+                    <ol class="cart-step step d-flex justify-content-center mt-2">
+                        <li data-step="1" class="past">選擇設計館</li>
+                        <li data-step="2" class="active">填寫地址與付款</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            <div class="row mx-2 justify-content-between">
+                <!-- 店家全選 -->
+                <div class="form-check col-12  ">
+                    <input class="form-check-input " type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked">
+                        選擇全部
+                    </label>
+                </div>
+                <div class="cart-shop-list col-12 col-md-8 ">
+                    <div class="cart-shop-header d-flex justify-content-between border-bottom">
+                        <div class="form-check">
+                            <input class="form-check-input " type="checkbox" value="" id="flexCheckChecked" checked>
+                            <label class="form-check-label " for="flexCheckChecked">
+                                店名
+                            </label>
+
+                        </div>
+                        <button type="button" class="btn-close btn-delete-shop " aria-label="Close"></button>
+                    </div>
+
+                    <div class="cart-shop me-0">
+                        <button type="button" class="btn-close btn-delete-product" aria-label="Close"></button>
+                        <div class="cart-product d-flex ">
+                            <div class="cart-product-pic m-2">
+                                <img src="https://picsum.photos/90/90/?random=10">
+                            </div>
+                            <div class="cart-product-detail d-flex flex-column col-9 col-md-10">
+                                <div class="cart-product-text d-flex mt-2 ">
+                                    <div class="d-flex flex-column">
+                                        <div class=" mb-2">
+                                            <a class="cart-product-title" href="#">producttitle</a>
+                                        </div>
+                                        <div class="cart-product-describe mb-2">
+                                            <p>......</p>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="cart-product-extras d-flex justify-content-between">
+                                    <div class="cart-product-quantity m-2">
+
+                                        <select class="form-select form-select-sm" aria-label=".form-select-sm ">
+                                            <option selected></option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="cart-product-subtotal m-2 d-flex flex-column me-0">
+                                        <del class="cart-product-subtotal-oprice">NT$2000</del>
+                                        1900
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="cart-shipping-select my-2">
+                        <div class="mb-2">選擇收件地與運送方式</div>
+                        <div class="country-option">
+                            <select class="form-select form-select-sm  w-100 ship-select" aria-label=".form-select-sm ">
+                                <option selected>國家</option>
+                                <option value="TW">台灣</option>
+                                <option value="JP">日本</option>
+                                <option value="HK">香港</option>
+                            </select>
+                        </div>
+                        <div class="shipselect-option my-2">
+                            <select class="form-select form-select-sm  w-100 ship-select" aria-label=".form-select-sm ">
+                                <option value disabled>請選擇運送方式</option>
+                                <option value="TW">????</option>
+                                <option value="CN">中國大陸</option>
+                                <option value="JP">日本</option>
+                                <option value="HK">香港</option>
+                            </select>
+
+                        </div>
+                        <div class="extra-note">
+                            <ul class="shipping-method-note list-unstyled">
+                                <li class="info ">
+                                    通知出貨後約 3 - 6 天寄達 | 提供追蹤 | 外島地區目前台灣順豐不支援配送，請選擇其他配送物流，設計師有權取消誤選順豐之外島訂單。
+                                </li>
+                                <li class="notice">
+                                    如所在地為台灣離島區域，將會產生轉運附加費用
+                                </li>
+                                <li class="notice">
+                                    跨境交易包裹會有被抽取關稅的可能性，進口相關稅金由收件方負擔，詳情請<a href="#"
+                                        class="inline text-decoration-none">點此查看</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="cart-coupon">
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-12 col-md-4 me-0 cart-shop-total">
+                    <div class="cart-fixed-panel-container-md">
+                        <div class="cart-fixed-panel-md ">
+                            <div class="accordion accordion-flush " id="accordion-total-detail">
+                                <div class="accordion-item">
+                                    <div
+                                        class="cart-fixed-panel-row d-flex justify-content-between align-items-center border-bottom">
+                                        <span class="m-2">使用 Pinkoi 購物優惠及禮物卡</span>
+                                        <button type="button" class="btn btn-used m-2">使用</button>
+                                    </div>
+                                    <div id="total-detail" class="accordion-collapse collapse"
+                                        aria-labelledby="collapsedetail" data-bs-parent="#accordion-total-detail">
+                                        <div class="total-detail-display m-2">
+                                            <p>總計</p>
+                                            <p>折抵</p>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-header d-flex justify-content-between" id="collapsedetail">
+                                        <div class="total-detail-text ">
+                                            <button class="accordion-button btn-detail-display p-2" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#total-detail"
+                                                aria-expanded="true" aria-controls="total-detail">隱藏明細</button>
+                                            <div class="m-2">結帳總金額</div>
+                                        </div>
+
+                                        <button type="button" class="btn btn-checked m-2">前往結帳</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cart-fixed-panel-container ">
+                        <div class="cart-order-detail p-2">
+                            <p class="cart-order-detail-title p-2">訂單摘要</p>
+                            <div class="cart-fixed-panel p-2 border border-top-0">
+                                <div class="total-detail-display m-2">
+                                    <p class="">運費總計</p>
+                                    <p class="">運費折抵</p>
+                                    <p>實際運費金額以購物車結算或是到貨時收取的金額為準。</p>
+                                </div>
+                                <span class="m-2">使用 Pinkoi 購物優惠及禮物卡</span>
+                                <div class="m-2">結帳總金額</div>
+                                <button type="button" class="btn  btn-checked ">前往結帳</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

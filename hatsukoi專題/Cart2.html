@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cart-Yui</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="reset.css">
+</head>
+<style>
+    :root {
+        --main-pink: #A27F82;
+        --dark-gray: #56565E;
+        --light-gray: #D3C9C9;
+        --peach-pink: #E3A4A4;
+        --light-pink: #FEF4F6;
+
+    }
+
+    /* 付款順序---------------- */
+    *,
+    *:after,
+    *:before {
+        box-sizing: border-box;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--dark-gray);
+    }
+
+    .divider{
+        background-color: var(--light-gray);
+        height: 2px;
+        display: block;
+        margin: 14px 10px;
+    }
+
+    .btn-dg {
+        background-color: var(--dark-gray);
+        color: #fff;
+    }
+
+    /* cart-nav */
+    .cart-nav-item a {
+        color: var(--dark-gray);
+    }
+
+    .cart-nav>li+li {
+        border-left: 0.5px solid var(--dark-gray);
+    }
+
+    /* logo */
+    .logo {
+        width: 150px;
+    }
+
+    h1 {
+        color: var(--dark-gray);
+        border-left: 0.7px solid var(--dark-gray);
+        padding-left: 10px;
+    }
+
+    /* 步驟 */
+    .step {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    .step>li {
+        position: relative;
+        float: left;
+        width: 33%;
+        text-align: center;
+        font-size: 0.8em;
+        color: var(--dark-gray);
+        font-size: 9pt;
+    }
+
+    .step>li:before {
+        content: attr(data-step);
+        font-family: Arial, Helvetica, sans-serif;
+        display: block;
+        color: #fff;
+        margin: 0 auto;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        margin-bottom: 0.25em;
+        line-height: 20px;
+        border-radius: 100%;
+        z-index: 2;
+        background-color: var(--light-gray);
+
+    }
+
+    .step>li:after {
+        content: '';
+        position: absolute;
+        display: block;
+        background: #ccc;
+        width: 75%;
+        height: 2px;
+        top: 10px;
+        left: 47%;
+        margin-left: 1.5em;
+        z-index: -1;
+    }
+
+    .step>li:last-child:after {
+        display: none;
+    }
+
+    /*行動中*/
+    .step>.active {
+        color: var(--light-gray);
+    }
+
+    .step>.active:before {
+        background: var(--light-gray);
+        border-color: var(--light-gray);
+    }
+
+    .step>.active:after {
+        background: var(--light-gray);
+
+    }
+
+    /*過去式*/
+    .step>.past {
+        color: var(--dark-gray);
+    }
+
+    .step>.past:before {
+        background: var(--main-pink);
+
+    }
+
+    .step>.past:after {
+        background: var(--light-gray);
+    }
+
+    .cart-checkout {
+        font-size: 14px;
+    }
+
+    /* 結帳灰底 */
+    .cart-checkout {
+        background-color: var(--light-gray);
+    }
+
+    .recipient-info {
+        background-color: var(--light-pink);
+        line-height: 1.3;
+    }
+
+    .a-ship {
+        color: var(--main-pink);
+    }
+
+    .a-ship:hover {
+        text-decoration: underline;
+        color: var(--main-pink);
+    }
+
+    /* 彈跳視窗-物流 */
+    .modal-body {
+        line-height: 1.8;
+        list-style: initial;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+
+    @media screen and (min-width:768px) {
+
+        /* 付款順序 */
+        .step>li:after {
+            width: 85%;
+            left: 50%;
+        }
+
+        .cart-product-detail {
+            flex-direction: column;
+        }
+
+
+    }
+
+    @media screen and (min-width: 1200px) {
+
+        /* 付款順序 */
+        .step>li:after {
+            width: 90%;
+            left: 50%;
+        }
+
+
+    }
+</style>
+
+<body>
+    <header>
+        <ul class="cart-nav nav justify-content-end m-2">
+            <li class="cart-nav-item ">
+                <a class="nav-link p-0 m-1 active " aria-current="page" href="#">慾望清單</a>
+            </li>
+            <li class="cart-nav-item">
+                <a class="nav-link p-0 m-1" href="#">優惠券</a>
+            </li>
+            <li class="cart-nav-item">
+                <a class="nav-link p-0 m-1" href="#">我的訊息</a>
+            </li>
+
+        </ul>
+    </header>
+    <nav>
+
+        <div class="container">
+            <!-- 步驟1.2 -->
+            <div class="row flex-column">
+                <div class="cart-page-title d-flex align-items-center">
+                    <a class="logo " href="#">
+                        <img src="./logo/hatsukoi_logo.svg" alt="hatsukoi">
+                    </a>
+                    <h1>購物車</h1>
+                </div>
+                <div class="col cart-step">
+                    <ol class="step d-flex justify-content-center mt-2">
+                        <li data-step="1" class="past">選擇設計館</li>
+                        <li data-step="2" class="past">填寫地址與付款</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            <div class="row m-2">
+                <!-- 店家全選 -->
+                <div class="col-12  ">
+                    <a href="#"><i class="fa-solid fa-angle-left"></i> 返回購物車</a>
+                </div>
+
+                <div class="row m-2">
+                    <div class="cart-shop border p-0">
+                        <div class="col-12 cart-shop-name border-bottom p-2">
+                            <i class="fa-solid fa-shop"></i>
+                            <span>Samuel Ashley</span>
+                        </div>
+                        <div class="d-flex">
+                            <!-- 左側商品資訊 -->
+                            <div class="cart-product col-12 col-md-6">
+                                <div class="cart-product d-flex mb-2 p-2">
+                                    <div class="cart-product-pic m-2 col-3">
+                                        <img src="https://picsum.photos/90/90/?random=10">
+                                    </div>
+                                    <div class="cart-product-detail d-flex flex-column justify-content-between col-8">
+                                        <div class="cart-product-text d-flex mt-2 ">
+                                            <div class="d-flex flex-column">
+                                                <div class=" mb-2">
+                                                    <a class="cart-product-title" href="#">producttitle11111</a>
+                                                </div>
+                                                <div class="cart-product-describe mb-2">
+                                                    <p>......</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="cart-product-extras d-flex justify-content-between">
+                                            <div class="cart-product-quantity m-2">
+                                                <span>x 1</span>
+                                            </div>
+
+                                            <div class="cart-product-subtotal m-2 d-flex flex-column me-0">
+                                                <!-- <del class="cart-product-subtotal-oprice">NT$2000</del> -->
+                                                <div class="cart-product-subtotal-price">1900</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 分隔線 -->
+                                <div class="divider"></div>
+                            </div>
+                            <!-- 右側結帳資訊 -->
+                            <div class="col-12 col-md-6 p-3">
+                                <div class="cart-checkout p-2">
+                                    <div class="pt-2 ps-2 fw-semibold">收件資訊</div>
+                                    <div class="recipient-info rounded-1 m-2 d-flex align-items-center justify-content-between">
+                                        
+                                        <div class="recipient-info-text p-2">
+                                            <p class="recipient-name">xxx</p>
+                                            <p class="recipient-phone">0987654321</p>
+                                            <p class="recipient-buyer">同購買人</p>
+                                        </div>
+                                        <i class="fa-solid fa-angle-right p-2"></i>
+                                    </div>
+                                    <div class="extra-note p-2">
+                                        <ul class="shipping-method-note list-unstyled">
+                                            <li class="shipping">
+                                                運送方式
+                                            </li>
+                                            <li class="info">
+                                                通知出貨後約 3 - 6 天寄達 | 提供追蹤 | 外島地區目前台灣順豐不支援配送，請選擇其他配送物流，設計師有權取消誤選順豐之外島訂單。
+                                            </li>
+                                            <li class="notice">
+                                                如所在地為台灣離島區域，將會產生轉運附加費用
+                                            </li>
+                                            <li class="notice">
+                                                跨境交易包裹會有被抽取關稅的可能性，進口相關稅金由收件方負擔，詳情請<a href="#"
+                                                    class="inline text-decoration-none">點此查看</a>
+                                            </li>
+                                            <li class="shop-declaration">
+                                                設計館符合免辦理營業登記，無需開立統一發票
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                    <div class="recipient-id">
+                                        <div class="m-2">
+                                            <label for="recipient-id-input" class="form-label fw-semibold">收件人身分證字號</label>
+                                            <input type="text" class="form-control" id="recipient-id-input"
+                                                maxlength="10" placeholder="請填寫收件人身分證字號">
+                                        </div>
+                                    </div>
+
+                                    <div class="check-recipient m-2">
+                                        <div class="form-check ">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="checkedrecipientid">
+                                            <label class="form-check-label" for="checkedrecipientid">
+                                                我同意提供個人身分證字號／護照／居留證號碼，以供跨境物流方通關使用，並已了解跨境商品之
+                                                <!-- Button trigger modal -->
+                                                <a type="" class="a-ship" data-bs-toggle="modal"
+                                                    data-bs-target="#staticBackdrop">物流需求</a>。
+                                            </label>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                                data-bs-keyboard="false" tabindex="-1"
+                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="staticBackdropLabel">注意</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <ul class="modal-body p-4">
+                                                            <li>因台灣會員購買跨境商品之物流方需求，須提供身分證字號/護照/居留證號碼(以下簡稱「該筆資料」)以利通關。因上述資料屬個人資料保護範疇，Pinkoi
+                                                                提醒你需了解並承擔其風險。</li>
+                                                            <li>Pinkoi 將致力確保該筆資料僅限於訂單物流使用，系統將於訂單「已完成」時，移除該筆資料不再顯示。</li>
+                                                            <li>該筆資料將附隨訂單提供給設計館，並由設計館轉送給第三方物流業者，作為輔助通關或遞送商品用途。</li>
+                                                        </ul>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-dg btn-Understood"
+                                                                data-bs-dismiss="modal" aria-label="Close">我知道了</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="buyer-msg m-2 ">
+                                        <label for="buyer-msg-Textarea" class="form-label fw-semibold">給設計師的訊息或注意事項</label>
+                                        <textarea class="form-control" id="buyer-msg-Textarea"
+                                            rows="3"></textarea>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+                
+            </div>
+        </div>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
