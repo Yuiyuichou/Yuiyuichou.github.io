@@ -5,41 +5,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <title>Yui's Page</title>
     <style>
+        :root {}
+
         * {
             margin: 0;
             padding: 0;
         }
-        section{
+
+        section {
             width: 100%;
-            
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #ece2cb;
+            background-color: rgb(255, 237, 212);
             margin: auto;
-            
+
         }
 
-        h1{
-            text-align: center;
+        h1 {
+
             font-size: 40px;
-            color: #977552;
-            margin: 30px;
-            
+            color: #79634d;
+
+
         }
-        
+
         .wrap {
+            opacity: 0;
             width: 960px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
             justify-content: space-evenly;
-            background-color: #ece2cb;
-            
-            
         }
 
         .item {
@@ -50,108 +52,315 @@
             margin: 20px;
             text-align: center;
             display: flex;
-            
+
             flex-direction: column;
             justify-content: center;
             border: 10px solid#977552;
 
         }
-        
+
         a {
             text-decoration: none;
             color: #5d3100;
-            font-size: 20px;
+            font-size: 15px;
             font-weight: 700;
             text-align: center;
             padding: 20px;
+        }
+
+        .card-text {
+            height: 40px;
+        }
+
+        .btn-page {
+            padding: 5px;
+            border: 1px solid rgb(253, 187, 177);
+            color: rgb(253, 187, 177);
+        }
+
+        .btn-page:hover {
+            background-color: rgb(253, 187, 177);
+            color: #fff;
         }
     </style>
 </head>
 
 <body>
-    <section>
-        <h1>Yui 的HTML練習</h1>
-        <div class="wrap">
 
-            <div class="item">
-                <a href="/Hw01/hw01.html">HW01 <br> 三欄式畫面</a>
-                <!-- <p>flex練習</p> -->
+    <section class="w-100">
+        <div class="container">
+            <div class="row ">
+                <h1 class="p-3 text-center fs-1 fw-bold">Yui's Page</h1>
+                <div class="col-12 d-flex flex-wrap">
+
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">hatsukoi 專題</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">購物車</h6>
+                            <p class="card-text"></p>
+                            <div class="d-flex flex-column">
+                                <button href="hatsukoi專題/Cart1.html" class="btn btn-page m-2">購物車一</button>
+                                <button href="hatsukoi專題/Cart2.html" class="btn btn-page m-2">購物車二</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">三欄式畫面</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">HW01</h6>
+                            <p class="card-text">flex練習</p>
+                            <div class="d-flex flex-column">
+                                <button href="/Hw01/hw01.html" class="btn btn-page m-2">here</button>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">表格練習</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">HW02</h6>
+                            <p class="card-text">表格標籤的運用</p>
+                            <div class="d-flex flex-column">
+                                <button href="/CourseTable/coursetable.html" class="btn btn-page m-2">here</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Whoscall復刻</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">HW03&04</h6>
+                            <p class="card-text"></p>
+                            <!-- <p>語意很重要</p> -->
+                            <div class="d-flex flex-column">
+                                <button href="/Whoscall/HW03_whoscall.html" class="btn btn-page m-2">第一版</button>
+                                <button href="/Whoscall/New_whoscall.html" class="btn btn-page m-2">2.0版</button>
+                                <button href="whoscall進階/BS_whoscall.html" class="btn btn-page m-2">BS版</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Toyota</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">HW05</h6>
+                            <p class="card-text">定位練習</p>
+                            <div class="d-flex flex-column">
+                                <button href="/Toyota/HW04-toyota.html" class="btn btn-page m-2">here</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">RWD練習</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">HW05</h6>
+                            <p class="card-text"></p>
+                            <div class="d-flex flex-column">
+                                <button href="RWD/HW06-RWD.html" class="btn btn-page m-2">here</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">終極密碼</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">HW06</h6>
+                            <p class="card-text">javascript</p>
+                            <div class="d-flex flex-column">
+                                <button href="NumberGuessingGame/HW01-NumberGuessingGame.html"
+                                    class="btn btn-page m-2">here</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">RWD 選單</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">HW07</h6>
+                            <p class="card-text"></p>
+                            <div class="d-flex flex-column">
+                                <button href="selection/HW07_select.html" class="btn btn-page m-2">here</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">360度賞車</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">JS HW</h6>
+                            <p class="card-text">JS動態-載圖版</p>
+                            <div class="d-flex flex-column">
+                                <button href="Altis360/ImageArrayAltis360.html" class="btn btn-page m-2">here</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">LOL</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">JS HW</h6>
+                            <p class="card-text">JS動態-載圖版</p>
+                            <div class="d-flex flex-column">
+                                <button href="Lol/LoL_CardStatic.html" class="btn btn-page m-2">here</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Maikon</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">HW08</h6>
+                            <p class="card-text"></p>
+                            <div class="d-flex flex-column">
+                                <button href="Maikon/Maikon.html" class="btn btn-page m-2">here</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">1A2B</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">JS HW</h6>
+                            <p class="card-text"></p>
+                            <div class="d-flex flex-column">
+                                <button href="1A2B/Numbergame.html" class="btn btn-page m-2">here</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Apple官網復刻</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">JS HW</h6>
+                            <p class="card-text"></p>
+                            <div class="d-flex flex-column">
+                                <button href="Apple/apple-buy.html" class="btn btn-page m-2">here</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Calendar</h5>
+                            <h6 class="card-subtitle mb-2 text-muted"></h6>
+                            <p class="card-text"></p>
+                            <div class="d-flex flex-column">
+                                <button href="Calendar/Calendar.html" class="btn btn-page m-2">here</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Map Library</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">JS HW</h6>
+                            <p class="card-text">地圖套件</p>
+                            <div class="d-flex flex-column">
+                                <button href="map/maplibrary.html" class="btn btn-page m-2">here</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Map Library</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">JS HW</h6>
+                            <p class="card-text">地圖套件</p>
+                            <div class="d-flex flex-column">
+                                <button href="map/maplibrary.html" class="btn btn-page m-2">here</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">MemoryGame</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">JS HW</h6>
+                            <p class="card-text">地圖套件</p>
+                            <div class="d-flex flex-column">
+                                <button href="MemoryGameFlower/MemoryGameRed-media.html" class="btn btn-page m-2">MemoryGame Red</button>
+                                <button href="MemoryGameFlower/MemoryGame-media.html" class="btn btn-page m-2">MemoryGame Gold</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
-            <div class="item">
-                <a href="/CourseTable/coursetable.html">HW02 <br> 表格練習</a>
-                <!-- <p>表格標籤的運用</p> -->
+            <div class="wrap ">
+
+                <div class="item">
+                    <a href="/Hw01/hw01.html">HW01 <br> 三欄式畫面</a>
+                    <!-- <p>flex練習</p> -->
+                </div>
+                <div class="item">
+                    <a href="/CourseTable/coursetable.html">HW02 <br> 表格練習</a>
+                    <!-- <p>表格標籤的運用</p> -->
+                </div>
+                <div class="item">
+                    <a href="/Whoscall/HW03_whoscall.html">HW03 <br> Whoscall復刻</a>
+                    <!-- <p>語意很重要</p> -->
+                </div>
+                <div class="item">
+
+                    <a href="/Whoscall/New_whoscall.html">HW04 <br> Whoscall 2.0版</a>
+                    <!-- <p>語意很重要</p> -->
+                </div>
+                <div class="item">
+                    <a href="/Toyota/HW04-toyota.html">HW05 <br> Toyota</a>
+                    <!-- <p>定位練習</p> -->
+                </div>
+                <div class="item">
+                    <a href="RWD/HW06-RWD.html">HW06 <br> RWD </a>
+                    <!-- <p>響應式網頁 各設備不同的畫面</p> -->
+                </div>
+                <div class="item">
+                    <a href="NumberGuessingGame/HW01-NumberGuessingGame.html">HW06 <br> 終極密碼 </a>
+                    <!-- <p>javascript</p> -->
+                </div>
+                <div class="item">
+                    <a href="selection/HW07_select.html">HW07 <br> RWD 選單 </a>
+                    <!-- <p>選取器</p> -->
+                </div>
+                <div class="item">
+                    <a href="Altis360/ImageArrayAltis360.html">JS HW <br> 360度賞車 </a>
+                    <!-- <p>JS動態-載圖版</p> -->
+                </div>
+                <div class="item">
+                    <a href="Lol/LoL_CardStatic.html">JS HW <br> LOL </a>
+                    <!-- <p>JS動態</p> -->
+                </div>
+                <div class="item">
+                    <a href="Maikon/Maikon.html">HW08 <br> Maikon </a>
+                    <!-- <p>Maikon 手切</p> -->
+                </div>
+                <div class="item">
+                    <a href="whoscall進階/BS_whoscall.html">HW09 <br>BS Whoscall</a>
+                    <!-- <p>Maikon 手切</p> -->
+                </div>
+                <div class="item">
+                    <a href="1A2B/Numbergame.html">JS HW<br>1A2B</a>
+                    <!-- <p>1A2B</p> -->
+                </div>
+                <div class="item">
+                    <a href="Apple/apple-buy.html">JS HW<br>Apple官網復刻</a>
+                    <!-- <p>1A2B</p> -->
+                </div>
+                <div class="item">
+                    <a href="Calendar/Calendar.html">JS HW<br>Calendar</a>
+                    <!-- <p>還未掛行程</p> -->
+                </div>
+                <div class="item">
+                    <a href="map/maplibrary.html">JS HW<br>Map Library</a>
+                    <!-- <p>地圖套件</p> -->
+                </div>
+                <div class="item">
+                    <a href="MemoryGameFlower/MemoryGameRed-media.html">JS HW<br>MemoryGame Red</a>
+                    <!-- <p>地圖套件</p> -->
+                </div>
+                <div class="item">
+                    <a href="MemoryGameFlower/MemoryGame-media.html">JS HW<br>MemoryGame Gold</a>
+                    <!-- <p>地圖套件</p> -->
+                </div>
+
+
             </div>
-            <div class="item">
-                <a href="/Whoscall/HW03_whoscall.html">HW03 <br> Whoscall復刻</a>
-                <!-- <p>語意很重要</p> -->
-            </div>
-            <div class="item">
-                                
-                <a href="/Whoscall/New_whoscall.html">HW04 <br> Whoscall 2.0版</a>
-                <!-- <p>語意很重要</p> -->
-            </div>
-            <div class="item">
-                <a href="/Toyota/HW04-toyota.html">HW05 <br> Toyota</a>
-                <!-- <p>定位練習</p> -->
-            </div>
-            <div class="item">
-                <a href="RWD/HW06-RWD.html">HW06 <br> RWD </a>
-                <!-- <p>響應式網頁 各設備不同的畫面</p> -->
-            </div>
-            <div class="item">
-                <a href="NumberGuessingGame/HW01-NumberGuessingGame.html">HW06 <br> 終極密碼 </a>
-                <!-- <p>javascript</p> -->
-            </div>
-            <div class="item">
-                <a href="selection/HW07_select.html">HW07 <br> RWD 選單 </a>
-                <!-- <p>選取器</p> -->
-            </div>
-            <div class="item">
-                <a href="Altis360/ImageArrayAltis360.html">JS HW <br> 360度賞車 </a>
-                <!-- <p>JS動態-載圖版</p> -->
-            </div>
-            <div class="item">
-                <a href="Lol/LoL_CardStatic.html">JS HW <br> LOL </a>
-                <!-- <p>JS動態</p> -->
-            </div>
-            <div class="item">
-                <a href="Maikon/Maikon.html">HW08 <br> Maikon </a>
-                <!-- <p>Maikon 手切</p> -->
-            </div>
-            <div class="item">
-                <a href="whoscall進階/BS_whoscall.html">HW09 <br>BS Whoscall</a>
-                <!-- <p>Maikon 手切</p> -->
-            </div>
-            <div class="item">
-                <a href="1A2B/Numbergame.html">JS HW<br>1A2B</a>
-                <!-- <p>1A2B</p> -->
-            </div>
-            <div class="item">
-                <a href="Apple/apple-buy.html">JS HW<br>Apple官網復刻</a>
-                <!-- <p>1A2B</p> -->
-            </div>
-            <div class="item">
-                <a href="Calendar/Calendar.html">JS HW<br>Calendar</a>
-                <!-- <p>還未掛行程</p> -->
-            </div>
-            <div class="item">
-                <a href="map/maplibrary.html">JS HW<br>Map Library</a>
-                <!-- <p>地圖套件</p> -->
-            </div>
-            <div class="item">
-                <a href="MemoryGameFlower/MemoryGameRed-media.html">JS HW<br>MemoryGame Red</a>
-                <!-- <p>地圖套件</p> -->
-            </div>
-            <div class="item">  
-                <a href="MemoryGameFlower/MemoryGame-media.html">JS HW<br>MemoryGame Gold</a>
-                <!-- <p>地圖套件</p> -->
-            </div>
-            <div class="item">
-                <a href="hatsukoi專題/Cart1.html">購物車1</a>
-                <a href="hatsukoi專題/Cart2.html">購物車2</a>
-            </div>
-            
-        </div>
     </section>
 
 </body>
