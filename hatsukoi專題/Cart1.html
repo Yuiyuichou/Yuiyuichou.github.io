@@ -160,6 +160,7 @@
     }
 
     .cart-product-note {
+        background-color: var(--light-pink);
         color: var(--dark-gray);
     }
 
@@ -297,21 +298,20 @@
         font-size: 14px;
     }
 /* 字設定 */
+    .text-darkgray{
+        color: var(--dark-gray);
+    }
     .text-pink {
         color: var(--peach-pink);
     }
     .text-gray{
         color: var(--light-gray);
     } 
-    .text-dgray{
-        color: var(--dark-gray);
+    .text-darkgray:hover{
+        color: var(--light-gray);
     }
     .text-sm{
         font-size: 12px;
-    }
-/* 背景設定 */
-    .bgc-pink{
-        background-color: var(--light-pink);
     }
 
 
@@ -339,6 +339,7 @@
         }
 
         .cart-order-detail-title {
+            background-color: var(--light-pink);
             color: var(--dark-gray);
         }
 
@@ -377,13 +378,13 @@
     <header>
         <ul class="cart-nav nav justify-content-end m-2">
             <li class="cart-nav-item ">
-                <a class="nav-link p-0 m-1 active " aria-current="page" href="#">慾望清單</a>
+                <a class="nav-link text-darkgray p-0 m-1 active " aria-current="page" href="#">慾望清單</a>
             </li>
             <li class="cart-nav-item">
-                <a class="nav-link p-0 m-1" href="#">優惠券</a>
+                <a class="nav-link text-darkgray p-0 m-1" href="#">優惠券</a>
             </li>
             <li class="cart-nav-item">
-                <a class="nav-link p-0 m-1" href="#">我的訊息</a>
+                <a class="nav-link text-darkgray  p-0 m-1" href="#">我的訊息</a>
             </li>
 
         </ul>
@@ -432,7 +433,7 @@
                     <div class="cart-shop-body">
                         <div class="cart-shop me-0">
                             <button type="button" class="btn-close btn-delete-product" aria-label="Close"></button>
-                            <div class="cart-product-note bgc-pink p-2">
+                            <div class="cart-product-note p-2">
                                 <span>已套用優惠數量 : 1</span>
                             </div>
                             <div class="cart-product d-flex ">
@@ -623,7 +624,7 @@
 
                     <div class="cart-fixed-panel-container ">
                         <div class="cart-order-detail ">
-                            <p class="cart-order-detail-title p-2 bgc-pink">訂單摘要</p>
+                            <p class="cart-order-detail-title p-2">訂單摘要</p>
                             <div class="cart-fixed-panel p-2 ">
                                 <div class="total-detail-display m-2">
                                     <p class="">運費總計</p>

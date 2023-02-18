@@ -51,6 +51,10 @@
         color: var(--dark-gray);
     }
 
+    .cart-nav-item a:hover {
+        color: var(--light-gray);
+    }
+
     .cart-nav>li+li {
         border-left: 0.5px solid var(--dark-gray);
     }
@@ -170,20 +174,39 @@
         text-decoration: underline;
         color: var(--main-pink);
     }
+    .a-creaditcard-add{
+            visibility: hidden;
+    }
 
     /* 邊框 */
     .cart-shop,
     .cart-shop-detail,
     .payment-title,
+    .payment-option-title,
     .payment-detail,
     .payment-option {
         border: 0.5px solid var(--light-gray);
+    }
+
+    .payment-option-container {
+        padding-top: 20px;
     }
 
     /* 彈跳視窗-物流 */
     .modal-body {
         line-height: 1.8;
         list-style: initial;
+    }
+    /* 彈跳視窗-改信用卡 */
+    .modal-dialog-c{
+        max-width: 100%;
+        margin: 0;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        
+        
     }
 
     .dotted-line {
@@ -194,6 +217,21 @@
         height: 1.4em;
         flex-grow: 1;
         margin: 0 10px;
+    }
+
+    /* btn設定 */
+    .btn-pk {
+        background-color: var(--peach-pink);
+        color: var(--light-pink);
+        box-sizing: border-box;
+        margin-right: 0;
+    }
+
+    .btn-pk:hover ,
+    .a-creaditcard-edit:hover{
+        background-color: var(--light-pink);
+        color: var(--peach-pink);
+        cursor: pointer;
     }
 
     /* 字設定 */
@@ -256,6 +294,30 @@
             display: none;
         }
 
+        .creditcard-payment-detail {
+            display: flex;
+        }
+
+
+        .payment-option-title,
+        .payment-detail,
+        .payment-option {
+            border: 0px solid var(--light-gray);
+        }
+
+        .creditcard-payment-detail {
+            border: 1px solid var(--light-gray);
+            border-top: 0px;
+        }
+
+        .payment-option-container {
+            padding: 8px;
+            margin: 8px;
+            background-color: var(--light-gray);
+        }
+        .a-creaditcard-edit{
+            visibility: hidden;
+        }
     }
 
     @media screen and (min-width: 1200px) {
@@ -274,7 +336,7 @@
     <header>
         <ul class="cart-nav nav justify-content-end m-2">
             <li class="cart-nav-item ">
-                <a class="nav-link p-0 m-1 active " aria-current="page" href="#">慾望清單</a>
+                <a class="nav-link p-0 m-1 active " aria-current="page" href="#">喜歡清單</a>
             </li>
             <li class="cart-nav-item">
                 <a class="nav-link p-0 m-1" href="#">優惠券</a>
@@ -475,122 +537,156 @@
                         <div class="creditcard-discount ">
 
                         </div>
-                        <div class="payment col-12 col-md-6 ">
+                        <div class="creditcard-payment-detail">
+                            <div class="col-12 col-md-6 ">
 
-                            <div class="payment-detail p-2">
-                                <div class="payment-detail-item d-flex align-items-center p-2">
-                                    <div>商品總計</div>
-                                    <div class="dotted-line"></div>
-                                    <div>NT$ 100</div>
-                                </div>
-                                <div class="payment-detail-item d-flex align-items-center p-2">
-                                    <div>運費總計</div>
-                                    <div class="dotted-line"></div>
-                                    <div>NT$ 100</div>
-                                </div>
-                                <div class="payment-detail-item d-flex align-items-center p-2">
-                                    <div>設計館優惠折抵</div>
-                                    <div class="dotted-line"></div>
-                                    <div>NT$ 100</div>
-                                </div>
-                                <span class="text-gray text-sm p-2">實際運費金額以購物車結算或是到貨時收取的金額為準。</span>
-                                <div class="payment-detail-item d-flex align-items-center p-2">
-                                    <div>結帳總金額</div>
-                                    <div class="dotted-line"></div>
-                                    <div>NT$ 100</div>
-                                </div>
+                                <div class="payment-detail p-2">
+                                    <div class="payment-detail-item d-flex align-items-center p-2">
+                                        <div>商品總計</div>
+                                        <div class="dotted-line"></div>
+                                        <div>NT$ 100</div>
+                                    </div>
+                                    <div class="payment-detail-item d-flex align-items-center p-2">
+                                        <div>運費總計</div>
+                                        <div class="dotted-line"></div>
+                                        <div>NT$ 100</div>
+                                    </div>
+                                    <div class="payment-detail-item d-flex align-items-center p-2">
+                                        <div>設計館優惠折抵</div>
+                                        <div class="dotted-line"></div>
+                                        <div>NT$ 100</div>
+                                    </div>
+                                    <span class="text-gray text-sm p-2">實際運費金額以購物車結算或是到貨時收取的金額為準。</span>
+                                    <div class="payment-detail-item d-flex align-items-center p-2">
+                                        <div>結帳總金額</div>
+                                        <div class="dotted-line"></div>
+                                        <div>NT$ 100</div>
+                                    </div>
 
-                                <div class="accordion">
-                                    <div class="accordion-header d-flex justify-content-between" id="collapsedetail">
-                                        <div class="total-detail-text ">
-                                            <button class="accordion-button btn-detail-display p-2" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#total-detail"
-                                                aria-expanded="true" aria-controls="total-detail">展開折抵細節</button>
+                                    <div class="accordion">
+                                        <div class="accordion-header d-flex justify-content-between"
+                                            id="collapsedetail">
+                                            <div class="total-detail-text ">
+                                                <button class="accordion-button btn-detail-display p-2" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#total-detail"
+                                                    aria-expanded="true" aria-controls="total-detail">展開折抵細節</button>
 
+                                            </div>
+                                        </div>
+                                        <div id="total-detail" class="accordion-collapse collapse"
+                                            aria-labelledby="collapsedetail" data-bs-parent="#accordion-total-detail">
+                                            <div class="total-detail-display m-2">
+                                                <p>總計</p>
+                                                <p>折抵</p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div id="total-detail" class="accordion-collapse collapse"
-                                        aria-labelledby="collapsedetail" data-bs-parent="#accordion-total-detail">
-                                        <div class="total-detail-display m-2">
-                                            <p>總計</p>
-                                            <p>折抵</p>
-                                        </div>
-                                    </div>
+
                                 </div>
 
 
+                            </div>
+                            <div class=" col-12 col-md-6">
+                                <div class="payment-option-container">
+                                    <div class="payment-option-title  p-2 ">
+                                        付款方式
+                                    </div>
+                                    <div class="payment-option ">
+                                        <div class="creditcard-discount bgc-pink p-2 m-2">
+                                            刷卡滿 NT$ 1500 即享分期零利率
+                                        </div>
+                                        <div class="payment-option-detail p-2">
+                                            <div class="payment-option-form d-flex align-items-center p-2">
 
+                                            </div>
+
+                                            <div class="shipselect-option my-2">
+                                                <select class="form-select form-select-sm  w-100 ship-select"
+                                                    aria-label=".form-select-sm ">
+                                                    <option value>常用信用卡付款</option>
+                                                    <option value="">輸入信用卡卡號</option>
+                                                    <option value="">信用卡分期/3期</option>
+                                                    <option value="">信用卡分期/3期</option>
+                                                </select>
+                                            </div>
+                                            <div class="d-flex d-flex align-items-center justify-content-between">
+                                                <div class="form-check d-flex align-items-center ">
+                                                    <input class="form-check-input" type="radio"
+                                                        name="creditcard-radio-jcb" id="creditcard-radio-jcb" checked>
+
+                                                    <label class="form-check-label" for="creditcard-radio-jcb">
+                                                        <div class="creaditcard-item d-flex align-items-center">
+                                                            <div class="creaditcard-item-pic m-2">
+                                                                <img src="/icon_cc_jcb.svg" alt="">
+                                                            </div>
+                                                            <div class="creaditcard-bank m-1">
+                                                                華南銀行
+                                                            </div>
+                                                            <div class="creaditcard-num m-1">
+                                                                (... 1234)
+                                                            </div>
+
+                                                        </div>
+
+                                                    </label>
+
+                                                </div>
+                                                <a class="a-creaditcard-edit text-dgray me-0" data-bs-toggle="modal" data-bs-target="#creaditcard-change" id="coupon-add">
+                                                    變更</a>
+
+                                                   
+                                                      <!-- Modal -->
+                                                      <div class="modal modal-c fade" id="creaditcard-change" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-c">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title" id="staticLabel">注意</h5>
+                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                              ...
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <button type="button" class="btn btn-primary">Understood</button>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+
+
+
+
+
+
+
+                                            </div>
+
+                                            <div class="">
+                                                <a class="a-creaditcard-add m-2" type="button" id="coupon-add">+
+                                                    新增常用信用卡</a>
+                                            </div>
+
+                                            <button type="button" class="btn btn-pk btn-checked w-100">前往結帳</button>
+                                        </div>
+
+                                        <div class="payment-protected p-2 d-flex ">
+                                            <div class="m-1"><i class="fa-solid fa-lock text-pink "></i></div>
+                                            
+                                            <span class="lh-sm m-1">Hatsukoi 為保護你的付款資訊，我們以 SSL 加密方式保障你的隱私，請安心使用。</span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
 
 
 
 
                             </div>
-                            <div class="col-12 col-md-6"></div>
-
                         </div>
+
                     </div>
-                    <div class=" col-12 p-0 mt-4 ">
-                        <div class="payment-title  p-2 ">
-                            付款方式
-                        </div>
 
-
-                        <div class="payment-option col-12 col-md-6 ">
-                            <div class="creditcard-discount bgc-pink p-2 m-2">
-                                刷卡滿 NT$ 1500 即享分期零利率
-                            </div>
-                            <div class="payment-option-detail p-2">
-                                <div class="payment-detail-item d-flex align-items-center p-2">
-                                    <div>商品總計</div>
-                                    <div class="dotted-line"></div>
-                                    <div>NT$ 100</div>
-                                </div>
-                                <div class="payment-detail-item d-flex align-items-center p-2">
-                                    <div>運費總計</div>
-                                    <div class="dotted-line"></div>
-                                    <div>NT$ 100</div>
-                                </div>
-                                <div class="payment-detail-item d-flex align-items-center p-2">
-                                    <div>設計館優惠折抵</div>
-                                    <div class="dotted-line"></div>
-                                    <div>NT$ 100</div>
-                                </div>
-                                <span class="text-gray text-sm p-2">實際運費金額以購物車結算或是到貨時收取的金額為準。</span>
-                                <div class="payment-detail-item d-flex align-items-center p-2">
-                                    <div>結帳總金額</div>
-                                    <div class="dotted-line"></div>
-                                    <div>NT$ 100</div>
-                                </div>
-
-                                <div class="accordion">
-                                    <div class="accordion-header d-flex justify-content-between" id="collapsedetail">
-                                        <div class="total-detail-text ">
-                                            <button class="accordion-button btn-detail-display p-2" type="button"
-                                                data-bs-toggle="collapse" data-bs-target="#total-detail"
-                                                aria-expanded="true" aria-controls="total-detail">展開折抵細節</button>
-
-                                        </div>
-                                    </div>
-                                    <div id="total-detail" class="accordion-collapse collapse"
-                                        aria-labelledby="collapsedetail" data-bs-parent="#accordion-total-detail">
-                                        <div class="total-detail-display m-2">
-                                            <p>總計</p>
-                                            <p>折抵</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-                            </div>
-                            <div class="col-12 col-md-6"></div>
-
-                        </div>
-                    </div>
 
 
                 </div>
