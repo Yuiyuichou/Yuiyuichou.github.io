@@ -34,7 +34,7 @@
         color: var(--dark-gray);
     }
 
-    .divider{
+    .divider {
         background-color: var(--light-gray);
         height: 2px;
         display: block;
@@ -153,7 +153,8 @@
 
     /* 結帳灰底 */
     .cart-checkout {
-        background-color: var(--light-gray);
+        background-color: #fff;
+
     }
 
     .recipient-info {
@@ -170,11 +171,57 @@
         color: var(--main-pink);
     }
 
+    /* 邊框 */
+    .cart-shop,
+    .cart-shop-detail,
+    .payment-title,
+    .payment-detail,
+    .payment-option {
+        border: 0.5px solid var(--light-gray);
+    }
+
     /* 彈跳視窗-物流 */
     .modal-body {
         line-height: 1.8;
         list-style: initial;
     }
+
+    .dotted-line {
+        background-image: linear-gradient(90deg, #d3d3d5 40%, #fff 0);
+        background-position: 50%;
+        background-repeat: repeat-x;
+        background-size: 3px 1px;
+        height: 1.4em;
+        flex-grow: 1;
+        margin: 0 10px;
+    }
+
+    /* 字設定 */
+    .text-pink {
+        color: var(--peach-pink);
+    }
+
+    .text-gray {
+        color: var(--light-gray);
+    }
+
+    .text-dgray {
+        color: var(--dark-gray);
+    }
+
+    .text-sm {
+        font-size: 12px;
+    }
+
+    /* 背景設定 */
+    .bgc-pink {
+        background-color: var(--light-pink);
+    }
+
+    .bgc-gray {
+        background-color: var(--light-gray);
+    }
+
 
     img {
         width: 100%;
@@ -191,10 +238,23 @@
             left: 50%;
         }
 
+        .cart-shop-detail {
+            display: flex;
+
+        }
+
         .cart-product-detail {
             flex-direction: column;
         }
 
+        .cart-checkout {
+            background-color: var(--light-gray);
+        }
+
+        .divider-sm,
+        .check-product-pricecount {
+            display: none;
+        }
 
     }
 
@@ -254,144 +314,290 @@
                 </div>
 
                 <div class="row m-2">
-                    <div class="cart-shop border p-0">
-                        <div class="col-12 cart-shop-name border-bottom p-2">
+                    <div class="cart-shop  p-0">
+                        <div class="col-12 cart-shop-name p-2">
                             <i class="fa-solid fa-shop"></i>
                             <span>Samuel Ashley</span>
                         </div>
-                        <div class="d-flex">
-                            <!-- 左側商品資訊 -->
-                            <div class="cart-product col-12 col-md-6">
-                                <div class="cart-product d-flex mb-2 p-2">
-                                    <div class="cart-product-pic m-2 col-3">
-                                        <img src="https://picsum.photos/90/90/?random=10">
-                                    </div>
-                                    <div class="cart-product-detail d-flex flex-column justify-content-between col-8">
-                                        <div class="cart-product-text d-flex mt-2 ">
-                                            <div class="d-flex flex-column">
-                                                <div class=" mb-2">
-                                                    <a class="cart-product-title" href="#">producttitle11111</a>
-                                                </div>
-                                                <div class="cart-product-describe mb-2">
-                                                    <p>......</p>
-                                                </div>
+                    </div>
+
+                    <div class="cart-shop-detail  p-0">
+
+                        <!-- md-左側商品資訊 -->
+                        <div class="cart-product col-12 col-md-6">
+                            <div class="cart-product d-flex mb-2 p-2">
+                                <div class="cart-product-pic m-2 col-3">
+                                    <img src="https://picsum.photos/90/90/?random=10">
+                                </div>
+                                <div class="cart-product-detail d-flex flex-column justify-content-between col-8">
+                                    <div class="cart-product-text d-flex mt-2 ">
+                                        <div class="d-flex flex-column">
+                                            <div class=" mb-2">
+                                                <a class="cart-product-title" href="#">producttitle11111</a>
+                                            </div>
+                                            <div class="cart-product-describe mb-2">
+                                                <p>......</p>
                                             </div>
                                         </div>
-                                        <div class="cart-product-extras d-flex justify-content-between">
-                                            <div class="cart-product-quantity m-2">
-                                                <span>x 1</span>
-                                            </div>
+                                    </div>
+                                    <div class="cart-product-extras d-flex justify-content-between">
+                                        <div class="cart-product-quantity m-2">
+                                            <span>x 1</span>
+                                        </div>
 
-                                            <div class="cart-product-subtotal m-2 d-flex flex-column me-0">
-                                                <!-- <del class="cart-product-subtotal-oprice">NT$2000</del> -->
-                                                <div class="cart-product-subtotal-price">1900</div>
-                                            </div>
+                                        <div class="cart-product-subtotal m-2 d-flex flex-column me-0">
+                                            <!-- <del class="cart-product-subtotal-oprice">NT$2000</del> -->
+                                            <div class="cart-product-subtotal-price">1900</div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- 分隔線 -->
-                                <div class="divider"></div>
                             </div>
-                            <!-- 右側結帳資訊 -->
-                            <div class="col-12 col-md-6 p-3">
-                                <div class="cart-checkout p-2">
-                                    <div class="pt-2 ps-2 fw-semibold">收件資訊</div>
-                                    <div class="recipient-info rounded-1 m-2 d-flex align-items-center justify-content-between">
-                                        
-                                        <div class="recipient-info-text p-2">
-                                            <p class="recipient-name">xxx</p>
-                                            <p class="recipient-phone">0987654321</p>
-                                            <p class="recipient-buyer">同購買人</p>
-                                        </div>
-                                        <i class="fa-solid fa-angle-right p-2"></i>
-                                    </div>
-                                    <div class="extra-note p-2">
-                                        <ul class="shipping-method-note list-unstyled">
-                                            <li class="shipping">
-                                                運送方式
-                                            </li>
-                                            <li class="info">
-                                                通知出貨後約 3 - 6 天寄達 | 提供追蹤 | 外島地區目前台灣順豐不支援配送，請選擇其他配送物流，設計師有權取消誤選順豐之外島訂單。
-                                            </li>
-                                            <li class="notice">
-                                                如所在地為台灣離島區域，將會產生轉運附加費用
-                                            </li>
-                                            <li class="notice">
-                                                跨境交易包裹會有被抽取關稅的可能性，進口相關稅金由收件方負擔，詳情請<a href="#"
-                                                    class="inline text-decoration-none">點此查看</a>
-                                            </li>
-                                            <li class="shop-declaration">
-                                                設計館符合免辦理營業登記，無需開立統一發票
-                                            </li>
+                            <!-- 分隔線 -->
+                            <div class="divider"></div>
+                        </div>
+                        <!-- md-右側結帳資訊 -->
+                        <div class="col-12 col-md-6">
+                            <div class="cart-checkout p-2 m-2">
+                                <div class="pt-2 ps-2 fw-semibold">收件資訊</div>
+                                <div
+                                    class="recipient-info rounded-1 m-2 d-flex align-items-center justify-content-between">
 
-                                        </ul>
+                                    <div class="recipient-info-text p-2">
+                                        <p class="recipient-name">xxx</p>
+                                        <p class="recipient-phone">0987654321</p>
+                                        <p class="recipient-buyer">同購買人</p>
                                     </div>
+                                    <i class="fa-solid fa-angle-right p-2"></i>
+                                </div>
+                                <div class="extra-note p-2">
+                                    <ul class="shipping-method-note list-unstyled">
+                                        <li class="shipping">
+                                            運送方式
+                                        </li>
+                                        <li class="info">
+                                            通知出貨後約 3 - 6 天寄達 | 提供追蹤 | 外島地區目前台灣順豐不支援配送，請選擇其他配送物流，設計師有權取消誤選順豐之外島訂單。
+                                        </li>
+                                        <li class="notice">
+                                            如所在地為台灣離島區域，將會產生轉運附加費用
+                                        </li>
+                                        <li class="notice">
+                                            跨境交易包裹會有被抽取關稅的可能性，進口相關稅金由收件方負擔，詳情請<a href="#"
+                                                class="inline text-decoration-none">點此查看</a>
+                                        </li>
+                                        <li class="shop-declaration">
+                                            設計館符合免辦理營業登記，無需開立統一發票
+                                        </li>
 
-                                    <div class="recipient-id">
-                                        <div class="m-2">
-                                            <label for="recipient-id-input" class="form-label fw-semibold">收件人身分證字號</label>
-                                            <input type="text" class="form-control" id="recipient-id-input"
-                                                maxlength="10" placeholder="請填寫收件人身分證字號">
-                                        </div>
+                                    </ul>
+                                </div>
+
+                                <div class="recipient-id">
+                                    <div class="m-2">
+                                        <label for="recipient-id-input" class="form-label fw-semibold">收件人身分證字號</label>
+                                        <input type="text" class="form-control" id="recipient-id-input" maxlength="10"
+                                            placeholder="請填寫收件人身分證字號">
                                     </div>
+                                </div>
 
-                                    <div class="check-recipient m-2">
-                                        <div class="form-check ">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="checkedrecipientid">
-                                            <label class="form-check-label" for="checkedrecipientid">
-                                                我同意提供個人身分證字號／護照／居留證號碼，以供跨境物流方通關使用，並已了解跨境商品之
-                                                <!-- Button trigger modal -->
-                                                <a type="" class="a-ship" data-bs-toggle="modal"
-                                                    data-bs-target="#staticBackdrop">物流需求</a>。
-                                            </label>
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
-                                                data-bs-keyboard="false" tabindex="-1"
-                                                aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="staticBackdropLabel">注意</h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <ul class="modal-body p-4">
-                                                            <li>因台灣會員購買跨境商品之物流方需求，須提供身分證字號/護照/居留證號碼(以下簡稱「該筆資料」)以利通關。因上述資料屬個人資料保護範疇，Pinkoi
-                                                                提醒你需了解並承擔其風險。</li>
-                                                            <li>Pinkoi 將致力確保該筆資料僅限於訂單物流使用，系統將於訂單「已完成」時，移除該筆資料不再顯示。</li>
-                                                            <li>該筆資料將附隨訂單提供給設計館，並由設計館轉送給第三方物流業者，作為輔助通關或遞送商品用途。</li>
-                                                        </ul>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-dg btn-Understood"
-                                                                data-bs-dismiss="modal" aria-label="Close">我知道了</button>
-                                                        </div>
+                                <div class="check-recipient m-2">
+                                    <div class="form-check ">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="checkedrecipientid">
+                                        <label class="form-check-label" for="checkedrecipientid">
+                                            我同意提供個人身分證字號／護照／居留證號碼，以供跨境物流方通關使用，並已了解跨境商品之
+                                            <!-- Button trigger modal -->
+                                            <a type="" class="a-ship" data-bs-toggle="modal"
+                                                data-bs-target="#staticBackdrop">物流需求</a>。
+                                        </label>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">注意</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <ul class="modal-body p-4">
+                                                        <li>因台灣會員購買跨境商品之物流方需求，須提供身分證字號/護照/居留證號碼(以下簡稱「該筆資料」)以利通關。因上述資料屬個人資料保護範疇，Pinkoi
+                                                            提醒你需了解並承擔其風險。</li>
+                                                        <li>Pinkoi 將致力確保該筆資料僅限於訂單物流使用，系統將於訂單「已完成」時，移除該筆資料不再顯示。</li>
+                                                        <li>該筆資料將附隨訂單提供給設計館，並由設計館轉送給第三方物流業者，作為輔助通關或遞送商品用途。</li>
+                                                    </ul>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-dg btn-Understood"
+                                                            data-bs-dismiss="modal" aria-label="Close">我知道了</button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="buyer-msg m-2 ">
-                                        <label for="buyer-msg-Textarea" class="form-label fw-semibold">給設計師的訊息或注意事項</label>
-                                        <textarea class="form-control" id="buyer-msg-Textarea"
-                                            rows="3"></textarea>
-                                    </div>
-
+                                <div class="buyer-msg m-2 ">
+                                    <label for="buyer-msg-Textarea" class="form-label fw-semibold">給設計師的訊息或注意事項</label>
+                                    <textarea class="form-control" id="buyer-msg-Textarea" rows="3"></textarea>
                                 </div>
 
 
+
                             </div>
+                            <!-- 分隔線 -->
+                            <div class="divider-sm "></div>
+                            <div class="check-product-pricecount m-2 p-2">
+                                <div class="pricecount-item d-flex align-items-center">
+                                    <div>商品小計</div>
+                                    <div class="dotted-line"></div>
+                                    <div>NT$ 1000</div>
+                                </div>
+                                <div class="pricecount-item d-flex align-items-center">
+                                    <div>運費</div>
+                                    <div class="dotted-line"></div>
+                                    <div>NT$ 100</div>
+                                </div>
+
+                            </div>
+
                         </div>
 
 
+
+
+
                     </div>
+                    <div class="payment col-12 p-0 mt-4 ">
+                        <div class="payment-title  p-2 ">
+                            付款明細
+                        </div>
+
+                        <div class="creditcard-discount ">
+
+                        </div>
+                        <div class="payment col-12 col-md-6 ">
+
+                            <div class="payment-detail p-2">
+                                <div class="payment-detail-item d-flex align-items-center p-2">
+                                    <div>商品總計</div>
+                                    <div class="dotted-line"></div>
+                                    <div>NT$ 100</div>
+                                </div>
+                                <div class="payment-detail-item d-flex align-items-center p-2">
+                                    <div>運費總計</div>
+                                    <div class="dotted-line"></div>
+                                    <div>NT$ 100</div>
+                                </div>
+                                <div class="payment-detail-item d-flex align-items-center p-2">
+                                    <div>設計館優惠折抵</div>
+                                    <div class="dotted-line"></div>
+                                    <div>NT$ 100</div>
+                                </div>
+                                <span class="text-gray text-sm p-2">實際運費金額以購物車結算或是到貨時收取的金額為準。</span>
+                                <div class="payment-detail-item d-flex align-items-center p-2">
+                                    <div>結帳總金額</div>
+                                    <div class="dotted-line"></div>
+                                    <div>NT$ 100</div>
+                                </div>
+
+                                <div class="accordion">
+                                    <div class="accordion-header d-flex justify-content-between" id="collapsedetail">
+                                        <div class="total-detail-text ">
+                                            <button class="accordion-button btn-detail-display p-2" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#total-detail"
+                                                aria-expanded="true" aria-controls="total-detail">展開折抵細節</button>
+
+                                        </div>
+                                    </div>
+                                    <div id="total-detail" class="accordion-collapse collapse"
+                                        aria-labelledby="collapsedetail" data-bs-parent="#accordion-total-detail">
+                                        <div class="total-detail-display m-2">
+                                            <p>總計</p>
+                                            <p>折抵</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                            </div>
+                            <div class="col-12 col-md-6"></div>
+
+                        </div>
+                    </div>
+                    <div class=" col-12 p-0 mt-4 ">
+                        <div class="payment-title  p-2 ">
+                            付款方式
+                        </div>
+
+
+                        <div class="payment-option col-12 col-md-6 ">
+                            <div class="creditcard-discount bgc-pink p-2 m-2">
+                                刷卡滿 NT$ 1500 即享分期零利率
+                            </div>
+                            <div class="payment-option-detail p-2">
+                                <div class="payment-detail-item d-flex align-items-center p-2">
+                                    <div>商品總計</div>
+                                    <div class="dotted-line"></div>
+                                    <div>NT$ 100</div>
+                                </div>
+                                <div class="payment-detail-item d-flex align-items-center p-2">
+                                    <div>運費總計</div>
+                                    <div class="dotted-line"></div>
+                                    <div>NT$ 100</div>
+                                </div>
+                                <div class="payment-detail-item d-flex align-items-center p-2">
+                                    <div>設計館優惠折抵</div>
+                                    <div class="dotted-line"></div>
+                                    <div>NT$ 100</div>
+                                </div>
+                                <span class="text-gray text-sm p-2">實際運費金額以購物車結算或是到貨時收取的金額為準。</span>
+                                <div class="payment-detail-item d-flex align-items-center p-2">
+                                    <div>結帳總金額</div>
+                                    <div class="dotted-line"></div>
+                                    <div>NT$ 100</div>
+                                </div>
+
+                                <div class="accordion">
+                                    <div class="accordion-header d-flex justify-content-between" id="collapsedetail">
+                                        <div class="total-detail-text ">
+                                            <button class="accordion-button btn-detail-display p-2" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#total-detail"
+                                                aria-expanded="true" aria-controls="total-detail">展開折抵細節</button>
+
+                                        </div>
+                                    </div>
+                                    <div id="total-detail" class="accordion-collapse collapse"
+                                        aria-labelledby="collapsedetail" data-bs-parent="#accordion-total-detail">
+                                        <div class="total-detail-display m-2">
+                                            <p>總計</p>
+                                            <p>折抵</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+
+                            </div>
+                            <div class="col-12 col-md-6"></div>
+
+                        </div>
+                    </div>
+
 
                 </div>
 
 
 
-                
+
             </div>
         </div>
     </main>
