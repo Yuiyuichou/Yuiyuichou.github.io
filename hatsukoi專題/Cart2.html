@@ -41,10 +41,7 @@
         margin: 14px 10px;
     }
 
-    .btn-dg {
-        background-color: var(--dark-gray);
-        color: #fff;
-    }
+
 
     /* cart-nav */
     .cart-nav-item a {
@@ -174,8 +171,9 @@
         text-decoration: underline;
         color: var(--main-pink);
     }
-    .a-creaditcard-add{
-            visibility: hidden;
+
+    .a-creaditcard-add {
+        visibility: hidden;
     }
 
     /* 邊框 */
@@ -197,16 +195,17 @@
         line-height: 1.8;
         list-style: initial;
     }
+
     /* 彈跳視窗-改信用卡 */
-    .modal-dialog-c{
+    .modal-dialog-c {
         max-width: 100%;
         margin: 0;
         position: fixed;
         bottom: 0;
         right: 0;
         left: 0;
-        
-        
+
+
     }
 
     .dotted-line {
@@ -227,12 +226,29 @@
         margin-right: 0;
     }
 
-    .btn-pk:hover ,
-    .a-creaditcard-edit:hover{
+    .btn-pk:hover,
+    .a-creaditcard-edit:hover,
+    .a-recipient:hover {
         background-color: var(--light-pink);
         color: var(--peach-pink);
         cursor: pointer;
     }
+
+    .btn-dg {
+        background-color: var(--dark-gray);
+        color: #fff;
+    }
+
+    .btn-dg:hover {
+        background-color: var(--light-gray);
+        color: #fff;
+    }
+
+    .btn-cancel {
+        display: none;
+    }
+
+    .btn-usedaddress {}
 
     /* 字設定 */
     .text-pink {
@@ -315,8 +331,17 @@
             margin: 8px;
             background-color: var(--light-gray);
         }
-        .a-creaditcard-edit{
+
+        .a-creaditcard-edit {
             visibility: hidden;
+        }
+
+        .btn-cancel {
+            visibility: visible;
+        }
+
+        .btn-usedaddress {
+            width: fit-content;
         }
     }
 
@@ -421,15 +446,130 @@
                         <div class="col-12 col-md-6">
                             <div class="cart-checkout p-2 m-2">
                                 <div class="pt-2 ps-2 fw-semibold">收件資訊</div>
-                                <div
-                                    class="recipient-info rounded-1 m-2 d-flex align-items-center justify-content-between">
+                                <div class="recipient-info rounded-1 m-2">
+                                    <div class="">
+                                        <!-- Button trigger modal -->
+                                        <a type=""
+                                            class="a-recipient p-2 d-flex align-items-center justify-content-between"
+                                            data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                            請填寫收件人與購買人資料
+                                            <i class="fa-solid fa-angle-right p-2"></i></a>
 
-                                    <div class="recipient-info-text p-2">
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static"
+                                            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel"
+                                            aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-scrollable">
+                                                <div class="modal-content rounded-1">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="staticBackdropLabel">請填寫收件人與購買人資料
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="m-2">
+                                                            <label for="recipient-id-input"
+                                                                class="form-label fw-semibold">收件人姓名<sup
+                                                                    class="text-pink">*</sup></label>
+                                                            <input required type="text" class="form-control"
+                                                                id="recipient-id-input" maxlength="10"
+                                                                placeholder="請填寫收件人姓名">
+
+                                                        </div>
+                                                        <div class="m-2">
+                                                            <label for="recipient-id-input"
+                                                                class="form-label fw-semibold">收件人手機<sup
+                                                                    class="text-pink">*</sup></label>
+                                                            <input type="tel" class="form-control"
+                                                                id="recipient-id-input" maxlength="10"
+                                                                placeholder="請填寫收件人手機">
+                                                        </div>
+                                                        <div class="m-2">
+                                                            <label for="recipient-id-input"
+                                                                class="form-label fw-semibold">Address line 1<sup
+                                                                    class="text-pink">*</sup></label>
+                                                            <input type="tel" class="form-control"
+                                                                id="recipient-id-input" maxlength="20"
+                                                                placeholder="詳細收貨地址">
+                                                            <span class="text-sm text-gray">街道名稱、巷弄號樓、公司部門校區或郵政信箱</span>
+                                                        </div>
+                                                        <div class="m-2">
+                                                            <label for="recipient-id-input"
+                                                                class="form-label fw-semibold">Address line 2</label>
+                                                            <input type="tel" class="form-control"
+                                                                id="recipient-id-input" maxlength="20"
+                                                                placeholder="若地址列第一行過長，請將換行填寫於此">
+                                                            <span class="text-sm text-gray">縣市請在下方欄位選擇</span>
+                                                        </div>
+                                                        <div class="m-2">
+                                                            <label for="recipient-id-input"
+                                                                class="form-label fw-semibold">County / city<sup
+                                                                    class="text-pink">*</sup></label>
+
+                                                            <select class="form-select form-select-sm"
+                                                                aria-label="form-select-sm ">
+                                                                <option value="Keelung City">基隆市</option>
+                                                                <option value="Taipei City" selected>台北市</option>
+                                                                <option value="New Taipei City">新北市</option>
+                                                                <option value="Taoyuan City">桃園市</option>
+                                                                <option value="Hsinchu City">新竹市</option>
+                                                                <option value="Hsinchu County">新竹縣</option>
+                                                                <option value="Miaoli County">苗栗縣</option>
+                                                                <option value="Taichung City">台中市</option>
+                                                                <option value="Nantou County">南投縣</option>
+                                                                <option value="Yunlin County">雲林縣</option>
+                                                                <option value="Chiayi City">嘉義市</option>
+                                                                <option value="Chiayi County">嘉義縣</option>
+                                                                <option value="Tainan City">台南市</option>
+                                                                <option value="Kaohsiung City">高雄市</option>
+                                                                <option value="Pingtung County">屏東縣</option>
+                                                                <option value="Yilan County">宜蘭縣</option>
+                                                                <option value="Penghu County">澎湖縣</option>
+                                                                <option value="Kinmen County">金門縣</option>
+                                                                <option value="Lienchiang County">連江縣</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="m-2">
+                                                            <label for="recipient-id-input"
+                                                                class="form-label fw-semibold">Postal code<sup
+                                                                    class="text-pink">*</sup></label>
+                                                            <input type="tel" class="form-control"
+                                                                id="recipient-id-input" maxlength="20"
+                                                                placeholder="12345">
+                                                        </div>
+                                                        <div class="form-check m-2">
+                                                            <input class="form-check-input " type="checkbox" value=""
+                                                                id="flexCheckChecked" checked>
+                                                            <label class="form-check-label lh-base"
+                                                                for="flexCheckChecked">
+                                                                購買人資訊同上
+                                                            </label>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <div class=" ms-auto">
+                                                            <button type="button"
+                                                                class="btn btn-pk btn-cancel">取消</button>
+                                                            <button type="button"
+                                                                class="btn btn-dg btn-usedaddress " data-bs-dismiss="modal"
+                                                                aria-label="Close">使用地址</button>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- <div class="recipient-info-text p-2">
                                         <p class="recipient-name">xxx</p>
                                         <p class="recipient-phone">0987654321</p>
                                         <p class="recipient-buyer">同購買人</p>
-                                    </div>
-                                    <i class="fa-solid fa-angle-right p-2"></i>
+                                    </div> -->
+
                                 </div>
                                 <div class="extra-note p-2">
                                     <ul class="shipping-method-note list-unstyled">
@@ -592,7 +732,7 @@
                                         付款方式
                                     </div>
                                     <div class="payment-option ">
-                                        <div class="creditcard-discount bgc-pink p-2 m-2">
+                                        <div class="creditcard-discount bgc-pink  text-pink rounded-1 p-2 m-2">
                                             刷卡滿 NT$ 1500 即享分期零利率
                                         </div>
                                         <div class="payment-option-detail p-2">
@@ -631,27 +771,32 @@
                                                     </label>
 
                                                 </div>
-                                                <a class="a-creaditcard-edit text-dgray me-0" data-bs-toggle="modal" data-bs-target="#creaditcard-change" id="coupon-add">
+                                                <a class="a-creaditcard-edit text-dgray me-0" data-bs-toggle="modal"
+                                                    data-bs-target="#creaditcard-change" id="coupon-add">
                                                     變更</a>
 
-                                                   
-                                                      <!-- Modal -->
-                                                      <div class="modal modal-c fade" id="creaditcard-change" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticLabel" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-c">
-                                                          <div class="modal-content">
+
+                                                <!-- Modal -->
+                                                <div class="modal modal-c fade" id="creaditcard-change"
+                                                    data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                    aria-labelledby="staticLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-c">
+                                                        <div class="modal-content">
                                                             <div class="modal-header">
-                                                              <h5 class="modal-title" id="staticLabel">注意</h5>
-                                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <h5 class="modal-title" id="staticLabel">注意</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
-                                                              ...
+                                                                ...
                                                             </div>
                                                             <div class="modal-footer">
-                                                              <button type="button" class="btn btn-primary">Understood</button>
+                                                                <button type="button"
+                                                                    class="btn btn-primary">Understood</button>
                                                             </div>
-                                                          </div>
                                                         </div>
-                                                      </div>
+                                                    </div>
+                                                </div>
 
 
 
@@ -671,7 +816,7 @@
 
                                         <div class="payment-protected p-2 d-flex ">
                                             <div class="m-1"><i class="fa-solid fa-lock text-pink "></i></div>
-                                            
+
                                             <span class="lh-sm m-1">Hatsukoi 為保護你的付款資訊，我們以 SSL 加密方式保障你的隱私，請安心使用。</span>
                                         </div>
 
