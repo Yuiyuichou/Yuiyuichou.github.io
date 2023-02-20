@@ -224,11 +224,13 @@
     .cart-fixed-panel-md {
         box-shadow: 0 -5px 20px rgb(0 0 0 / 10%);
     }
+
     /* 優惠券 */
-    .coupon-pic-shop{
+    .coupon-pic-shop {
         width: 40px;
         height: 40px;
     }
+
     /* 按鈕設定 */
     .btn {
         font-size: 14px;
@@ -297,20 +299,25 @@
     .modal-content {
         font-size: 14px;
     }
-/* 字設定 */
-    .text-darkgray{
+
+    /* 字設定 */
+    .text-darkgray {
         color: var(--dark-gray);
     }
+
     .text-pink {
         color: var(--peach-pink);
     }
-    .text-gray{
-        color: var(--light-gray);
-    } 
-    .text-darkgray:hover{
+
+    .text-gray {
         color: var(--light-gray);
     }
-    .text-sm{
+
+    .text-darkgray:hover {
+        color: var(--light-gray);
+    }
+
+    .text-sm {
         font-size: 12px;
     }
 
@@ -546,9 +553,11 @@
 
                                                     <label class="form-check-label lh-base m-2" for="flexCheckChecked">
                                                         <div class="coupon-ticket-text d-flex flex-column">
-                                                            <span>使用 20180213 折抵 <span class="text-pink">NT$ 100元</span> </span>
+                                                            <span>使用 20180213 折抵 <span class="text-pink">NT$ 100元</span>
+                                                            </span>
                                                             <span>適用於 白谷工房</span>
-                                                            <span class="text-gray text-sm">使用期限：2028/01/01 (六) 23:58 前，專屬優惠限用 1 次</span>
+                                                            <span class="text-gray text-sm">使用期限：2028/01/01 (六) 23:58
+                                                                前，專屬優惠限用 1 次</span>
                                                         </div>
                                                     </label>
                                                     <div class="coupon-pic-shop m-auto">
@@ -563,9 +572,11 @@
 
                                                     <label class="form-check-label lh-base m-2" for="flexCheckChecked">
                                                         <div class="coupon-ticket-text d-flex flex-column">
-                                                            <span>使用 20180213 折抵 <span class="text-pink">NT$ 100元</span> </span>
+                                                            <span>使用 20180213 折抵 <span class="text-pink">NT$ 100元</span>
+                                                            </span>
                                                             <span>適用於 白谷工房</span>
-                                                            <span class="text-gray text-sm">使用期限：2028/01/01 (六) 23:58 前，專屬優惠限用 1 次</span>
+                                                            <span class="text-gray text-sm">使用期限：2028/01/01 (六) 23:58
+                                                                前，專屬優惠限用 1 次</span>
                                                         </div>
                                                     </label>
                                                     <div class="coupon-pic-shop m-auto">
@@ -603,8 +614,15 @@
                                     <div id="total-detail" class="accordion-collapse collapse"
                                         aria-labelledby="collapsedetail" data-bs-parent="#accordion-total-detail">
                                         <div class="total-detail-display m-2">
-                                            <p>總計</p>
-                                            <p>折抵</p>
+                                            <div class="total-detail-price d-flex justify-content-between">
+                                                <span>總計</span>
+                                                <span>NT$ 1000</span>
+                                            </div>
+                                            <div class="total-detail-discount d-flex justify-content-between">
+                                                <span>折抵</span>
+                                                <span>NT$ 1000</span>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="accordion-header d-flex justify-content-between" id="collapsedetail">
@@ -627,9 +645,41 @@
                             <p class="cart-order-detail-title p-2">訂單摘要</p>
                             <div class="cart-fixed-panel p-2 ">
                                 <div class="total-detail-display m-2">
-                                    <p class="">運費總計</p>
-                                    <p class="">運費折抵</p>
-                                    <p>實際運費金額以購物車結算或是到貨時收取的金額為準。</p>
+                                    <div class="total-detail-dprice d-flex justify-content-between">
+                                        <span>商品總計</span>
+                                        <span>NT$ 1000</span>
+                                    </div>
+                                    <div class="total-detail-ddiscount d-flex justify-content-between">
+                                        <span>運費折抵</span>
+                                        <span>NT$ 1000</span>
+                                    </div>
+        
+                                    <!-- Button trigger modal -->
+                                    <a type="" class="text-pink" data-bs-toggle="modal" data-bs-target="#discountdetail">
+                                        完整折抵細節
+                                    </a>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="discountdetail" data-bs-backdrop="static"
+                                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="discountdetailLabel"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog  modal-dialog-centered ">
+                                            <div class="modal-content rounded-1">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="discountdetailLabel">完整折抵細節</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ...
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- modal end -->
+
+                                    <p class="text-sm text-gray ">實際運費金額以購物車結算或是到貨時收取的金額為準。</p>
                                 </div>
                                 <span class="m-2">使用 Pinkoi 購物優惠及禮物卡</span>
                                 <div class="m-2">結帳總金額</div>
