@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fav-Yui</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="reset.css">
+</head>
+<style>
+    :root {
+        --main-pink: #A27F82;
+        --dark-gray: #56565E;
+        --light-gray: #D3C9C9;
+        --peach-pink: #E3A4A4;
+        --light-pink: #FEF4F6;
+
+    }
+
+    /* 付款順序---------------- */
+    *,
+    *:after,
+    *:before {
+        box-sizing: border-box;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--dark-gray);
+    }
+
+    a:hover {
+        color: var(--light-gray);
+        cursor: pointer;
+    }
+
+    /* tab style ----------------------------------------------------------*/
+
+    .fav-navtabs .nav-tabs {
+        margin: 30px 0 20px 0;
+
+        box-sizing: border-box;
+        border-bottom: 4px solid transparent;
+    }
+
+    .fav-navtabs .nav-item .nav-link {
+        cursor: pointer;
+        color: var(--dark-gray);
+        font-weight: 600;
+        line-height: 1.6;
+        border-style: none;
+        /* border-bottom: 4px solid transparent; */
+    }
+
+    .fav-navtabs .nav-item .nav-link:hover {
+        transition: .2s;
+        border-bottom: 4px solid var(--main-pink);
+    }
+
+    .fav-navtabs .nav-item .nav-link.active {
+        background-color: transparent;
+        border-bottom: 4px solid var(--main-pink);
+    }
+
+    /* 商品卡片------------------------------ */
+    .products-col {
+        padding: 5px;
+    }
+
+    .products-card {
+        height: 95%;
+        margin: auto;
+        padding: 10px;
+
+        border-radius: 15px;
+        box-shadow: 0px 3px 20px 0px rgb(17 29 48 / 5%);
+    }
+
+    .products-pic {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 10px;
+        z-index: 1;
+    }
+
+    .products-pic .product-badge {
+        background-color: var(--peach-pink);
+        color: #fff;
+        width: 50px;
+        height: 25px;
+        text-align: center;
+        font-size: 12px;
+        padding: 8px;
+        font-weight: 900;
+    }
+
+    .product-price {
+        font-size: 15px;
+        padding: 10px 0;
+        color: var(--main-pink);
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .product-price .org-price {
+        color: var(--light-gray);
+        text-decoration: line-through;
+        padding-left: 10px;
+    }
+
+    .cart-icon {
+        width: 50px;
+        height: 30px;
+        border-radius: 3px;
+        background-color: var(--main-pink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        margin-bottom: 10px;
+    }
+
+    .cart-icon .fa-cart-shopping {
+        color: #fff;
+    }
+
+    .cart-icon:hover {
+        background-color: var(--light-gray);
+    }
+
+    /* 設計館-------------------------- */
+    .store-main {
+        box-shadow: 0px 3px 20px 0px rgb(17 29 48 / 5%);
+    }
+
+    .store-icon {
+        width: 25%;
+    }
+
+    .store-review .review-star .fa-star {
+        color: var(--peach-pink);
+        align-items: center;
+        margin: 5px 0;
+    }
+
+    /* 品牌card評論: 星星+分數+總數 */
+    .store-review .review-score,
+    .store-review .review-amount {
+        align-self: center;
+        font-size: 10px;
+        margin: 5px;
+        color: var(--light-gray);
+    }
+
+    /* 產品card評論: 星星 */
+    .product-body .review-star {
+        color: var(--peach-pink);
+        align-items: center;
+        margin: 5px 0;
+    }
+
+    /* 篩選 */
+    .pf-product-filter label {
+        color: var(--dark-gray);
+    }
+
+    /* 按鈕設定 */
+    .btn {
+        font-size: 14px;
+    }
+
+
+
+    .btn-lg {
+        border: 1px solid var(--light-gray);
+        color: var(--dark-Gray);
+    }
+
+    .btn-lg:hover {
+        color: #fff;
+        background-color: var(--dark-gray);
+    }
+
+    .btn-pink {
+        background-color: var(--peach-pink);
+        color: var(--light-pink);
+
+
+    }
+
+    .btn-pink:hover {
+        background-color: var(--light-pink);
+        color: var(--peach-pink);
+    }
+
+    .btn-pink-outline {
+        border: 2px solid var(--main-pink);
+        background-color: var(--light-pink);
+        color: var(--main-pink);
+    }
+
+    .btn-pink-outline:hover {
+        background-color: var(--dark-gray);
+        color: var(--light-pink);
+    }
+
+    .btn-dg {
+        background-color: var(--dark-gray);
+        color: #fff;
+    }
+
+    .btn-dg:hover {
+        background-color: var(--light-gray);
+        color: #fff;
+    }
+
+    .modal-content {
+        font-size: 14px;
+    }
+
+    /* 字設定 */
+    .text-darkgray {
+        color: var(--dark-gray);
+    }
+
+    .text-pink {
+        color: var(--peach-pink);
+    }
+
+    .text-gray {
+        color: var(--light-gray);
+    }
+
+    /* .text-darkgray:hover {
+        color: var(--light-gray);
+    } */
+
+    .text-sm {
+        font-size: 12px;
+    }
+
+
+    img {
+        width: 100%;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+    .pf-side {
+        display: none;
+    }
+
+    @media screen and (min-width:768px) {
+        .pf-side-sm {
+            display: none;
+        }
+
+        .pf-side {
+            display: block;
+        }
+
+        .input-search {
+            display: none;
+        }
+
+        .store-main {
+            box-shadow: none;
+            border-bottom: 0.5px solid var(--light-gray);
+        }
+
+    }
+</style>
+
+<body>
+
+
+    <div class="container">
+        <div class="row ">
+            <h2 class="text-darkgray fw-bolder p-3 fs-2">喜歡清單</h2>
+
+            <!-- 手機搜鈕 -->
+            <div class="pf-side-sm">
+                <!-- 篩選商品處 -->
+                <button class="btn btn-pink-outline btn-filter w-25" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">篩選</button>
+
+                <!-- 手機版篩選列收合 -->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                    aria-labelledby="offcanvasRightLabel">
+                    <div class="offcanvas-header">
+                        <!-- <h2 class="offcanvas-title" id="offcanvasRightLabel"></h2> -->
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+
+                        <div class="pf-filter">
+                            <h2 class="text-pink fw-bolder fs-6 py-2">篩選</h2>
+                            <!-- 篩選選項 -->
+                            <div class="pf-filter-option">
+                                <div class="pf-filter-selections ">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="flexRadioDefault"
+                                            id="flexRadioDefault1">
+                                        <label class="form-check-label text-darkgray " for="flexRadioDefault1">
+                                            只顯示免運商品
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="flexRadioDefault"
+                                            id="flexRadioDefault2">
+                                        <label class="form-check-label text-darkgray " for="flexRadioDefault2">
+                                            只顯示折扣商品
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="flexRadioDefault"
+                                            id="flexRadioDefault2">
+                                        <label class="form-check-label text-darkgray " for="flexRadioDefault3">
+                                            只顯示可客製化商品
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- 手機搜尋列的商品分類 -->
+                            <div class="pf-category">
+                                <span class="ttext-pink fw-bolder">商品分類</span>
+
+                                <ul class="pf-category-list">
+                                    <li class="py-1"><a href="#" class="text-darkgray ">居家生活<span
+                                                class="count">(10) </span></a></li>
+                                    <li class="py-1"><a href="#" class="text-darkgray ">文具卡片</a></li>
+                                    <li class="py-1"><a href="#" class="text-darkgray ">配件飾品</a></li>
+                                    <li class="py-1"><a href="#" class="text-darkgray ">包包提袋</a></li>
+                                    <li class="py-1"><a href="#" class="text-darkgray ">衣著良品</a></li>
+                                </ul>
+                            </div>
+                            <!-- ----------------- -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ----------------- -->
+            <nav class="fav-navtabs">
+                <ul class="nav nav-tabs " id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="favProduct-tab" data-bs-toggle="tab"
+                            data-bs-target="#favProduct-tab-pane" type="button" role="tab"
+                            aria-controls="favProduct-tab-pane" aria-selected="true">所有收藏</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="favShop-tab" data-bs-toggle="tab"
+                            data-bs-target="#favShop-tab-pane" type="button" role="tab" aria-controls="favShop-tab-pane"
+                            aria-selected="false">關注的設計館</button>
+                    </li>
+
+                </ul>
+            </nav>
+
+            <div class="d-flex">
+                <div class="col-12 col-md-2 pf-side">
+                    <!-- 桌機搜鈕 -->
+
+                    <div class="">
+                        <h2 class="text-pink fw-bolder fs-6 py-2">篩選</h2>
+                        <!-- 篩選選項 -->
+                        <div class="pf-filter-price py-2">
+                            <div class="pf-filter-selections text-darkgray ">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="flexRadioDefault"
+                                        id="flexRadioDefault1">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        只顯示免運商品
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="flexRadioDefault"
+                                        id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault2">
+                                        只顯示折扣商品
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="flexRadioDefault"
+                                        id="flexRadioDefault2" checked>
+                                    <label class="form-check-label" for="flexRadioDefault3">
+                                        只顯示可客製化商品
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- 搜尋列的商品分類 -->
+                        <div class="pf-category">
+                            <span class="text-pink fw-bolder fs-6 py-2">商品分類</span>
+
+                            <ul class="pf-category-list">
+                                <li class="py-1"><a href="#" class="text-darkgray  ">居家生活<span
+                                            class="count">(10) </span></a></li>
+                                <li class="py-1"><a href="#" class="text-darkgray  ">文具卡片</a></li>
+                                <li class="py-1"><a href="#" class="text-darkgray  ">配件飾品</a></li>
+                                <li class="py-1"><a href="#" class="text-darkgray  ">包包提袋</a></li>
+                                <li class="py-1"><a href="#" class="text-darkgray  ">衣著良品</a></li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="tab-content col-12 col-md-10" id="myTabContent">
+                    <div class="tab-pane fade show active" id="favProduct-tab-pane" role="tabpanel"
+                        aria-labelledby="favProduct-tab" tabindex="0">
+                        <div class="">
+
+                            <div class="pf-filter-info d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="text-darkgray fw-bolder p-2">所有收藏</span>
+                                </div>
+                                <div class="pf-product-sub-filter d-flex align-items-center">
+                                    <span class="text-pink text-sm">排序</span>
+                                    <select class="form-select form-select-sm " aria-label="form-select-sm ">
+                                        <option selected>排序</option>
+                                        <option value="1">最新上架優先</option>
+                                        <option value="2">價格由高至低</option>
+                                        <option value="3">價格由低至高</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <!-- 商品卡片清單 -->
+                            <div class="row productlist  flex-wrap m-0">
+                                <!-- 商品卡片 -->
+                                <div class="pf-products-col col-6 col-md-3  products-col ">
+                                    <div class="pf-products-card products-card">
+                                        <div class="pf-products-pic position-relative products-pic">
+                                            <!-- Button trigger modal 加入喜歡清單鈕 -->
+                                            <button type="button" class="btn position-absolute bottom-0 end-0"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                                                <i class="fa-regular fa-heart"></i>
+                                            </button>
+                                            <!-- 優惠券 -->
+                                            <div class="product-badge position-absolute top-0 start-0">9 折</div>
+                                            <a href="#"><img src="https://picsum.photos/600/600/?random=10"></a>
+                                        </div>
+                                        <div class="pf-products-text products-text">
+                                            <h2><a href="#">黃銅戒指</a></h2>
+                                        </div>
+                                        <div class="pf-product-price product-price">
+                                            <p>NT$5000</p>
+                                            <p class="org-price">NT$ 5,555</p>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 商品卡片 -->
+                                <div class="pf-products-col col-6 col-md-3  products-col ">
+                                    <div class="pf-products-card products-card">
+                                        <div class="pf-products-pic position-relative products-pic">
+                                            <!-- Button trigger modal 加入喜歡清單鈕 -->
+                                            <button type="button" class="btn position-absolute bottom-0 end-0"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                                                <i class="fa-regular fa-heart"></i>
+                                            </button>
+                                            <!-- 優惠券 -->
+                                            <div class="product-badge position-absolute top-0 start-0">9 折</div>
+                                            <a href="#"><img src="https://picsum.photos/600/600/?random=10"></a>
+                                        </div>
+                                        <div class="pf-products-text products-text">
+                                            <h2><a href="#">黃銅戒指</a></h2>
+                                        </div>
+                                        <div class="pf-product-price product-price">
+                                            <p>NT$5000</p>
+                                            <p class="org-price">NT$ 5,555</p>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 商品卡片 -->
+                                <div class="pf-products-col col-6 col-md-3  products-col ">
+                                    <div class="pf-products-card products-card">
+                                        <div class="pf-products-pic position-relative products-pic">
+                                            <!-- Button trigger modal 加入喜歡清單鈕 -->
+                                            <button type="button" class="btn position-absolute bottom-0 end-0"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                                                <i class="fa-regular fa-heart"></i>
+                                            </button>
+                                            <!-- 優惠券 -->
+                                            <div class="product-badge position-absolute top-0 start-0">9 折</div>
+                                            <a href="#"><img src="https://picsum.photos/600/600/?random=10"></a>
+                                        </div>
+                                        <div class="pf-products-text products-text">
+                                            <h2><a href="#">黃銅戒指</a></h2>
+                                        </div>
+                                        <div class="pf-product-price product-price">
+                                            <p>NT$5000</p>
+                                            <p class="org-price">NT$ 5,555</p>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 商品卡片 -->
+                                <div class="pf-products-col col-6 col-md-3  products-col ">
+                                    <div class="pf-products-card products-card">
+                                        <div class="pf-products-pic position-relative products-pic">
+                                            <!-- Button trigger modal 加入喜歡清單鈕 -->
+                                            <button type="button" class="btn position-absolute bottom-0 end-0"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                                                <i class="fa-regular fa-heart"></i>
+                                            </button>
+                                            <!-- 優惠券 -->
+                                            <div class="product-badge position-absolute top-0 start-0">9 折</div>
+                                            <a href="#"><img src="https://picsum.photos/600/600/?random=10"></a>
+                                        </div>
+                                        <div class="pf-products-text products-text">
+                                            <h2><a href="#">黃銅戒指</a></h2>
+                                        </div>
+                                        <div class="pf-product-price product-price">
+                                            <p>NT$5000</p>
+                                            <p class="org-price">NT$ 5,555</p>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 商品卡片 -->
+                                <div class="pf-products-col col-6 col-md-3 products-col ">
+                                    <div class="pf-products-card products-card">
+                                        <div class="pf-products-pic position-relative products-pic">
+                                            <!-- Button trigger modal 加入喜歡清單鈕 -->
+                                            <button type="button" class="btn position-absolute bottom-0 end-0"
+                                                data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                                                <i class="fa-regular fa-heart"></i>
+                                            </button>
+                                            <!-- 優惠券 -->
+                                            <div class="product-badge position-absolute top-0 start-0">9 折</div>
+                                            <a href="#"><img src="https://picsum.photos/600/600/?random=10"></a>
+                                        </div>
+                                        <div class="pf-products-text products-text">
+                                            <h2><a href="#">黃銅戒指</a></h2>
+                                        </div>
+                                        <div class="pf-product-price product-price">
+                                            <p>NT$5000</p>
+                                            <p class="org-price">NT$ 5,555</p>
+                                        </div>
+                                        <div class="cart-icon">
+                                            <i class="fa-solid fa-cart-shopping"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="favShop-tab-pane" role="tabpanel" aria-labelledby="favShop-tab"
+                        tabindex="0">
+                        <div class="">
+
+
+                            <div class="pf-filter-info d-flex justify-content-between">
+                                <div class="input-group w-50 input-search ms-3">
+                                    <input type="text" class="form-control" placeholder=""
+                                        aria-label="Recipient's username" aria-describedby="button-addon2">
+                                    <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i
+                                            class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+
+                                <div class="pf-product-sub-filter d-flex align-items-center">
+                                    <span class="text-pink text-sm">排序</span>
+                                    <select class="form-select form-select-sm " aria-label="form-select-sm ">
+                                        <option selected>排序</option>
+                                        <option value="1">最新上架優先</option>
+                                        <option value="2">價格由高至低</option>
+                                        <option value="3">價格由低至高</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <!-- 店家卡片 -->
+                            <div class="col-12 store-main d-flex align-items-center flex-wrap my-2 p-2">
+                                <div class="col-12 col-md-6 d-flex align-items-center order-2 order-md-1 ">
+                                    <div class="store-icon   ">
+                                        <img src="./logo/hatsukoi_icon.png" alt="">
+                                    </div>
+                                    <div class="store-info ">
+                                        <div class="store-name p-1">
+                                            <a href="">hatsukoi</a>
+                                        </div>
+                                        <div class="store-detail p-1">
+                                            <div class="store-country d-flex">
+                                                <i class="fa-solid fa-location-dot p-1"></i>
+                                                <p>台灣</p>
+                                            </div>
+                                            <!-- 品牌評論 render -->
+                                            <div class="store-review d-flex">
+                                                <div class="review-star d-flex">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <p class="review-score">4.9</p>
+                                                    <p class="review-amount">(3,885)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 d-flex  order-1 order-md-2">
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- 店家卡片 -->
+                            <div class="col-12 store-main d-flex align-items-center flex-wrap my-2 p-2">
+                                <div class="col-12 col-md-6 d-flex align-items-center order-2 order-md-1 ">
+                                    <div class="store-icon   ">
+                                        <img src="./logo/hatsukoi_icon.png" alt="">
+                                    </div>
+                                    <div class="store-info ">
+                                        <div class="store-name p-1">
+                                            <a href="">hatsukoi</a>
+                                        </div>
+                                        <div class="store-detail p-1">
+                                            <div class="store-country d-flex">
+                                                <i class="fa-solid fa-location-dot p-1"></i>
+                                                <p>台灣</p>
+                                            </div>
+                                            <!-- 品牌評論 render -->
+                                            <div class="store-review d-flex">
+                                                <div class="review-star d-flex">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <p class="review-score">4.9</p>
+                                                    <p class="review-amount">(3,885)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 d-flex  order-1 order-md-2">
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- 店家卡片 -->
+                            <div class="col-12 store-main d-flex align-items-center flex-wrap my-2 p-2">
+                                <div class="col-12 col-md-6 d-flex align-items-center order-2 order-md-1 ">
+                                    <div class="store-icon   ">
+                                        <img src="./logo/hatsukoi_icon.png" alt="">
+                                    </div>
+                                    <div class="store-info ">
+                                        <div class="store-name p-1">
+                                            <a href="">hatsukoi</a>
+                                        </div>
+                                        <div class="store-detail p-1">
+                                            <div class="store-country d-flex">
+                                                <i class="fa-solid fa-location-dot p-1"></i>
+                                                <p>台灣</p>
+                                            </div>
+                                            <!-- 品牌評論 render -->
+                                            <div class="store-review d-flex">
+                                                <div class="review-star d-flex">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <p class="review-score">4.9</p>
+                                                    <p class="review-amount">(3,885)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 d-flex  order-1 order-md-2">
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- 店家卡片 -->
+                            <div class="col-12 store-main d-flex align-items-center flex-wrap my-2 p-2">
+                                <div class="col-12 col-md-6 d-flex align-items-center order-2 order-md-1 ">
+                                    <div class="store-icon   ">
+                                        <img src="./logo/hatsukoi_icon.png" alt="">
+                                    </div>
+                                    <div class="store-info ">
+                                        <div class="store-name p-1">
+                                            <a href="">hatsukoi</a>
+                                        </div>
+                                        <div class="store-detail p-1">
+                                            <div class="store-country d-flex">
+                                                <i class="fa-solid fa-location-dot p-1"></i>
+                                                <p>台灣</p>
+                                            </div>
+                                            <!-- 品牌評論 render -->
+                                            <div class="store-review d-flex">
+                                                <div class="review-star d-flex">
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <i class="fa-solid fa-star"></i>
+                                                    <p class="review-score">4.9</p>
+                                                    <p class="review-amount">(3,885)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 d-flex  order-1 order-md-2">
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+                                    <div class="product-pic m-1">
+                                        <img src="https://picsum.photos/300/300/?random=10">
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-12 col-md-3 ">
+
+
+
+            </div>
+            <div class="col-12 col-md-9">
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
