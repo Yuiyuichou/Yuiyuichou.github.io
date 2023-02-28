@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TodoList-Yui</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<style>
+    :root {
+        --bg-green: #c1c4c0;
+        --bg-light: #b5bdb1;
+        --text-gray: #626262;
+        --text-red: #d99d8a;
+
+    }
+
+    * {
+        list-style: none
+    }
+
+    .btn-green {
+        background-color: var(--bg-green);
+        color: var(--text-gray);
+    }
+
+    .btn-green:hover {
+        background-color: #fff;
+        color: var(--bg-green);
+        border: 0.7px solid var(--text-gray);
+
+    }
+
+    .btn-red {
+        color: var(--text-red);
+        background-color: #fff;
+        border: 0.7px solid var(--text-red);
+    }
+
+    .btn-red:hover {
+        background-color: var(--text-red);
+        color: #fff;
+    }
+
+    .bg-light {
+        background-color: var(--bg-light);
+        height: 100vh;
+    }
+
+    .bg-green {
+        background-color: var(--bg-green);
+        color: var(--text-gray);
+    }
+
+    .text-gray {
+        color: var(--text-gray);
+    }
+
+    input {
+
+        /* box-shadow: 0 0px 5px 0px var(--text-red); */
+        border: none;
+    }
+
+    /* .bg-list {
+        background-color: var(--bg-green);
+    } */
+</style>
+
+<body>
+    <div id="app">
+        <div class="bg-light">
+            <div class="container">
+                <div class="row ">
+                    <h1 class="text-center m-3">{{ title }}</h1>
+                    <div class="col-12 col-md-12 ">
+                        <form class="d-flex justify-content-between w-75 m-auto p-3" @submit.prevent="addTask">
+                            <input class="rounded-2 w-50 m-2 P-1" type="text" placeholder="TodoList"
+                                aria-label="default input " v-model.trim="newTask">
+                            <button type="submit" class="btn btn-green btn-add m-2 ">新增</button>
+                        </form>
+
+                        <div class="taskList  p-2 w-75 d-flex m-auto rounded-1">
+                            <ul class="w-100 p-0">
+                                <li v-for="(task, index) in tasks" :key="index"
+                                    class="d-flex justify-content-between p-2">
+
+                                    <div class="d-flex align-items-center ">
+                                        <input class="form-check-input text-gray m-2 p-1 " type="checkbox" :id="'task-' + index"
+                                            :checked="task.completed" @change="toggleCompleted(index)">
+
+                                        <label class="form-check-label text-gray m-2 p-1" :for="'task-' + index"
+                                            :class="{ 'text-decoration-line-through': task.completed }"
+                                            v-if="!task.editing">
+                                            {{ task.text }}
+
+
+                                        </label>
+                                        <input v-else v-model="task.text" type="text" class="text-gray rounded-2 m-2 p-1">
+                                    </div>
+
+
+                                    <div class="d-flex">
+                                        <button class="btn btn-red m-1" @click="editTask(index)">{{task.editing ?
+                                            '保存' : '修改'}}</button>
+                                        <button class="btn btn-red m-1" @click="deleteTask(index)">刪除</button>
+                                        <!-- <button class="btn btn-red m-1" v-else="isVisiable" @click="visiableHandle">保存</button> -->
+                                    </div>
+
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+
+
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                title: 'TodoList-Yui',
+                newTask: '',
+                tasks: []
+
+            },
+            // 載入
+            mounted() {
+                if (localStorage.getItem('tasks')) {
+                    try {
+                        this.tasks = JSON.parse(localStorage.getItem('tasks'));
+                    }
+                    catch (e) {
+                        localStorage.removeItem('tasks')
+                    }
+                }
+            },
+            methods: {
+                addTask() {
+                    var value = this.newTask;
+                    if (value == '') {
+                        return;
+                    }
+                    this.tasks.push({
+                        text: value,
+                        editing: false,
+                        completed: false
+                    });
+                    this.newTask = '';
+                    this.saveTask();
+
+                },
+                editTask(index) {
+                    this.tasks[index].editing = !this.tasks[index].editing;
+                    //this.tasks.editing = this.tasks.editing == true ? false : true ;
+                    this.saveTask()
+                },
+                deleteTask(index) {
+                    this.tasks.splice(index, 1);
+                    this.saveTask()
+
+                },
+                saveTask() {
+                    const parsed = JSON.stringify(this.tasks);
+                    localStorage.setItem('tasks', parsed);
+                },
+                toggleCompleted(index) {
+                    this.tasks[index].completed = !this.tasks[index].completed;
+                    this.saveTasks();
+                }
+
+            }
+        })
+    </script>
+</body>
+
+</html>
