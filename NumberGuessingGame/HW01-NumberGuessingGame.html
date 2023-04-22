@@ -1,171 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="reset.css">
     <title>Number Guessing Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
     <style>
-         
-    .start{
-        background-color: rgb(0,0,0, .5);
-        width: 100%;
-        height: 100vh;
-        position: absolute;
-        top: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .start-button{
-        width: 300px;
-        height: 200px;
-        font-size: 50px;
-        font-weight: 600;
-        color: #c3aaa6;
-        border: 5px solid #976666;
-        border-radius: 20px;
-    }
-    main{
-        height: 100vh;
-        background-color: #eff0ea;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-sizing: border-box;
-        padding: 50px;
-    }
-    h1{
-        width: 360px;
-        margin: auto;
-        text-align: center;
-        font-size: 36px;
-        font-weight: 900;
-        color: #7a848d;
-          
-    }
-    .wrap{
-        width: 400px;
-        background-color: #dbd2c9;
-        border:10px solid #7a848d;
-        border-radius: 15px;
-        margin: auto;
-    }
-    .view{
-        display: flex;
-        justify-content: space-around;
-    }
-    .view .show-number{
-        width: 160px;
-        margin: 5px;
-        /* display: flex;
-        flex-direction: column; */
-        text-align: center;
-    }
-    .view .show-guess{
-        width: 160px;
-        margin: 5px;
+        :root {
+            --light-pink: #f2e1de;
+            --main-pink: #976666;
+            --warn-pink:#f78080;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
 
-    }
-    .view h2{
-        font-size: 22px;
-        text-align: center;
-        color: #7a848d;
-        margin: 10px;
-    }
-      .view p{
-          color: #7a848d;
-          font-size: 23px;
-          height: 80px;
-          width: 150px;
-          font-weight: 600;
-          border: solid 5px #a9b7aa;
-          border-radius: 15px;
-          line-height: 3.5;
-      }
-      .view .show-guess input{
-          color: #7a848d;
-          font-size: 22px;
-          height: 80px;
-          font-weight: 600;
-          width: 150px;
-          border: solid 5px #a9b7aa;
-          background-color: #dbd2c9;
-          border-radius: 15px;
-          text-align: center;
-      }
-      .warning{
-          font-size: 20px;
-          color: #976666;
-          font-weight: 600;
-          width: 250px;
-          margin: auto;
-          height: 20px;
-          padding: 10px;
-          text-align: center;
-      }
-      .main-box{
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: space-around;
-          width: 370px;
-          margin: auto;
-          
-      }
-      .main-box button{
-          width: 80px;
-          height: 80px;
-          margin: 10px;
-          border: solid 5px #a9b7aa;
-          border-radius: 40px;
-          font-size: 28px;
-          font-weight: 600;
-          background-color: #ccd2cc;
-          color: #7a848d;
-      }
-      .main-box button:hover{
-          background-color: #c3aaa6;
-      }
-      .reset{
-          display: flex;
-          justify-content: flex-start;
-          
-      }
-      .reset button{
-          width: 100px;
-          height: 50px;
-          margin: 10px auto;
-          border-radius: 20px;
-          font-size: 18px;
-          font-weight: 800;
-          border: solid 5px #a9b7aa;
-          background-color: #ccd2cc;
-          color: #7a848d;
-      }
-      .reset button:hover{
-          background-color: #c3aaa6;
-      }
-      
-  </style>
+        .start {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .start-button {
+            width: 250px;
+            height: 100px;
+            font-size: 35px;
+            font-weight: 600;
+            color: var(--main-pink);
+            border: 3px solid var(--main-pink);
+            border-radius: 10px;
+        }
+
+        main {
+            height: 100vh;
+            background-color: rgb(240, 220, 220);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: auto;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 600;
+            color: var(--main-pink);
+
+        }
+
+        .wrap {
+            width: 350px;
+            background-color: #ffffff;
+            border: 3px solid var(--main-pink);
+            border-radius: 15px;
+            margin: auto;
+        }
+
+        .view {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .view .show-number {
+            width: 150px;
+            margin: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .view .show-guess {
+            width: 160px;
+            margin: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .view h2 {
+            font-size: 20px;
+            text-align: center;
+            color: var(--main-pink);
+            margin: 10px;
+        }
+
+        .showErea {
+            font-size: 23px;
+            height: 60px;
+            width: 120px;
+            font-weight: 600;
+            border: solid 2px var(--main-pink);
+            border-radius: 15px;
+        }
+
+        #displayNum {
+            line-height: 2.5;
+            color:var(--warn-pink);
+        }
+
+        #myText {
+            color: var(--main-pink);
+            font-size: 22px;
+            height: 60px;
+            font-weight: 600;
+            width: 120px;
+            border: solid 2px var(--main-pink);
+            background-color: #ffffff;
+            border-radius: 15px;
+            text-align: center;
+            padding: 0px;
+        }
+
+        .warning {
+            font-size: 15px;
+            color:var(--warn-pink);
+            font-weight: 300;
+            width: 250px;
+            margin: auto;
+            height: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .main-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 300px;
+            margin: auto;
+
+        }
+
+        .main-box button {
+            width: 60px;
+            height: 60px;
+            margin: 5px 10px;
+            border: 2px solid var(--main-pink);
+            border-radius: 40px;
+            font-size: 23px;
+            font-weight: 600;
+            color: var(--main-pink);
+            background-color: var(--light-pink);
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .main-box button:hover {
+            background-color: #e0b8b0;
+        }
+
+        .reset {
+            display: flex;
+            justify-content: flex-start;
+
+        }
+
+        .reset button {
+            width: 90px;
+            height: 50px;
+            margin: 10px auto;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 800;
+            border: solid 2px  var(--main-pink);
+            background-color: var(--light-pink);
+            color: var(--main-pink);
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .reset button:hover {
+            background-color:#e0bcb6;
+        
+        }
+
+        @media screen and (min-width:768px){
+            h1{
+                margin-bottom:10px ;
+            }
+            main{
+                
+            }
+        }
+    </style>
 </head>
+
 <body>
     <div class="start">
-        <button class="start-button">開始遊戲</button>
+        <button class="start-button">Start</button>
         
     </div>
     <main>
+
         <h1>終極密碼</h1>
-    
         <section class="wrap">
             <div class="view">
                 <div class="show-number">
                     <h2>數字範圍</h2>
-                    <p>1~100</p>
+                    <div class="showErea">
+                        <p id="displayNum">1~100</p>
+                    </div>
+
                 </div>
                 <div class="show-guess">
                     <h2>猜猜看</h2>
-                    <input type="text" id="myText" disabled>
+                    <div class="">
+                        <input type="text" id="myText" disabled>
+                    </div>
+
                 </div>
                 <!--html的 input標籤有disabled屬性  -->
             </div>
@@ -189,99 +241,102 @@
             </div>
         </section>
     </main>
-    
-       
+
+
     <script>
-      function getRandomInt(min,max){
-        min = Math.ceil(min);
-        max = Math.floor(max);
-        return Math.floor(Math.random()*(max - min + 1) + min);
-      }
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
         let start = document.querySelector('.start')
         let startBtn = document.querySelector('.start-button')
         let checkbtn = document.querySelector('.check')
         let resetbtn = document.querySelector('.reset')
         let inputNum = document.querySelector('input')
-        let showNum = document.querySelector('.show-number p')
-        let warn =document.querySelector('.warning')
-        
+        //let showNum = document.querySelector('.show-number p')
+        let showNum = document.getElementById('displayNum')
+
+        let warn = document.querySelector('.warning')
+
         //start
-        startBtn.addEventListener('click',function(){
+        startBtn.addEventListener('click', function () {
             start.style.display = 'none';
         })
 
         let min = 1
         let max = 100
         let answer = getRandomInt(min, max)
-        console.log('答案是'+ answer)
+        console.log('答案是' + answer)
 
         //監聽輸入的數字
-        checkbtn.addEventListener('click', function(){
-          let guest = inputNum.value
-          let parse = parseInt(guest, 10)
-          if(parse != NaN){
-            if( parse >= max || parse <= min){
-                warn.innerHTML = '數字超出範圍請重新輸入'
-            }
-            else if(parse == answer){
-                warn.innerHTML = `恭喜你~答對囉! 答案是 ${answer}`
-                allNum.forEach( x => {
-                    x.disabled = true;
-                });
-            }
-            else if(parse > answer){
-                max = parse
-                showNum.innerHTML = `${min}~${max}`
-                warn.innerHTML = ''
-            }
-            else if(parse < answer){
-                min = parse
-                showNum.innerHTML = `${min}~${max}`
-                warn.innerHTML = ''
-            }
+        checkbtn.addEventListener('click', function () {
+            let guest = inputNum.value
+            let parse = parseInt(guest, 10)
+            if (parse != NaN) {
+                if (parse >= max || parse <= min) {
+                    warn.innerHTML = '數字超出範圍請重新輸入'
+                }
+                else if (parse == answer) {
+                    warn.innerHTML = `恭喜你~答對囉! 答案是 ${answer}`
+                    allNum.forEach(x => {
+                        x.disabled = true;
+                    });
+                }
+                else if (parse > answer) {
+                    max = parse
+                    showNum.innerHTML = `${min}~${max}`
+                    warn.innerHTML = ''
+                }
+                else if (parse < answer) {
+                    min = parse
+                    showNum.innerHTML = `${min}~${max}`
+                    warn.innerHTML = ''
+                }
 
-          }
-          else{
-            warn.innerHTML = '請重新輸入數字 !!'    
-          }
-          inputNum.value = ''
+            }
+            else {
+                warn.innerHTML = '請重新輸入數字 !!'
+            }
+            inputNum.value = ''
 
         })
 
         //取消鍵
-        let cancelBtn =document.querySelector('.main-box .cancel')
-        cancelBtn.addEventListener('click',function(){
-                  inputNum.value=''
-                  warn.innerHTML=''
+        let cancelBtn = document.querySelector('.main-box .cancel')
+        cancelBtn.addEventListener('click', function () {
+            inputNum.value = ''
+            warn.innerHTML = ''
         })
-        
+
         //數字鍵 用foreach一個一個抓放進容器
 
         let allNum = document.querySelectorAll('.item')
         allNum.forEach(element => {
-            element.addEventListener('click',function(){
-              inputNum.value += element.innerHTML
+            element.addEventListener('click', function () {
+                inputNum.value += element.innerHTML
             })
         });
 
         //重來鍵
         let reBtn = document.querySelector('.reset button')
-        reBtn.addEventListener('click',function(){
-          min = 0
-          max = 100
-          answer = getRandomInt(min,max)
-          showNum.innerHTML =`${min}~${max}`
-          inputNum.value = ''
-          warn.innerHTML = ''
-          allNum.forEach( x => {
-                    x.disabled = false;
-                });
+        reBtn.addEventListener('click', function () {
+            min = 0
+            max = 100
+            answer = getRandomInt(min, max)
+            showNum.innerHTML = `${min}~${max}`
+            inputNum.value = ''
+            warn.innerHTML = ''
+            allNum.forEach(x => {
+                x.disabled = false;
+            });
         })
 
 
 
-      
+
 
     </script>
 </body>
+
 </html>
