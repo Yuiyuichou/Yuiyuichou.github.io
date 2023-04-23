@@ -12,13 +12,13 @@
 </head>
 <style>
     .wrap {
-        background-color: rgb(231, 230, 224);
-        height: 100vh;
+        background-color: rgb(254, 239, 227);
+        min-height: 100vh;
     }
 
     .container {
         max-width: 700px;
-        height: 90vh;
+        /* min-height: 100vh; */
         padding: 60px 100px;
         display: flex;
         flex-direction: column;
@@ -39,14 +39,14 @@
     .btngroup .btn {
         width: 32.7%;
         font-weight: 800;
-        background-color: rgb(246, 238, 214);
+        background-color: rgb(255, 255, 255);
         font-family: Roboto, Sans-serif;
-        border: 5px solid rgb(225, 201, 171);
-        color: rgb(127, 102, 79);
+        border: 2px solid rgb(250, 174, 82);
+        color: rgb(250, 174, 82);
     }
 
     .btngroup .btn:checked {
-        background-color: rgb(225, 201, 171);
+        background-color: rgb(255, 197, 197);
     }
 
     .box {
@@ -62,11 +62,12 @@
     }
 
     .display {
-        border: 5px solid rgb(225, 201, 171);
+        min-height: 50vh;
+        border: 3px solid rgb(250, 174, 82);
         border-radius: 10px;
         display: flex;
         flex-direction: column;
-        background-color: rgb(246, 238, 214);
+        background-color: rgb(250, 250, 250);
     }
 
     .history {
@@ -86,24 +87,24 @@
     }
 
     .input-group-text {
-        border: 5px solid rgb(225, 201, 171);
-        background-color: rgb(246, 238, 214);
-        color: rgb(127, 102, 79);
+        border: 3px solid  rgb(250, 174, 82);
+        background-color:  rgb(250, 174, 82);
+        color: rgb(90, 66, 44);
     }
 
     .input-group .btn {
-        border: 5px solid rgb(225, 201, 171);
-        color: rgb(127, 102, 79);
-        background-color: rgb(246, 238, 214);
+        border: 3px solid  rgb(250, 174, 82);
+        color: rgb(90, 66, 44);
+        background-color: rgb(250, 174, 82);
     }
 
     .form-control {
-        border-top: 5px solid rgb(225, 201, 171);
-        border-bottom: 5px solid rgb(225, 201, 171);
+        border-top: 3px solid  rgb(250, 174, 82);
+        border-bottom: 3px solid  rgb(250, 174, 82);
         border-left: 0px solid rgb(225, 201, 171, 0);
         border-right: 0px solid rgb(225, 201, 171, 0);
-        color: rgb(127, 102, 79);
-        background-color: rgb(246, 238, 214);
+        color: rgb(250, 174, 82);
+        background-color: rgb(255, 255, 255);
 
     }
 
@@ -120,6 +121,10 @@
     .btn:checked {
         background-color: rgb(186, 177, 164);
     }
+    .history .btn-danger{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 
     /* .sweet-warning > .sa-button-container > {
         background-color: rgb(233, 207, 192);
@@ -130,7 +135,7 @@
     <div class="wrap">
         <div class="container text-center">
             <!-- 功能區 -->
-            <div class="btngroup " role="group" aria-label="Basic outlined example">
+            <div class="btngroup " role="group" aria-label="Basic outlined">
                 <button type="button" class="btn " id="start">開始</button>
                 <button type="button" class="btn " id="giveUp">放棄重來</button>
                 <button type="button" class="btn " id="checkAnswer" disabled>看答案</button>
@@ -293,6 +298,7 @@
                 clearInput();
                 _guess.disabled = true;
                 _start.disabled = false;
+                _history.innerHTML='';
             }
             else {
                 setHistoryMsg();
@@ -323,7 +329,7 @@
             setGame();
             _start.disabled = true;
             _showAnswer.disabled = false;
-
+            _restart.disabled = false;
             _guess.disabled = false;
             clearInput();
 
