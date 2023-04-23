@@ -14,26 +14,39 @@
 </head>
 <style>
     :root {
-        --bg-green: #c1c4c0;
-        --bg-light: #b5bdb1;
-        --text-gray: #626262;
-        --text-red: #d99d8a;
+        --bs-blue: #e29c76 !important;
+        --bs-primary: #e29c76 !important;
+        --bg-green: #53402a;
+        --bg-lightbg: #fdedce;
+        --text-gray: #5a5757;
+        --text-red: #ee977d;
 
     }
 
     * {
         list-style: none
     }
+    .form-check-input:checked {
+    background-color:  #e29c76 ;
+    border-color: rgb(226, 156, 118); 
+    }
+    .form-check-input:focus {
+    border-color: #e29c76 ;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(226, 156, 118,.25);
+}
+
 
     .btn-green {
-        background-color: var(--bg-green);
-        color: var(--text-gray);
+        background-color: #fff;
+        color: var(--bg-green);
+        border: 0.8px solid var(--text-gray);
     }
 
     .btn-green:hover {
-        background-color: #fff;
-        color: var(--bg-green);
-        border: 0.7px solid var(--text-gray);
+        
+        background-color: var(--bg-green);
+        color: #fff;
 
     }
 
@@ -48,8 +61,8 @@
         color: #fff;
     }
 
-    .bg-light {
-        background-color: var(--bg-light);
+    .bg-lightbg {
+        background-color: var(--bg-lightbg);
         height: 100vh;
     }
 
@@ -60,6 +73,7 @@
 
     .text-gray {
         color: var(--text-gray);
+
     }
 
     input {
@@ -75,15 +89,15 @@
 
 <body>
     <div id="app">
-        <div class="bg-light">
+        <div class="bg-lightbg">
             <div class="container">
                 <div class="row ">
-                    <h1 class="text-center m-3">{{ title }}</h1>
+                    <h1 class="text-center m-3 fw-bold">{{ title }}</h1>
                     <div class="col-12 col-md-12 ">
                         <form class="d-flex justify-content-between w-75 m-auto p-3" @submit.prevent="addTask">
                             <input class="rounded-2 w-50 m-2 P-1" type="text" placeholder="TodoList"
                                 aria-label="default input " v-model.trim="newTask">
-                            <button type="submit" class="btn btn-green btn-add m-2 ">新增</button>
+                            <button type="submit" class="btn btn-green btn-add m-2 fw-bold ">新增</button>
                         </form>
 
                         <div class="taskList  p-2 w-75 d-flex m-auto rounded-1">
@@ -95,7 +109,7 @@
                                         <input class="form-check-input text-gray m-2 p-1 " type="checkbox" :id="'task-' + index"
                                             :checked="task.completed" @change="toggleCompleted(index)">
 
-                                        <label class="form-check-label text-gray m-2 p-1" :for="'task-' + index"
+                                        <label class="form-check-label text-gray fw-bold m-2 p-1" :for="'task-' + index"
                                             :class="{ 'text-decoration-line-through': task.completed }"
                                             v-if="!task.editing">
                                             {{ task.text }}
@@ -107,9 +121,9 @@
 
 
                                     <div class="d-flex">
-                                        <button class="btn btn-red m-1" @click="editTask(index)">{{task.editing ?
+                                        <button class="btn btn-red fw-bold  m-1" @click="editTask(index)">{{task.editing ?
                                             '保存' : '修改'}}</button>
-                                        <button class="btn btn-red m-1" @click="deleteTask(index)">刪除</button>
+                                        <button class="btn btn-red fw-bold  m-1" @click="deleteTask(index)">刪除</button>
                                         <!-- <button class="btn btn-red m-1" v-else="isVisiable" @click="visiableHandle">保存</button> -->
                                     </div>
 
@@ -136,7 +150,7 @@
         const app = new Vue({
             el: "#app",
             data: {
-                title: 'TodoList-Yui',
+                title: 'TodoList',
                 newTask: '',
                 tasks: []
 
