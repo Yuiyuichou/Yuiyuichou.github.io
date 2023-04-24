@@ -8,30 +8,34 @@
     <link rel="stylesheet" href="reset.css">
     <title>Number Guessing Game</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/color.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
             --light-pink: #f2e1de;
             --main-pink: #976666;
-            --warn-pink:#f78080;
+            --warn-pink: #f78080;
             font-family: 'Noto Sans TC', sans-serif;
-            --yellow:rgb(255, 237, 212);
-            --brown:#5d3100;
+            --yellow: rgb(255, 237, 212);
+            --brown: #5d3100;
         }
 
         .start {
             background-color: rgba(0, 0, 0, 0.7);
-            width: 100%;
+            width:100%;
             height: 100vh;
             position: absolute;
             top: 0;
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 100;
         }
 
         .start-button {
+           margin: auto;
+            
             width: 250px;
             height: 100px;
             font-size: 35px;
@@ -43,24 +47,28 @@
 
         main {
             height: 100vh;
-            background-color: rgb(240, 220, 220);
+            /* background-color: rgb(240, 220, 220); */
             display: flex;
             flex-direction: column;
             align-items: center;
             box-sizing: border-box;
-            padding: 20px;
+            position: relative;
         }
-
+        .content{
+            height: 80vh;
+            padding: 60px 20px;
+            position: absolute;
+        }
         h1 {
-            margin: auto;
+            margin: 20px 0;
             text-align: center;
             font-size: 30px;
-            font-weight: 600;
-            color: var(--brown);
+            font-weight: 400;
+            color:rgba(255, 255, 255, 0.5);
 
         }
 
-        .wrap {
+        .wrap { 
             width: 350px;
             background-color: #ffffff;
             border: 3px solid var(--brown);
@@ -109,7 +117,7 @@
 
         #displayNum {
             line-height: 2.5;
-            color:var(--warn-pink);
+            color: var(--warn-pink);
         }
 
         #myText {
@@ -127,7 +135,7 @@
 
         .warning {
             font-size: 15px;
-            color:var(--warn-pink);
+            color: var(--warn-pink);
             font-weight: 300;
             width: 250px;
             margin: auto;
@@ -159,7 +167,7 @@
         }
 
         .main-box button:hover {
-            background-color:var(--yellow);
+            background-color: var(--yellow);
         }
 
         .reset {
@@ -175,27 +183,29 @@
             border-radius: 20px;
             font-size: 18px;
             font-weight: 800;
-            border: solid 2px  var(--brown);
+            border: solid 2px var(--brown);
             background-color: var(--light-pink);
             color: var(--brown);
             font-family: 'Noto Sans TC', sans-serif;
         }
 
         .reset button:hover {
-            background-color:var(--yellow);
-        
+            background-color: var(--yellow);
+
         }
 
-        @media screen and (max-width:768px){
-            h1{
-                margin-bottom:10px ;
+        @media screen and (max-width:768px) {
+            h1 {
+                margin-bottom: 10px;
             }
-          .wrap{
-            transform: scale(0.8);
-          }
-          .start{
-            z-index: 10;
-          }
+
+            .wrap {
+                transform: scale(0.8);
+            }
+
+            .start {
+                z-index: 10;
+            }
         }
     </style>
 </head>
@@ -203,48 +213,57 @@
 <body>
     <div class="start">
         <button class="start-button">Start</button>
-        
+
     </div>
     <main>
-
-        <h1>終極密碼</h1>
-        <section class="wrap">
-            <div class="view">
-                <div class="show-number">
-                    <h2>數字範圍</h2>
-                    <div class="showErea">
-                        <p id="displayNum">1~100</p>
-                    </div>
-
+        <div class="container">
+            <div class="box">
+                <div class="grade rote pink">
+                    
                 </div>
-                <div class="show-guess">
-                    <h2>猜猜看</h2>
-                    <div class="">
-                        <input type="text" id="myText" disabled>
-                    </div>
+            </div>
+        </div>
+        <div class="content">
+            <h1>終極密碼</h1>
+                    <section class="wrap">
+                        <div class="view">
+                            <div class="show-number">
+                                <h2>數字範圍</h2>
+                                <div class="showErea">
+                                    <p id="displayNum">1~100</p>
+                                </div>
 
-                </div>
-                <!--html的 input標籤有disabled屬性  -->
-            </div>
-            <p class="warning"></p>
-            <div class="main-box">
-                <button class="item">1</button>
-                <button class="item">2</button>
-                <button class="item">3</button>
-                <button class="item">4</button>
-                <button class="item">5</button>
-                <button class="item">6</button>
-                <button class="item">7</button>
-                <button class="item">8</button>
-                <button class="item">9</button>
-                <button class="cancel">C</button>
-                <button class="item">0</button>
-                <button class="check">OK</button>
-            </div>
-            <div class="reset">
-                <button>Reset</button>
-            </div>
-        </section>
+                            </div>
+                            <div class="show-guess">
+                                <h2>猜猜看</h2>
+                                <div class="">
+                                    <input type="text" id="myText" disabled>
+                                </div>
+
+                            </div>
+                            <!--html的 input標籤有disabled屬性  -->
+                        </div>
+                        <p class="warning"></p>
+                        <div class="main-box">
+                            <button class="item">1</button>
+                            <button class="item">2</button>
+                            <button class="item">3</button>
+                            <button class="item">4</button>
+                            <button class="item">5</button>
+                            <button class="item">6</button>
+                            <button class="item">7</button>
+                            <button class="item">8</button>
+                            <button class="item">9</button>
+                            <button class="cancel">C</button>
+                            <button class="item">0</button>
+                            <button class="check">OK</button>
+                        </div>
+                        <div class="reset">
+                            <button>Reset</button>
+                        </div>
+                    </section>
+        </div>
+                
     </main>
 
 

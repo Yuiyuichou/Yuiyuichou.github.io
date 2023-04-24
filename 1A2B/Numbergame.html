@@ -12,8 +12,37 @@
 </head>
 <style>
     .wrap {
-        background-color: rgb(254, 239, 227);
+        background: conic-gradient(#ecacb5 0deg, #fff7aa 72deg, #91dbb9 144deg, #9acde7 216deg, #dba6cc 288deg, #ecacb5);
         min-height: 100vh;
+    }
+
+    /* p {
+        width: 160px;
+        margin: 10px auto;
+        font-size: 40px;
+        font-weight: 700;
+        color: transparent;
+        line-height: 2;
+        animation: anim 5s linear infinite;
+    } */
+
+    .conic> p {
+        font-size: 30px;
+        font-weight: 700;
+        color: #fff;
+    }
+    @keyframes anim {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            50% {
+                filter: hue-rotate(180deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
     }
 
     .container {
@@ -41,8 +70,8 @@
         font-weight: 800;
         background-color: rgb(255, 255, 255);
         font-family: Roboto, Sans-serif;
-        border: 2px solid rgb(250, 174, 82);
-        color: rgb(250, 174, 82);
+        border: 2px solid rgb(200, 190, 179);
+        color: rgb(200, 190, 179);
     }
 
     .btngroup .btn:checked {
@@ -63,7 +92,7 @@
 
     .display {
         min-height: 50vh;
-        border: 3px solid rgb(250, 174, 82);
+        border: 3px solid rgb(233 227 227);
         border-radius: 10px;
         display: flex;
         flex-direction: column;
@@ -77,9 +106,11 @@
         align-items: center;
         margin-top: 1rem;
     }
-    .history p{
+
+    .history p {
         margin-top: inherit;
     }
+
     .input-group {
 
         margin-top: auto;
@@ -87,23 +118,23 @@
     }
 
     .input-group-text {
-        border: 3px solid  rgb(250, 174, 82);
-        background-color:  rgb(250, 174, 82);
+        border: 3px solid rgb(200, 190, 179);
+        background-color: rgb(200, 190, 179);
         color: rgb(90, 66, 44);
     }
 
     .input-group .btn {
-        border: 3px solid  rgb(250, 174, 82);
+        border: 3px solid rgb(200, 190, 179);
         color: rgb(90, 66, 44);
-        background-color: rgb(250, 174, 82);
+        background-color: rgb(200, 190, 179);
     }
 
     .form-control {
-        border-top: 3px solid  rgb(250, 174, 82);
-        border-bottom: 3px solid  rgb(250, 174, 82);
+        border-top: 3px solid rgb(200, 190, 179);
+        border-bottom: 3px solid rgb(200, 190, 179);
         border-left: 0px solid rgb(225, 201, 171, 0);
         border-right: 0px solid rgb(225, 201, 171, 0);
-        color: rgb(250, 174, 82);
+        color: rgb(200, 190, 179);
         background-color: rgb(255, 255, 255);
 
     }
@@ -121,7 +152,15 @@
     .btn:checked {
         background-color: rgb(186, 177, 164);
     }
-    .history .btn-danger{
+
+    .history .btn-danger {
+        background-color: rgb(227, 157, 138);
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    
+    .history .btn-success {
+        background-color: rgb(200, 218, 133);
         margin-left: 10px;
         margin-right: 10px;
     }
@@ -132,8 +171,9 @@
 </style>
 
 <body>
-    <div class="wrap">
-        <div class="container text-center">
+    <div class="wrap  conic">
+        <div class="container text-center conic">
+            <p>1A2B Game</p>
             <!-- 功能區 -->
             <div class="btngroup " role="group" aria-label="Basic outlined">
                 <button type="button" class="btn " id="start">開始</button>
@@ -173,7 +213,7 @@
         const _write = document.querySelector('.write');
 
         //正則表達式(判定輸入的每個字元是否為0~9數字)
-        const regex =  /^(0|[0-9]*)$/;
+        const regex = /^(0|[0-9]*)$/;
 
         //變數宣告區
         const min = 0;
@@ -231,7 +271,7 @@
             return Math.floor(Math.random() * (max - min + 1) + min);
         }
 
-              
+
         //方法: 產生4位不重複0~9數字
         function setGame() {
             do {
@@ -298,7 +338,7 @@
                 clearInput();
                 _guess.disabled = true;
                 _start.disabled = false;
-                _history.innerHTML='';
+
             }
             else {
                 setHistoryMsg();
@@ -324,6 +364,7 @@
 
         //事件: 點擊 開始
         _start.addEventListener('click', () => {
+            _display.innerHTML = ''
             initializeAnswerArr();
             initializeGuessArr();
             setGame();

@@ -1,0 +1,69 @@
+p {
+  margin: 5px 0;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+}
+.container .box {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+.container .box .grade {
+  position: absolute;
+  width: 2500px;
+  height: 2500px;
+}
+.container .box .rote {
+  top: -900px;
+  left: -300px;
+  animation: bgrote 10s linear infinite;
+}
+@keyframes bgrote {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  50% {
+    transform: rotateZ(180deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+.container .box .pos {
+  top: 0;
+  left: 0;
+  animation: bgpos 10s linear infinite;
+}
+@keyframes bgpos {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-50px, 0);
+  }
+  50% {
+    transform: translate(-50px, -50px);
+  }
+  75% {
+    transform: translate(0, -50px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+.container .box .pink {
+  background-image: linear-gradient(to top, #e8198b 0%, #c7eafd 100%);
+}
+.container .box .blue {
+  background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 100%, #6b8cce 100%, #a2b6df 100%);
+}
+.container .box .rainbow {
+  background-image: linear-gradient(to top, #fcc5e4 0%, #fda34b 15%, #ff7882 35%, #c8699e 52%, #7046aa 71%, #0c1db8 87%, #020f75 100%);
+}/*# sourceMappingURL=color.css.map */
