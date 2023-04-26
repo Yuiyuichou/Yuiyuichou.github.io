@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <title>Number Guessing Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --light-pink: #f2e1de;
+            --main-pink: #976666;
+            --warn-pink: #f78080;
+            font-family: 'Noto Sans TC', sans-serif;
+            --yellow: rgb(255, 237, 212);
+            --brown: #5d3100;
+        }
+
+        .start {
+            background-color: rgba(0, 0, 0, 0.7);
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .start-button {
+            margin: auto;
+
+            width: 250px;
+            height: 100px;
+            font-size: 35px;
+            font-weight: 600;
+            color: var(--brown);
+            border: 3px solid var(--brown);
+            border-radius: 10px;
+        }
+
+        main {
+            height: 100vh;
+            /* background-color: rgb(240, 220, 220); */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        .content {
+            height: 80vh;
+            padding: 60px 20px;
+            margin: auto;
+        }
+
+        h1 {
+            margin: 20px 0;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.5);
+
+        }
+
+        .wrap {
+            width: 350px;
+            background-color: #ffffff;
+            border: 3px solid var(--brown);
+            border-radius: 15px;
+            margin: auto;
+        }
+
+        .view {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .view .show-number {
+            width: 150px;
+            margin: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .view .show-guess {
+            width: 160px;
+            margin: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .view h2 {
+            font-size: 20px;
+            text-align: center;
+            color: var(--brown);
+            margin: 10px;
+        }
+
+        .showErea {
+            font-size: 23px;
+            height: 60px;
+            width: 120px;
+            font-weight: 600;
+            border: solid 2px var(--brown);
+            border-radius: 15px;
+        }
+
+        #displayNum {
+            line-height: 2.5;
+            color: #2bb2b1;
+        }
+
+        #myText {
+            color:  #115d89;
+            font-size: 22px;
+            height: 60px;
+            font-weight: 600;
+            width: 120px;
+            border: solid 2px var(--brown);
+            background-color: #ffffff;
+            border-radius: 15px;
+            text-align: center;
+            padding: 0px;
+        }
+
+        .warning {
+            font-size: 15px;
+            color: var(--warn-pink);
+            font-weight: 300;
+            width: 250px;
+            margin: auto;
+            height: 10px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .main-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            width: 300px;
+            margin: auto;
+
+        }
+
+        .main-box button {
+            width: 60px;
+            height: 60px;
+            margin: 5px 10px;
+            border: 2px solid var(--brown);
+            border-radius: 25px;
+            font-size: 23px;
+            font-weight: 600;
+            color: #fff;
+            background-color: #115d89;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .main-box button:hover {
+            background-color:  #2bb2b1;
+        }
+
+        .reset {
+            display: flex;
+            justify-content: flex-start;
+
+        }
+
+        .reset button {
+            width: 90px;
+            height: 50px;
+            margin: 10px auto;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: 800;
+            border: solid 2px var(--brown);
+            background-color: #2bb2b1;
+            color: #fff;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .reset button:hover {
+            background-color:  #115d89;
+
+        }
+
+        @media screen and (max-width:768px) {
+            h1 {
+                margin-bottom: 10px;
+            }
+
+            .wrap {
+                transform: scale(0.8);
+            }
+
+            .start {
+                z-index: 10;
+            }
+        }
+
+
+        /* 星空の背景のスタイル */
+        .stars {
+            position: relative;
+            width: 100%;
+            /* 星空の横幅 */
+            height: 100vh;
+            /* 星空の縦幅 */
+            background-image: linear-gradient(0deg, #2bb2b1, #115d89, #080f1c);
+            /* 星空の背景色 */
+            overflow: hidden;
+            /* 星が枠外にはみ出すのを防ぐ */
+        }
+
+        /* 星のスタイル */
+        .star {
+            position: absolute;
+            display: block;
+            background-color: #fff;
+            /* 星の色 */
+            border-radius: 50%;
+            box-shadow: 0 0 4px 2px rgba(#fff, 0.2);
+            /* 星の影 */
+            opacity: 0;
+            animation: twinkle 5s infinite;
+        }
+
+        /* 星がキラキラ光るアニメーション */
+        @keyframes twinkle {
+            0% {
+                opacity: 0;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="start">
+        <button class="start-button">Start</button>
+
+    </div>
+    <div class="stars">
+        <!-- ここにコンテンツを入れる -->
+        <div class="content">
+            <h1>終極密碼</h1>
+            <section class="wrap">
+                <div class="view">
+                    <div class="show-number">
+                        <h2>數字範圍</h2>
+                        <div class="showErea">
+                            <p id="displayNum">1~100</p>
+                        </div>
+
+                    </div>
+                    <div class="show-guess">
+                        <h2>猜猜看</h2>
+                        <div class="">
+                            <input type="text" id="myText" disabled>
+                        </div>
+
+                    </div>
+                    <!--html的 input標籤有disabled屬性  -->
+                </div>
+                <p class="warning"></p>
+                <div class="main-box">
+                    <button class="item">1</button>
+                    <button class="item">2</button>
+                    <button class="item">3</button>
+                    <button class="item">4</button>
+                    <button class="item">5</button>
+                    <button class="item">6</button>
+                    <button class="item">7</button>
+                    <button class="item">8</button>
+                    <button class="item">9</button>
+                    <button class="cancel">C</button>
+                    <button class="item">0</button>
+                    <button class="check">OK</button>
+                </div>
+                <div class="reset">
+                    <button>Reset</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    </main>
+
+
+    <script>
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        let start = document.querySelector('.start')
+        let startBtn = document.querySelector('.start-button')
+        let checkbtn = document.querySelector('.check')
+        let resetbtn = document.querySelector('.reset')
+        let inputNum = document.querySelector('input')
+        //let showNum = document.querySelector('.show-number p')
+        let showNum = document.getElementById('displayNum')
+
+        let warn = document.querySelector('.warning')
+
+        //start
+        startBtn.addEventListener('click', function () {
+            start.style.display = 'none';
+        })
+
+        let min = 1
+        let max = 100
+        let answer = getRandomInt(min, max)
+        console.log('答案是' + answer)
+
+        //監聽輸入的數字
+        checkbtn.addEventListener('click', function () {
+            let guest = inputNum.value
+            let parse = parseInt(guest, 10)
+            if (parse != NaN) {
+                if (parse >= max || parse <= min) {
+                    warn.innerHTML = '數字超出範圍請重新輸入'
+                }
+                else if (parse == answer) {
+                    warn.innerHTML = `恭喜你~答對囉! 答案是 ${answer}`
+                    allNum.forEach(x => {
+                        x.disabled = true;
+                    });
+                }
+                else if (parse > answer) {
+                    max = parse
+                    showNum.innerHTML = `${min}~${max}`
+                    warn.innerHTML = ''
+                }
+                else if (parse < answer) {
+                    min = parse
+                    showNum.innerHTML = `${min}~${max}`
+                    warn.innerHTML = ''
+                }
+
+            }
+            else {
+                warn.innerHTML = '請重新輸入數字 !!'
+            }
+            inputNum.value = ''
+
+        })
+
+        //取消鍵
+        let cancelBtn = document.querySelector('.main-box .cancel')
+        cancelBtn.addEventListener('click', function () {
+            inputNum.value = ''
+            warn.innerHTML = ''
+        })
+
+        //數字鍵 用foreach一個一個抓放進容器
+
+        let allNum = document.querySelectorAll('.item')
+        allNum.forEach(element => {
+            element.addEventListener('click', function () {
+                inputNum.value += element.innerHTML
+            })
+        });
+
+        //重來鍵
+        let reBtn = document.querySelector('.reset button')
+        reBtn.addEventListener('click', function () {
+            min = 0
+            max = 100
+            answer = getRandomInt(min, max)
+            showNum.innerHTML = `${min}~${max}`
+            inputNum.value = ''
+            warn.innerHTML = ''
+            allNum.forEach(x => {
+                x.disabled = false;
+            });
+        })
+
+
+
+        window.addEventListener("DOMContentLoaded", () => {
+            // 星を表示するための親要素を取得
+            const stars = document.querySelector(".stars");
+
+            // 星を生成する関数
+            const createStar = () => {
+                const starEl = document.createElement("span");
+                starEl.className = "star";
+                const minSize = 1; // 星の最小サイズを指定
+                const maxSize = 2; // 星の最大サイズを指定
+                const size = Math.random() * (maxSize - minSize) + minSize;
+                starEl.style.width = `${size}px`;
+                starEl.style.height = `${size}px`;
+                starEl.style.left = `${Math.random() * 100}%`;
+                starEl.style.top = `${Math.random() * 100}%`;
+                starEl.style.animationDelay = `${Math.random() * 10}s`;
+                stars.appendChild(starEl);
+            };
+
+            // for文で星を生成する関数を指定した回数呼び出す
+            for (let i = 0; i <= 500; i++) {
+                createStar();
+            }
+        });
+
+
+
+    </script>
+</body>
+
+</html>

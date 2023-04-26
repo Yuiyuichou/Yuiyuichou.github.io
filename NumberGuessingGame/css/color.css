@@ -23,7 +23,7 @@ p {
 .container .box .rote {
   top: -900px;
   left: -300px;
-  animation: bgrote 10s linear infinite;
+  animation: bgrote 5s linear infinite;
 }
 @keyframes bgrote {
   0% {
